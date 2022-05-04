@@ -499,7 +499,7 @@ const schema = defineSchema({
   ],
 });
 
-const branch = "main";
+const branch = "https://github.com/charles-brainbox/proofone-website";
 const apiURL =
   process.env.NODE_ENV == "development"
     ? "http://localhost:4001/graphql"
