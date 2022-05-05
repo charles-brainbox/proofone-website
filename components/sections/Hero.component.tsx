@@ -6,6 +6,7 @@ import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { IHero } from "../../types/types";
 import ButtonComponent from "../Button.component";
 import RenderItemComponent from "../utils/RenderItem.component";
+import TypeWriterComponent from "../utils/Typewriter.component";
 
 const HeroComponent = ({ data }: { data: IHero }) => {
   const { herotitle, herodescription, herosubtitle, herobutton, heroimage } =
@@ -26,7 +27,10 @@ const HeroComponent = ({ data }: { data: IHero }) => {
           },
         }}
       >
-        <RenderItemComponent item={<h1 className="title">{herotitle}</h1>} />
+        {/* <RenderItemComponent item={<h1 className="title">{herotitle}</h1>} /> */}
+        <RenderItemComponent
+          item={<TypeWriterComponent content={herotitle} speed={100} />}
+        />
 
         <h2 className="subtitle">{herosubtitle}</h2>
         <RenderItemComponent
@@ -116,6 +120,11 @@ const CustomSection = styled.section`
       font-size: 4.5rem;
       font-weight: 900;
       line-height: 1;
+      &::after {
+        font-weight: 200;
+        content: "|";
+        animation: blink 1s infinite;
+      }
     }
     .subtitle {
       font-size: 2rem;
@@ -132,6 +141,15 @@ const CustomSection = styled.section`
       width: 200%;
       height: 500px;
       bottom: 0;
+    }
+  }
+
+  @keyframes blink {
+    from {
+      opacity: 0%;
+    }
+    to {
+      opacity: 100%;
     }
   }
 `;

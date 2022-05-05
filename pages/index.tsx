@@ -47,6 +47,7 @@ export async function getStaticProps() {
   try {
     data = await staticRequest({
       query: HOME_QUERY,
+
       variables: {},
     });
   } catch (error) {}
