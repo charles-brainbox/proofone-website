@@ -19,7 +19,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: var(--main-font);
-  /* color: var(--sec-color); */
+  line-height: 1.5;
   font-weight: 400;
 
   font-size: 15px;

@@ -101,7 +101,7 @@ const CustomSection = styled.footer`
       text-transform: uppercase;
     }
     .footer-content {
-      .item {
+      li {
         list-style: none;
         margin-bottom: 0.2rem;
         transition: all 0.3s ease;

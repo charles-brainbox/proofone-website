@@ -10,7 +10,7 @@ import { staticRequest } from "tinacms";
 import { useTina } from "tinacms/dist/edit-state";
 import { HOME_QUERY } from "../queries/queries";
 
-const Home = (props) => {
+const Home = (props: { data: any }) => {
   const { data } = useTina({
     query: HOME_QUERY,
     variables: {},
@@ -42,7 +42,7 @@ const Home = (props) => {
 export default Home;
 
 export async function getStaticProps() {
-  let data = {};
+  let data: any = {};
 
   try {
     data = await staticRequest({
