@@ -20,12 +20,14 @@ export default createMediaHandler({
   cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
   api_key: process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
-  authorized: async (req) => {
-    if (process.env.NEXT_PUBLIC_USE_LOCAL_CLIENT === "1") {
-      return true;
-    }
+  authorized: async (req, _res) => {
     try {
+      if (process.env.NEXT_PUBLIC_USE_LOCAL_CLIENT) {
+        return true;
+      }
+
       const user = await isAuthorized(req);
+
       return user && user.verified;
     } catch (e) {
       console.error(e);

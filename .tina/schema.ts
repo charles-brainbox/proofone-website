@@ -527,15 +527,15 @@ export const tinaConfig = defineConfig({
           return undefined;
         }
         if (["pages"].includes(collection.name)) {
-          if (document._sys.filename === "home") {
+          if (document.sys.filename === "home") {
             return `/`;
           }
-          if (document._sys.filename === "about") {
+          if (document.sys.filename === "about") {
             return `/about`;
           }
           return undefined;
         }
-        return `/${collection.name}/${document._sys.filename}`;
+        return `/${collection.name}/${document.sys.filename}`;
       });
       cms.plugins.add(RouteMapping);
     });
