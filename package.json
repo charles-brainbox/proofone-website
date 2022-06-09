@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@tinacms/cli": "^0.60.17",
+    "@tinacms/cli": "^0.60.20",
     "framer-motion": "^6.3.3",
     "next": "12.1.6",
     "next-svgr": "^0.0.2",
@@ -17,7 +17,7 @@
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "styled-components": "^5.3.5",
-    "tinacms": "^0.68.5"
+    "tinacms": "^0.68.8"
   },
   "devDependencies": {
     "@tinacms/auth": "^0.50.2",
