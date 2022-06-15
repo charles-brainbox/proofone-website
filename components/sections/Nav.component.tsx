@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { INav } from "../../types/types";
 import ButtonComponent from "../Button.component";
@@ -12,19 +12,39 @@ import {
   sidebar,
 } from "../../consts/constants";
 import { MenuToggle } from "./MenuToggle.component";
+import Navbar from "../../content/navbar/Navbar.json";
 
-const NavComponent = ({ data }: { data: INav }) => {
+const NavComponent = () => {
   const [isOpen, toggleOpen] = useCycle(false, true);
   const containerRef = useRef(null);
+  const [scrollPosition, setScrollPosition] = useState<number>(0);
+
+  const handleScroll = () => {
+    const position: number = window.scrollY;
+    setScrollPosition(position);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const {
+    navbar: { logo, navitems, navbuttons },
+  } = Navbar;
+
   return (
-    <CustomSection isOpen={isOpen}>
+    <CustomSection isOpen={isOpen} scrollPosition={scrollPosition}>
       <div className="logo">
         <RenderItemComponent
           item={
             <Link href={"/"}>
               <a>
                 <Image
-                  src={data.logo}
+                  src={logo}
                   alt="proof-one-logo"
                   layout="fill"
                   objectFit="cover"
@@ -36,27 +56,29 @@ const NavComponent = ({ data }: { data: INav }) => {
       </div>
       <div className="menu">
         <ul className="menu-desktop">
-          {data.navitems.map(({ menutitle, menulink }, idx) => (
+          {navitems.map(({ menutitle, menulink }, idx) => (
             <RenderItemComponent
               key={idx}
               item={
                 <li>
-                  <span>+ </span>
-                  <Link href={menulink}>{menutitle}</Link>
-                  <div className="underline"></div>
+                  <div className="item-title">
+                    <span>+ </span>
+                    <Link href={`#${menulink}`}>{menutitle}</Link>
+                    <div className="underline"></div>
+                  </div>
                 </li>
               }
             />
           ))}
         </ul>
-        {data.navbuttons.map(({ buttontitle, buttonlink }, idx) => (
+        {navbuttons.map(({ buttontitle, buttonlink }, idx) => (
           <RenderItemComponent
             key={idx}
             item={
               <ButtonComponent
-                normal
-                link={buttonlink}
                 style={{ zIndex: "300" }}
+                outline
+                id={buttonlink}
               >
                 {buttontitle}
               </ButtonComponent>
@@ -72,7 +94,7 @@ const NavComponent = ({ data }: { data: INav }) => {
         >
           <motion.div className="background" variants={sidebar} />
           <motion.ul variants={navListVariants}>
-            {data.navitems.map(({ menutitle, menulink }, idx) => (
+            {navitems.map(({ menutitle, menulink }, idx) => (
               <RenderItemComponent
                 key={idx}
                 item={
@@ -80,8 +102,9 @@ const NavComponent = ({ data }: { data: INav }) => {
                     variants={menuItemsVariants}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
+                    onClick={() => toggleOpen()}
                   >
-                    <Link href={menulink}>{menutitle}</Link>
+                    <Link href={`#${menulink}`}>{menutitle}</Link>
                   </motion.li>
                 }
               />
@@ -96,28 +119,33 @@ const NavComponent = ({ data }: { data: INav }) => {
 
 export default NavComponent;
 
-const CustomSection = styled.nav<{ isOpen: boolean }>`
+const CustomSection = styled.nav<{ isOpen: boolean; scrollPosition: number }>`
   position: -webkit-sticky;
   position: sticky;
   top: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: var(--main-white);
+  background-color: ${(props) =>
+    props.scrollPosition > 650 ? "var(--main-white)" : "var(--main-color)"};
+  color: ${(props) =>
+    props.scrollPosition > 650 ? "var(--main-color)" : "var(--main-white)"};
   z-index: 100;
   margin: 0 auto;
   width: 100%;
   height: 80px;
   max-width: 1800px;
-  border-bottom: 1px solid var(--main-color);
   padding-right: 2%;
+  transition: all 0.5s ease;
 
   @media (max-width: 1024px) {
     .mobile-view-div {
       display: block !important;
-      position: absolute;
-      right: 0;
+      position: ${(props) => (props.isOpen ? "fixed" : "absolute")};
+      left: 0;
       top: 0;
+      right: 0;
+      bottom: 0;
       transition-delay: 0.3s;
       width: 100vw;
       height: ${(props) => (props.isOpen ? "100vh" : "0")};
@@ -134,10 +162,11 @@ const CustomSection = styled.nav<{ isOpen: boolean }>`
           z-index: 200;
           li {
             padding-bottom: 3rem;
-            font-size: 2rem;
-            font-weight: 700;
             text-align: right;
-            color: #fff;
+            list-style: none;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 2rem;
           }
         }
       }
@@ -165,22 +194,35 @@ const CustomSection = styled.nav<{ isOpen: boolean }>`
       display: flex;
       align-items: center;
       gap: 20px;
+      height: 40px;
       li {
+        padding: 0 10px 0 0;
+        height: 100%;
+        position: relative;
+        display: flex;
+        align-items: center;
         list-style: none;
-        font-weight: 700;
+        font-weight: 500;
         cursor: pointer;
-        font-size: 1.3rem;
         transition: opacity 0.5s ease-in-out;
-        span {
-          opacity: 0;
-          transition: opacity 0.5s ease-in-out;
+        .item-title {
+          span {
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+          }
+          .underline {
+            width: 0;
+            height: 1px;
+            position: absolute;
+            bottom: 0;
+            background: ${(props) =>
+              props.scrollPosition > 650
+                ? "var(--main-color)"
+                : "var(--main-white)"};
+            transition: width 0.5s ease-in-out;
+          }
         }
-        .underline {
-          width: 0;
-          height: 2px;
-          background: var(--main-color);
-          transition: width 0.5s ease-in-out;
-        }
+
         &:hover {
           opacity: 0.5;
           span {
@@ -204,5 +246,12 @@ const CustomSection = styled.nav<{ isOpen: boolean }>`
     width: 100vw;
     height: 100vh;
     background: var(--main-color);
+  }
+  button {
+    transition: all 0.5s ease;
+    border-color: ${(props) =>
+      props.scrollPosition > 650 ? "var(--main-color)" : "var(--main-white)"};
+    color: ${(props) =>
+      props.scrollPosition > 650 ? "var(--main-color)" : "var(--main-white)"};
   }
 `;

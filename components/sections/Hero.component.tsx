@@ -15,17 +15,17 @@ const HeroComponent = ({ data }: { data: IHero }) => {
     <CustomSection>
       <motion.div
         className="left-side"
-        initial={{
-          x: "-100%",
-        }}
-        whileInView={{
-          x: "0",
-          transition: {
-            staggerChildren: 0.05,
-            staggerDirection: -1,
-            delayChildren: 2,
-          },
-        }}
+        // initial={{
+        //   x: "-100%",
+        // }}
+        // whileInView={{
+        //   x: "0",
+        //   transition: {
+        //     staggerChildren: 0.05,
+        //     staggerDirection: -1,
+        //     delayChildren: 2,
+        //   },
+        // }}
       >
         {/* <RenderItemComponent item={<h1 className="title">{herotitle}</h1>} /> */}
         <RenderItemComponent
@@ -44,7 +44,7 @@ const HeroComponent = ({ data }: { data: IHero }) => {
               <ButtonComponent
                 outline
                 style={{ marginTop: "1rem" }}
-                link={buttonlink}
+                id={buttonlink}
               >
                 {buttontitle}
               </ButtonComponent>
@@ -78,17 +78,13 @@ export default HeroComponent;
 const CustomSection = styled.section`
   position: relative;
   height: 600px;
-  width: 120%;
   background-color: var(--main-color);
-  border-bottom-left-radius: 40px;
   display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  gap: 20px;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
   align-items: center;
-  padding: 0 7rem;
+  padding: 0 10rem;
   color: var(--main-white);
-  margin-bottom: 5rem;
-  margin-left: -10%;
   @media (max-width: 1024px) {
     margin-left: 0;
     width: 100%;
@@ -130,6 +126,7 @@ const CustomSection = styled.section`
       font-size: 2rem;
       margin: 0.2rem 0;
       font-weight: 600;
+      margin: 0 0 1rem;
     }
   }
   .right-side {

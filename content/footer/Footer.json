@@ -1,0 +1,44 @@
+{
+  "logo": "https://res.cloudinary.com/brainboxgroup/image/upload/v1651494033/proof-one_black_claim_kbx6ss.jpg",
+  "address": {
+    "title": "Anschrift",
+    "companyname": "brainbox GmbH",
+    "companystreet": "Kiehnlestraße 16",
+    "companycity": "75172 Pforzheim",
+    "companycountry": "Germany"
+  },
+  "otherdata": [
+    {
+      "title": "Datenschutz",
+      "body": [
+        {
+          "item": "Cookie Hinweis",
+          "itemlink": "cookie"
+        },
+        {
+          "item": "Datenschutzerklärung",
+          "itemlink": "datenschutzerklärung"
+        },
+        {
+          "item": "Impressum",
+          "itemlink": "impressum"
+        }
+      ]
+    },
+    {
+      "title": "Kontakt",
+      "body": [
+        {
+          "item": " T +49 172 2538038",
+          "itemlink": "+49 172 2538038",
+          "itemtag": "phone"
+        },
+        {
+          "item": "administration@ck-holding.de",
+          "itemlink": "administration@ck-holding.de",
+          "itemtag": "mail"
+        }
+      ]
+    }
+  ]
+}

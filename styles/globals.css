@@ -1,15 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap");
 
 :root {
   --main-font: -apple-system, Libre Franklin, IBM Plex Sans, Inter,
     BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans,
     Droid Sans, Helvetica Neue, sans-serif;
+  --sec-font: "Libre Baskerville", serif;
   --main-white: #fff;
   --sec-color: #b4176d;
   --main-black: #000;
-  --main-color: #2e2d4b;
+  --main-color: #1839aa;
   --main-grey: #f9f9f9;
   --main-grey-2: #fcfcfc;
 }
@@ -21,8 +23,8 @@ body {
   font-family: var(--main-font);
   line-height: 1.5;
   font-weight: 400;
-
-  font-size: 15px;
+  font-size: 13px;
+  scroll-behavior: smooth;
 }
 body {
   overflow-x: hidden !important;

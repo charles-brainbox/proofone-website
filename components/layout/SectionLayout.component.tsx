@@ -1,12 +1,18 @@
 import React, { ReactNode } from "react";
 import styled from "styled-components";
 
-const SectionLayoutComponent = ({ children }: { children: ReactNode }) => {
-  return <CustomSection>{children}</CustomSection>;
+const SectionLayoutComponent = ({
+  children,
+  id,
+}: {
+  children: ReactNode;
+  id?: string;
+}) => {
+  return <CustomSection id={id && id.toLowerCase()}>{children}</CustomSection>;
 };
 
 export default SectionLayoutComponent;
 
 const CustomSection = styled.section`
-  margin-bottom: 5rem;
+  padding: 85px 0 0;
 `;

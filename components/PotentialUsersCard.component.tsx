@@ -18,6 +18,7 @@ interface IPotentialUsers {
   title: string;
   button: { buttontext: string; buttonlink: string };
   description: TinaMarkdownContent | TinaMarkdownContent[];
+  index: number;
 }
 
 const PotentialUsersCardComponent: FC<IPotentialUsers> = ({
@@ -26,56 +27,8 @@ const PotentialUsersCardComponent: FC<IPotentialUsers> = ({
   title,
   button,
   description,
+  index,
 }) => {
-  if (switchcard) {
-    return (
-      <CustomSection
-        variants={featuresVariant}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true }}
-      >
-        <motion.div
-          className="right-side"
-          variants={potentialUserImages}
-          transition={{ ease: "easeInOut", duration: "1", repeat: 0 }}
-        >
-          <RenderItemComponent
-            item={
-              <Image
-                src={image}
-                alt={title}
-                width={521.15}
-                height={430}
-                objectFit="contain"
-              />
-            }
-          />
-        </motion.div>
-        <motion.div
-          className="left-side"
-          variants={potentialUserRight}
-          transition={{ ease: "easeInOut", duration: "1", repeat: 0 }}
-        >
-          <RenderItemComponent item={<h5 className="title">{title}</h5>} />
-          <RenderItemComponent item={<TinaMarkdown content={description} />} />
-          {button && (
-            <RenderItemComponent
-              item={
-                <ButtonComponent
-                  link={button.buttonlink}
-                  normal
-                  style={{ marginTop: "2rem" }}
-                >
-                  {button.buttontext}
-                </ButtonComponent>
-              }
-            />
-          )}
-        </motion.div>
-      </CustomSection>
-    );
-  }
   return (
     <CustomSection
       variants={featuresVariant}
@@ -88,37 +41,11 @@ const PotentialUsersCardComponent: FC<IPotentialUsers> = ({
         variants={potentialUserLeft}
         transition={{ ease: "easeInOut", duration: "1", repeat: 0 }}
       >
-        <RenderItemComponent item={<h5 className="title">{title}</h5>} />
+        <div className="index-number">
+          <span className="index">{index}</span>
+        </div>
+        <RenderItemComponent item={<h4 className="title">{title}</h4>} />
         <RenderItemComponent item={<TinaMarkdown content={description} />} />
-        {button && (
-          <RenderItemComponent
-            item={
-              <ButtonComponent
-                link={button.buttonlink}
-                style={{ marginTop: "2rem" }}
-              >
-                {button.buttontext}
-              </ButtonComponent>
-            }
-          />
-        )}
-      </motion.div>
-      <motion.div
-        className="right-side"
-        variants={potentialUserImages}
-        transition={{ ease: "easeInOut", duration: "1", repeat: 0 }}
-      >
-        <RenderItemComponent
-          item={
-            <Image
-              src={image}
-              alt={title}
-              width={521.15}
-              height={430}
-              objectFit="contain"
-            />
-          }
-        />
       </motion.div>
     </CustomSection>
   );
@@ -127,27 +54,33 @@ const PotentialUsersCardComponent: FC<IPotentialUsers> = ({
 export default PotentialUsersCardComponent;
 
 const CustomSection = styled(motion.div)`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  gap: 100px;
-  margin-bottom: 2rem;
+  margin: 3rem 0 0;
 
   @media (max-width: 500px) {
-    grid-template-columns: 1fr;
     margin-bottom: 2rem;
-    .right-side {
-      display: none;
-    }
   }
 
   .left-side {
-    .title {
-      font-weight: 700;
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
+    .index-number {
+      height: 30px;
+      width: 30px;
+      min-width: 30px;
+      border-radius: 50%;
+      border: 2px solid var(--main-color);
+      color: var(--main-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 0 1rem 0;
+      .index {
+        font-weight: 800;
+      }
     }
-    .description {
+    .title {
+      font-weight: 800;
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--main-color);
     }
   }
 `;

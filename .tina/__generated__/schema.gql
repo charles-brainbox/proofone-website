@@ -50,10 +50,14 @@ type Query {
   document(collection: String, relativePath: String): DocumentNode!
   author(relativePath: String): Author!
   authorConnection(before: String, after: String, first: Float, last: Float, sort: String): AuthorConnection!
+  navbar(relativePath: String): Navbar!
+  navbarConnection(before: String, after: String, first: Float, last: Float, sort: String): NavbarConnection!
+  footer(relativePath: String): Footer!
+  footerConnection(before: String, after: String, first: Float, last: Float, sort: String): FooterConnection!
   name(relativePath: String): Name!
   nameConnection(before: String, after: String, first: Float, last: Float, sort: String): NameConnection!
-  samplehome(relativePath: String): Samplehome!
-  samplehomeConnection(before: String, after: String, first: Float, last: Float, sort: String): SamplehomeConnection!
+  impressum(relativePath: String): Impressum!
+  impressumConnection(before: String, after: String, first: Float, last: Float, sort: String): ImpressumConnection!
 }
 
 type DocumentConnectionEdges {
@@ -79,7 +83,7 @@ type Collection {
   documents(before: String, after: String, first: Float, last: Float, sort: String): DocumentConnection!
 }
 
-union DocumentNode = Author | Name | Samplehome
+union DocumentNode = Author | Navbar | Footer | Name | Impressum
 
 type Author implements Node & Document {
   name: String
@@ -100,20 +104,77 @@ type AuthorConnection implements Connection {
   edges: [AuthorConnectionEdges]
 }
 
-type NameNavbarNavitems {
+type NavbarNavbarNavitems {
   menutitle: String
   menulink: String
 }
 
-type NameNavbarNavbuttons {
+type NavbarNavbarNavbuttons {
   buttontitle: String
   buttonlink: String
 }
 
-type NameNavbar {
+type NavbarNavbar {
   logo: String
-  navitems: [NameNavbarNavitems]
-  navbuttons: [NameNavbarNavbuttons]
+  navitems: [NavbarNavbarNavitems]
+  navbuttons: [NavbarNavbarNavbuttons]
+}
+
+type Navbar implements Node & Document {
+  navbar: NavbarNavbar
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+type NavbarConnectionEdges {
+  cursor: String!
+  node: Navbar
+}
+
+type NavbarConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [NavbarConnectionEdges]
+}
+
+type FooterAddress {
+  title: String
+  companyname: String
+  companystreet: String
+  companycity: String
+  companycountry: String
+}
+
+type FooterOtherdataBody {
+  item: String
+  itemlink: String
+  itemtag: String
+}
+
+type FooterOtherdata {
+  title: String
+  body: [FooterOtherdataBody]
+}
+
+type Footer implements Node & Document {
+  logo: String
+  address: FooterAddress
+  otherdata: [FooterOtherdata]
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+type FooterConnectionEdges {
+  cursor: String!
+  node: Footer
+}
+
+type FooterConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [FooterConnectionEdges]
 }
 
 type NameHeroHerobutton {
@@ -123,10 +184,23 @@ type NameHeroHerobutton {
 
 type NameHero {
   herotitle: String
+  sectionid: String
   herosubtitle: String
   herodescription: JSON
   herobutton: [NameHeroHerobutton]
   heroimage: String
+}
+
+type NameUsecasesUsecases {
+  title: String
+  description: JSON
+}
+
+type NameUsecases {
+  sectiontitle: String
+  sectionid: String
+  sideimage: String
+  usecases: [NameUsecasesUsecases]
 }
 
 type NameFeaturesFeatures {
@@ -138,7 +212,21 @@ type NameFeaturesFeatures {
 
 type NameFeatures {
   sectiontitle: String
+  sectionid: String
+  topimage: String
   features: [NameFeaturesFeatures]
+}
+
+type NameOurapproachOurapproach {
+  title: String
+  description: JSON
+}
+
+type NameOurapproach {
+  sectiontitle: String
+  sectionid: String
+  sideimage: String
+  ourapproach: [NameOurapproachOurapproach]
 }
 
 type NamePotentialuserPotentialusersButton {
@@ -155,6 +243,7 @@ type NamePotentialuserPotentialusers {
 
 type NamePotentialuser {
   sectiontitle: String
+  sectionid: String
   potentialusers: [NamePotentialuserPotentialusers]
 }
 
@@ -173,41 +262,18 @@ type NameFooterctoCtobutton {
 
 type NameFootercto {
   cto: String
+  sectionid: String
   ctobutton: NameFooterctoCtobutton
 }
 
-type NameFooterAddress {
-  title: String
-  companyname: String
-  companystreet: String
-  companycity: String
-  companycountry: String
-}
-
-type NameFooterOtherdataBody {
-  item: String
-  itemlink: String
-}
-
-type NameFooterOtherdata {
-  title: String
-  body: [NameFooterOtherdataBody]
-}
-
-type NameFooter {
-  logo: String
-  address: NameFooterAddress
-  otherdata: [NameFooterOtherdata]
-}
-
 type Name implements Node & Document {
-  navbar: NameNavbar
   hero: NameHero
+  usecases: NameUsecases
   features: NameFeatures
+  ourapproach: NameOurapproach
   potentialuser: NamePotentialuser
   otherproducts: NameOtherproducts
   footercto: NameFootercto
-  footer: NameFooter
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
@@ -224,125 +290,23 @@ type NameConnection implements Connection {
   edges: [NameConnectionEdges]
 }
 
-type SamplehomeNavbarNavitems {
-  menutitle: String
-  menulink: String
-}
-
-type SamplehomeNavbarNavbuttons {
-  buttontitle: String
-  buttonlink: String
-}
-
-type SamplehomeNavbar {
-  logo: String
-  navitems: [SamplehomeNavbarNavitems]
-  navbuttons: [SamplehomeNavbarNavbuttons]
-}
-
-type SamplehomeHeroHerobutton {
-  buttontitle: String
-  buttonlink: String
-}
-
-type SamplehomeHero {
-  herotitle: String
-  herosubtitle: String
-  herodescription: JSON
-  herobutton: [SamplehomeHeroHerobutton]
-  heroimage: String
-}
-
-type SamplehomeFeaturesFeatures {
-  icon: String
-  title: String
-  subtitle: String
-  description: JSON
-}
-
-type SamplehomeFeatures {
-  sectiontitle: String
-  features: [SamplehomeFeaturesFeatures]
-}
-
-type SamplehomePotentialuserPotentialusersUsers {
-  image: String
+type Impressum implements Node & Document {
   title: String
   description: JSON
-}
-
-type SamplehomePotentialuserPotentialusers {
-  users: SamplehomePotentialuserPotentialusersUsers
-}
-
-type SamplehomePotentialuser {
-  sectiontitle: String
-  potentialusers: [SamplehomePotentialuserPotentialusers]
-}
-
-type SamplehomeOtherproductsProductlogo {
-  productlogo: String
-}
-
-type SamplehomeOtherproducts {
-  productlogo: [SamplehomeOtherproductsProductlogo]
-}
-
-type SamplehomeFooterctoCtobutton {
-  buttontext: String
-  buttonlink: String
-}
-
-type SamplehomeFootercto {
-  cto: String
-  ctobutton: SamplehomeFooterctoCtobutton
-}
-
-type SamplehomeFooterAddress {
-  title: String
-  companyname: String
-  companystreet: String
-  companycity: String
-  companycountry: String
-}
-
-type SamplehomeFooterOtherdataBody {
-  item: String
-  itemlink: String
-}
-
-type SamplehomeFooterOtherdata {
-  title: String
-  body: [SamplehomeFooterOtherdataBody]
-}
-
-type SamplehomeFooter {
-  address: SamplehomeFooterAddress
-  otherdata: [SamplehomeFooterOtherdata]
-}
-
-type Samplehome implements Node & Document {
-  navbar: SamplehomeNavbar
-  hero: SamplehomeHero
-  features: SamplehomeFeatures
-  potentialuser: SamplehomePotentialuser
-  otherproducts: SamplehomeOtherproducts
-  footercto: SamplehomeFootercto
-  footer: SamplehomeFooter
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
 }
 
-type SamplehomeConnectionEdges {
+type ImpressumConnectionEdges {
   cursor: String!
-  node: Samplehome
+  node: Impressum
 }
 
-type SamplehomeConnection implements Connection {
+type ImpressumConnection implements Connection {
   pageInfo: PageInfo!
   totalCount: Float!
-  edges: [SamplehomeConnectionEdges]
+  edges: [ImpressumConnectionEdges]
 }
 
 type Mutation {
@@ -352,16 +316,22 @@ type Mutation {
   createDocument(collection: String, relativePath: String!, params: DocumentMutation!): DocumentNode!
   updateAuthor(relativePath: String!, params: AuthorMutation!): Author!
   createAuthor(relativePath: String!, params: AuthorMutation!): Author!
+  updateNavbar(relativePath: String!, params: NavbarMutation!): Navbar!
+  createNavbar(relativePath: String!, params: NavbarMutation!): Navbar!
+  updateFooter(relativePath: String!, params: FooterMutation!): Footer!
+  createFooter(relativePath: String!, params: FooterMutation!): Footer!
   updateName(relativePath: String!, params: NameMutation!): Name!
   createName(relativePath: String!, params: NameMutation!): Name!
-  updateSamplehome(relativePath: String!, params: SamplehomeMutation!): Samplehome!
-  createSamplehome(relativePath: String!, params: SamplehomeMutation!): Samplehome!
+  updateImpressum(relativePath: String!, params: ImpressumMutation!): Impressum!
+  createImpressum(relativePath: String!, params: ImpressumMutation!): Impressum!
 }
 
 input DocumentMutation {
   author: AuthorMutation
+  navbar: NavbarMutation
+  footer: FooterMutation
   name: NameMutation
-  samplehome: SamplehomeMutation
+  impressum: ImpressumMutation
 }
 
 input AuthorMutation {
@@ -369,20 +339,49 @@ input AuthorMutation {
   avatar: String
 }
 
-input NameNavbarNavitemsMutation {
+input NavbarNavbarNavitemsMutation {
   menutitle: String
   menulink: String
 }
 
-input NameNavbarNavbuttonsMutation {
+input NavbarNavbarNavbuttonsMutation {
   buttontitle: String
   buttonlink: String
 }
 
-input NameNavbarMutation {
+input NavbarNavbarMutation {
   logo: String
-  navitems: [NameNavbarNavitemsMutation]
-  navbuttons: [NameNavbarNavbuttonsMutation]
+  navitems: [NavbarNavbarNavitemsMutation]
+  navbuttons: [NavbarNavbarNavbuttonsMutation]
+}
+
+input NavbarMutation {
+  navbar: NavbarNavbarMutation
+}
+
+input FooterAddressMutation {
+  title: String
+  companyname: String
+  companystreet: String
+  companycity: String
+  companycountry: String
+}
+
+input FooterOtherdataBodyMutation {
+  item: String
+  itemlink: String
+  itemtag: String
+}
+
+input FooterOtherdataMutation {
+  title: String
+  body: [FooterOtherdataBodyMutation]
+}
+
+input FooterMutation {
+  logo: String
+  address: FooterAddressMutation
+  otherdata: [FooterOtherdataMutation]
 }
 
 input NameHeroHerobuttonMutation {
@@ -392,10 +391,23 @@ input NameHeroHerobuttonMutation {
 
 input NameHeroMutation {
   herotitle: String
+  sectionid: String
   herosubtitle: String
   herodescription: JSON
   herobutton: [NameHeroHerobuttonMutation]
   heroimage: String
+}
+
+input NameUsecasesUsecasesMutation {
+  title: String
+  description: JSON
+}
+
+input NameUsecasesMutation {
+  sectiontitle: String
+  sectionid: String
+  sideimage: String
+  usecases: [NameUsecasesUsecasesMutation]
 }
 
 input NameFeaturesFeaturesMutation {
@@ -407,7 +419,21 @@ input NameFeaturesFeaturesMutation {
 
 input NameFeaturesMutation {
   sectiontitle: String
+  sectionid: String
+  topimage: String
   features: [NameFeaturesFeaturesMutation]
+}
+
+input NameOurapproachOurapproachMutation {
+  title: String
+  description: JSON
+}
+
+input NameOurapproachMutation {
+  sectiontitle: String
+  sectionid: String
+  sideimage: String
+  ourapproach: [NameOurapproachOurapproachMutation]
 }
 
 input NamePotentialuserPotentialusersButtonMutation {
@@ -424,6 +450,7 @@ input NamePotentialuserPotentialusersMutation {
 
 input NamePotentialuserMutation {
   sectiontitle: String
+  sectionid: String
   potentialusers: [NamePotentialuserPotentialusersMutation]
 }
 
@@ -442,148 +469,23 @@ input NameFooterctoCtobuttonMutation {
 
 input NameFooterctoMutation {
   cto: String
+  sectionid: String
   ctobutton: NameFooterctoCtobuttonMutation
 }
 
-input NameFooterAddressMutation {
-  title: String
-  companyname: String
-  companystreet: String
-  companycity: String
-  companycountry: String
-}
-
-input NameFooterOtherdataBodyMutation {
-  item: String
-  itemlink: String
-}
-
-input NameFooterOtherdataMutation {
-  title: String
-  body: [NameFooterOtherdataBodyMutation]
-}
-
-input NameFooterMutation {
-  logo: String
-  address: NameFooterAddressMutation
-  otherdata: [NameFooterOtherdataMutation]
-}
-
 input NameMutation {
-  navbar: NameNavbarMutation
   hero: NameHeroMutation
+  usecases: NameUsecasesMutation
   features: NameFeaturesMutation
+  ourapproach: NameOurapproachMutation
   potentialuser: NamePotentialuserMutation
   otherproducts: NameOtherproductsMutation
   footercto: NameFooterctoMutation
-  footer: NameFooterMutation
 }
 
-input SamplehomeNavbarNavitemsMutation {
-  menutitle: String
-  menulink: String
-}
-
-input SamplehomeNavbarNavbuttonsMutation {
-  buttontitle: String
-  buttonlink: String
-}
-
-input SamplehomeNavbarMutation {
-  logo: String
-  navitems: [SamplehomeNavbarNavitemsMutation]
-  navbuttons: [SamplehomeNavbarNavbuttonsMutation]
-}
-
-input SamplehomeHeroHerobuttonMutation {
-  buttontitle: String
-  buttonlink: String
-}
-
-input SamplehomeHeroMutation {
-  herotitle: String
-  herosubtitle: String
-  herodescription: JSON
-  herobutton: [SamplehomeHeroHerobuttonMutation]
-  heroimage: String
-}
-
-input SamplehomeFeaturesFeaturesMutation {
-  icon: String
-  title: String
-  subtitle: String
-  description: JSON
-}
-
-input SamplehomeFeaturesMutation {
-  sectiontitle: String
-  features: [SamplehomeFeaturesFeaturesMutation]
-}
-
-input SamplehomePotentialuserPotentialusersUsersMutation {
-  image: String
+input ImpressumMutation {
   title: String
   description: JSON
-}
-
-input SamplehomePotentialuserPotentialusersMutation {
-  users: SamplehomePotentialuserPotentialusersUsersMutation
-}
-
-input SamplehomePotentialuserMutation {
-  sectiontitle: String
-  potentialusers: [SamplehomePotentialuserPotentialusersMutation]
-}
-
-input SamplehomeOtherproductsProductlogoMutation {
-  productlogo: String
-}
-
-input SamplehomeOtherproductsMutation {
-  productlogo: [SamplehomeOtherproductsProductlogoMutation]
-}
-
-input SamplehomeFooterctoCtobuttonMutation {
-  buttontext: String
-  buttonlink: String
-}
-
-input SamplehomeFooterctoMutation {
-  cto: String
-  ctobutton: SamplehomeFooterctoCtobuttonMutation
-}
-
-input SamplehomeFooterAddressMutation {
-  title: String
-  companyname: String
-  companystreet: String
-  companycity: String
-  companycountry: String
-}
-
-input SamplehomeFooterOtherdataBodyMutation {
-  item: String
-  itemlink: String
-}
-
-input SamplehomeFooterOtherdataMutation {
-  title: String
-  body: [SamplehomeFooterOtherdataBodyMutation]
-}
-
-input SamplehomeFooterMutation {
-  address: SamplehomeFooterAddressMutation
-  otherdata: [SamplehomeFooterOtherdataMutation]
-}
-
-input SamplehomeMutation {
-  navbar: SamplehomeNavbarMutation
-  hero: SamplehomeHeroMutation
-  features: SamplehomeFeaturesMutation
-  potentialuser: SamplehomePotentialuserMutation
-  otherproducts: SamplehomeOtherproductsMutation
-  footercto: SamplehomeFooterctoMutation
-  footer: SamplehomeFooterMutation
 }
 
 schema {

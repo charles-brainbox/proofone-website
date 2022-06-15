@@ -9,6 +9,9 @@ interface IButton {
   style?: object;
   normal?: boolean;
   link?: string;
+  disabled?: boolean;
+  type?: "submit" | "button" | "reset";
+  id?: string;
 }
 
 const ButtonComponent: FC<IButton> = ({
@@ -17,6 +20,9 @@ const ButtonComponent: FC<IButton> = ({
   style,
   normal,
   link,
+  disabled,
+  type,
+  id,
 }) => {
   return (
     <CustomButton
@@ -25,8 +31,16 @@ const ButtonComponent: FC<IButton> = ({
       $normal={normal}
       whileTap={{ scale: 0.9 }}
       whileHover={{ scale: 1.05 }}
+      disabled={disabled}
+      type={type ? type : "button"}
     >
-      {link ? <Link href={link}>{children}</Link> : <p> {children}</p>}
+      {link ? (
+        <Link href={link}>{children}</Link>
+      ) : id ? (
+        <Link href={`#${id}`}>{children}</Link>
+      ) : (
+        <p>{children}</p>
+      )}
     </CustomButton>
   );
 };
@@ -38,8 +52,7 @@ const CustomButton = styled(motion.button)<{
   $normal?: boolean;
 }>`
   padding: 0.5rem 1.5rem;
-  font-weight: 800;
-  font-size: 1.1rem;
+  font-weight: 600;
   outline: none;
   border-radius: 5px;
   cursor: pointer;

@@ -3,7 +3,7 @@ fragment AuthorParts on Author {
   avatar
 }
 
-fragment NameParts on Name {
+fragment NavbarParts on Navbar {
   navbar {
     __typename
     logo
@@ -18,9 +18,35 @@ fragment NameParts on Name {
       buttonlink
     }
   }
+}
+
+fragment FooterParts on Footer {
+  logo
+  address {
+    __typename
+    title
+    companyname
+    companystreet
+    companycity
+    companycountry
+  }
+  otherdata {
+    __typename
+    title
+    body {
+      __typename
+      item
+      itemlink
+      itemtag
+    }
+  }
+}
+
+fragment NameParts on Name {
   hero {
     __typename
     herotitle
+    sectionid
     herosubtitle
     herodescription
     herobutton {
@@ -30,9 +56,22 @@ fragment NameParts on Name {
     }
     heroimage
   }
+  usecases {
+    __typename
+    sectiontitle
+    sectionid
+    sideimage
+    usecases {
+      __typename
+      title
+      description
+    }
+  }
   features {
     __typename
     sectiontitle
+    sectionid
+    topimage
     features {
       __typename
       icon
@@ -41,9 +80,21 @@ fragment NameParts on Name {
       description
     }
   }
+  ourapproach {
+    __typename
+    sectiontitle
+    sectionid
+    sideimage
+    ourapproach {
+      __typename
+      title
+      description
+    }
+  }
   potentialuser {
     __typename
     sectiontitle
+    sectionid
     potentialusers {
       __typename
       image
@@ -66,120 +117,16 @@ fragment NameParts on Name {
   footercto {
     __typename
     cto
+    sectionid
     ctobutton {
       __typename
       buttontext
       buttonlink
-    }
-  }
-  footer {
-    __typename
-    logo
-    address {
-      __typename
-      title
-      companyname
-      companystreet
-      companycity
-      companycountry
-    }
-    otherdata {
-      __typename
-      title
-      body {
-        __typename
-        item
-        itemlink
-      }
     }
   }
 }
 
-fragment SamplehomeParts on Samplehome {
-  navbar {
-    __typename
-    logo
-    navitems {
-      __typename
-      menutitle
-      menulink
-    }
-    navbuttons {
-      __typename
-      buttontitle
-      buttonlink
-    }
-  }
-  hero {
-    __typename
-    herotitle
-    herosubtitle
-    herodescription
-    herobutton {
-      __typename
-      buttontitle
-      buttonlink
-    }
-    heroimage
-  }
-  features {
-    __typename
-    sectiontitle
-    features {
-      __typename
-      icon
-      title
-      subtitle
-      description
-    }
-  }
-  potentialuser {
-    __typename
-    sectiontitle
-    potentialusers {
-      __typename
-      users {
-        __typename
-        image
-        title
-        description
-      }
-    }
-  }
-  otherproducts {
-    __typename
-    productlogo {
-      __typename
-      productlogo
-    }
-  }
-  footercto {
-    __typename
-    cto
-    ctobutton {
-      __typename
-      buttontext
-      buttonlink
-    }
-  }
-  footer {
-    __typename
-    address {
-      __typename
-      title
-      companyname
-      companystreet
-      companycity
-      companycountry
-    }
-    otherdata {
-      __typename
-      title
-      body {
-        __typename
-        item
-        itemlink
-      }
-    }
-  }
+fragment ImpressumParts on Impressum {
+  title
+  description
 }

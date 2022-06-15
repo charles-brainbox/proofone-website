@@ -1,0 +1,29 @@
+{
+  "navbar": {
+    "logo": "https://res.cloudinary.com/brainboxgroup/image/upload/v1651493062/proof-one_black_claim_wvebd6.svg",
+    "navitems": [
+      {
+        "menutitle": "Anwendungsfall",
+        "menulink": "anwendungsfall"
+      },
+      {
+        "menutitle": "Features",
+        "menulink": "features"
+      },
+      {
+        "menutitle": "Our Approach",
+        "menulink": "ourapproach"
+      },
+      {
+        "menutitle": "CTO",
+        "menulink": "cto"
+      }
+    ],
+    "navbuttons": [
+      {
+        "buttontitle": "Angebot anfordern",
+        "buttonlink": "contact"
+      }
+    ]
+  }
+}

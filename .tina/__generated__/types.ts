@@ -75,10 +75,14 @@ export type Query = {
   document: DocumentNode;
   author: Author;
   authorConnection: AuthorConnection;
+  navbar: Navbar;
+  navbarConnection: NavbarConnection;
+  footer: Footer;
+  footerConnection: FooterConnection;
   name: Name;
   nameConnection: NameConnection;
-  samplehome: Samplehome;
-  samplehomeConnection: SamplehomeConnection;
+  impressum: Impressum;
+  impressumConnection: ImpressumConnection;
 };
 
 
@@ -117,6 +121,34 @@ export type QueryAuthorConnectionArgs = {
 };
 
 
+export type QueryNavbarArgs = {
+  relativePath?: InputMaybe<Scalars['String']>;
+};
+
+
+export type QueryNavbarConnectionArgs = {
+  before?: InputMaybe<Scalars['String']>;
+  after?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Float']>;
+  last?: InputMaybe<Scalars['Float']>;
+  sort?: InputMaybe<Scalars['String']>;
+};
+
+
+export type QueryFooterArgs = {
+  relativePath?: InputMaybe<Scalars['String']>;
+};
+
+
+export type QueryFooterConnectionArgs = {
+  before?: InputMaybe<Scalars['String']>;
+  after?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Float']>;
+  last?: InputMaybe<Scalars['Float']>;
+  sort?: InputMaybe<Scalars['String']>;
+};
+
+
 export type QueryNameArgs = {
   relativePath?: InputMaybe<Scalars['String']>;
 };
@@ -131,12 +163,12 @@ export type QueryNameConnectionArgs = {
 };
 
 
-export type QuerySamplehomeArgs = {
+export type QueryImpressumArgs = {
   relativePath?: InputMaybe<Scalars['String']>;
 };
 
 
-export type QuerySamplehomeConnectionArgs = {
+export type QueryImpressumConnectionArgs = {
   before?: InputMaybe<Scalars['String']>;
   after?: InputMaybe<Scalars['String']>;
   first?: InputMaybe<Scalars['Float']>;
@@ -179,7 +211,7 @@ export type CollectionDocumentsArgs = {
   sort?: InputMaybe<Scalars['String']>;
 };
 
-export type DocumentNode = Author | Name | Samplehome;
+export type DocumentNode = Author | Navbar | Footer | Name | Impressum;
 
 export type Author = Node & Document & {
   __typename?: 'Author';
@@ -203,23 +235,89 @@ export type AuthorConnection = Connection & {
   edges?: Maybe<Array<Maybe<AuthorConnectionEdges>>>;
 };
 
-export type NameNavbarNavitems = {
-  __typename?: 'NameNavbarNavitems';
+export type NavbarNavbarNavitems = {
+  __typename?: 'NavbarNavbarNavitems';
   menutitle?: Maybe<Scalars['String']>;
   menulink?: Maybe<Scalars['String']>;
 };
 
-export type NameNavbarNavbuttons = {
-  __typename?: 'NameNavbarNavbuttons';
+export type NavbarNavbarNavbuttons = {
+  __typename?: 'NavbarNavbarNavbuttons';
   buttontitle?: Maybe<Scalars['String']>;
   buttonlink?: Maybe<Scalars['String']>;
 };
 
-export type NameNavbar = {
-  __typename?: 'NameNavbar';
+export type NavbarNavbar = {
+  __typename?: 'NavbarNavbar';
   logo?: Maybe<Scalars['String']>;
-  navitems?: Maybe<Array<Maybe<NameNavbarNavitems>>>;
-  navbuttons?: Maybe<Array<Maybe<NameNavbarNavbuttons>>>;
+  navitems?: Maybe<Array<Maybe<NavbarNavbarNavitems>>>;
+  navbuttons?: Maybe<Array<Maybe<NavbarNavbarNavbuttons>>>;
+};
+
+export type Navbar = Node & Document & {
+  __typename?: 'Navbar';
+  navbar?: Maybe<NavbarNavbar>;
+  id: Scalars['ID'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON'];
+};
+
+export type NavbarConnectionEdges = {
+  __typename?: 'NavbarConnectionEdges';
+  cursor: Scalars['String'];
+  node?: Maybe<Navbar>;
+};
+
+export type NavbarConnection = Connection & {
+  __typename?: 'NavbarConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float'];
+  edges?: Maybe<Array<Maybe<NavbarConnectionEdges>>>;
+};
+
+export type FooterAddress = {
+  __typename?: 'FooterAddress';
+  title?: Maybe<Scalars['String']>;
+  companyname?: Maybe<Scalars['String']>;
+  companystreet?: Maybe<Scalars['String']>;
+  companycity?: Maybe<Scalars['String']>;
+  companycountry?: Maybe<Scalars['String']>;
+};
+
+export type FooterOtherdataBody = {
+  __typename?: 'FooterOtherdataBody';
+  item?: Maybe<Scalars['String']>;
+  itemlink?: Maybe<Scalars['String']>;
+  itemtag?: Maybe<Scalars['String']>;
+};
+
+export type FooterOtherdata = {
+  __typename?: 'FooterOtherdata';
+  title?: Maybe<Scalars['String']>;
+  body?: Maybe<Array<Maybe<FooterOtherdataBody>>>;
+};
+
+export type Footer = Node & Document & {
+  __typename?: 'Footer';
+  logo?: Maybe<Scalars['String']>;
+  address?: Maybe<FooterAddress>;
+  otherdata?: Maybe<Array<Maybe<FooterOtherdata>>>;
+  id: Scalars['ID'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON'];
+};
+
+export type FooterConnectionEdges = {
+  __typename?: 'FooterConnectionEdges';
+  cursor: Scalars['String'];
+  node?: Maybe<Footer>;
+};
+
+export type FooterConnection = Connection & {
+  __typename?: 'FooterConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float'];
+  edges?: Maybe<Array<Maybe<FooterConnectionEdges>>>;
 };
 
 export type NameHeroHerobutton = {
@@ -231,10 +329,25 @@ export type NameHeroHerobutton = {
 export type NameHero = {
   __typename?: 'NameHero';
   herotitle?: Maybe<Scalars['String']>;
+  sectionid?: Maybe<Scalars['String']>;
   herosubtitle?: Maybe<Scalars['String']>;
   herodescription?: Maybe<Scalars['JSON']>;
   herobutton?: Maybe<Array<Maybe<NameHeroHerobutton>>>;
   heroimage?: Maybe<Scalars['String']>;
+};
+
+export type NameUsecasesUsecases = {
+  __typename?: 'NameUsecasesUsecases';
+  title?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['JSON']>;
+};
+
+export type NameUsecases = {
+  __typename?: 'NameUsecases';
+  sectiontitle?: Maybe<Scalars['String']>;
+  sectionid?: Maybe<Scalars['String']>;
+  sideimage?: Maybe<Scalars['String']>;
+  usecases?: Maybe<Array<Maybe<NameUsecasesUsecases>>>;
 };
 
 export type NameFeaturesFeatures = {
@@ -248,7 +361,23 @@ export type NameFeaturesFeatures = {
 export type NameFeatures = {
   __typename?: 'NameFeatures';
   sectiontitle?: Maybe<Scalars['String']>;
+  sectionid?: Maybe<Scalars['String']>;
+  topimage?: Maybe<Scalars['String']>;
   features?: Maybe<Array<Maybe<NameFeaturesFeatures>>>;
+};
+
+export type NameOurapproachOurapproach = {
+  __typename?: 'NameOurapproachOurapproach';
+  title?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['JSON']>;
+};
+
+export type NameOurapproach = {
+  __typename?: 'NameOurapproach';
+  sectiontitle?: Maybe<Scalars['String']>;
+  sectionid?: Maybe<Scalars['String']>;
+  sideimage?: Maybe<Scalars['String']>;
+  ourapproach?: Maybe<Array<Maybe<NameOurapproachOurapproach>>>;
 };
 
 export type NamePotentialuserPotentialusersButton = {
@@ -268,6 +397,7 @@ export type NamePotentialuserPotentialusers = {
 export type NamePotentialuser = {
   __typename?: 'NamePotentialuser';
   sectiontitle?: Maybe<Scalars['String']>;
+  sectionid?: Maybe<Scalars['String']>;
   potentialusers?: Maybe<Array<Maybe<NamePotentialuserPotentialusers>>>;
 };
 
@@ -290,46 +420,19 @@ export type NameFooterctoCtobutton = {
 export type NameFootercto = {
   __typename?: 'NameFootercto';
   cto?: Maybe<Scalars['String']>;
+  sectionid?: Maybe<Scalars['String']>;
   ctobutton?: Maybe<NameFooterctoCtobutton>;
-};
-
-export type NameFooterAddress = {
-  __typename?: 'NameFooterAddress';
-  title?: Maybe<Scalars['String']>;
-  companyname?: Maybe<Scalars['String']>;
-  companystreet?: Maybe<Scalars['String']>;
-  companycity?: Maybe<Scalars['String']>;
-  companycountry?: Maybe<Scalars['String']>;
-};
-
-export type NameFooterOtherdataBody = {
-  __typename?: 'NameFooterOtherdataBody';
-  item?: Maybe<Scalars['String']>;
-  itemlink?: Maybe<Scalars['String']>;
-};
-
-export type NameFooterOtherdata = {
-  __typename?: 'NameFooterOtherdata';
-  title?: Maybe<Scalars['String']>;
-  body?: Maybe<Array<Maybe<NameFooterOtherdataBody>>>;
-};
-
-export type NameFooter = {
-  __typename?: 'NameFooter';
-  logo?: Maybe<Scalars['String']>;
-  address?: Maybe<NameFooterAddress>;
-  otherdata?: Maybe<Array<Maybe<NameFooterOtherdata>>>;
 };
 
 export type Name = Node & Document & {
   __typename?: 'Name';
-  navbar?: Maybe<NameNavbar>;
   hero?: Maybe<NameHero>;
+  usecases?: Maybe<NameUsecases>;
   features?: Maybe<NameFeatures>;
+  ourapproach?: Maybe<NameOurapproach>;
   potentialuser?: Maybe<NamePotentialuser>;
   otherproducts?: Maybe<NameOtherproducts>;
   footercto?: Maybe<NameFootercto>;
-  footer?: Maybe<NameFooter>;
   id: Scalars['ID'];
   _sys: SystemInfo;
   _values: Scalars['JSON'];
@@ -348,146 +451,26 @@ export type NameConnection = Connection & {
   edges?: Maybe<Array<Maybe<NameConnectionEdges>>>;
 };
 
-export type SamplehomeNavbarNavitems = {
-  __typename?: 'SamplehomeNavbarNavitems';
-  menutitle?: Maybe<Scalars['String']>;
-  menulink?: Maybe<Scalars['String']>;
-};
-
-export type SamplehomeNavbarNavbuttons = {
-  __typename?: 'SamplehomeNavbarNavbuttons';
-  buttontitle?: Maybe<Scalars['String']>;
-  buttonlink?: Maybe<Scalars['String']>;
-};
-
-export type SamplehomeNavbar = {
-  __typename?: 'SamplehomeNavbar';
-  logo?: Maybe<Scalars['String']>;
-  navitems?: Maybe<Array<Maybe<SamplehomeNavbarNavitems>>>;
-  navbuttons?: Maybe<Array<Maybe<SamplehomeNavbarNavbuttons>>>;
-};
-
-export type SamplehomeHeroHerobutton = {
-  __typename?: 'SamplehomeHeroHerobutton';
-  buttontitle?: Maybe<Scalars['String']>;
-  buttonlink?: Maybe<Scalars['String']>;
-};
-
-export type SamplehomeHero = {
-  __typename?: 'SamplehomeHero';
-  herotitle?: Maybe<Scalars['String']>;
-  herosubtitle?: Maybe<Scalars['String']>;
-  herodescription?: Maybe<Scalars['JSON']>;
-  herobutton?: Maybe<Array<Maybe<SamplehomeHeroHerobutton>>>;
-  heroimage?: Maybe<Scalars['String']>;
-};
-
-export type SamplehomeFeaturesFeatures = {
-  __typename?: 'SamplehomeFeaturesFeatures';
-  icon?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
-  subtitle?: Maybe<Scalars['String']>;
-  description?: Maybe<Scalars['JSON']>;
-};
-
-export type SamplehomeFeatures = {
-  __typename?: 'SamplehomeFeatures';
-  sectiontitle?: Maybe<Scalars['String']>;
-  features?: Maybe<Array<Maybe<SamplehomeFeaturesFeatures>>>;
-};
-
-export type SamplehomePotentialuserPotentialusersUsers = {
-  __typename?: 'SamplehomePotentialuserPotentialusersUsers';
-  image?: Maybe<Scalars['String']>;
+export type Impressum = Node & Document & {
+  __typename?: 'Impressum';
   title?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['JSON']>;
-};
-
-export type SamplehomePotentialuserPotentialusers = {
-  __typename?: 'SamplehomePotentialuserPotentialusers';
-  users?: Maybe<SamplehomePotentialuserPotentialusersUsers>;
-};
-
-export type SamplehomePotentialuser = {
-  __typename?: 'SamplehomePotentialuser';
-  sectiontitle?: Maybe<Scalars['String']>;
-  potentialusers?: Maybe<Array<Maybe<SamplehomePotentialuserPotentialusers>>>;
-};
-
-export type SamplehomeOtherproductsProductlogo = {
-  __typename?: 'SamplehomeOtherproductsProductlogo';
-  productlogo?: Maybe<Scalars['String']>;
-};
-
-export type SamplehomeOtherproducts = {
-  __typename?: 'SamplehomeOtherproducts';
-  productlogo?: Maybe<Array<Maybe<SamplehomeOtherproductsProductlogo>>>;
-};
-
-export type SamplehomeFooterctoCtobutton = {
-  __typename?: 'SamplehomeFooterctoCtobutton';
-  buttontext?: Maybe<Scalars['String']>;
-  buttonlink?: Maybe<Scalars['String']>;
-};
-
-export type SamplehomeFootercto = {
-  __typename?: 'SamplehomeFootercto';
-  cto?: Maybe<Scalars['String']>;
-  ctobutton?: Maybe<SamplehomeFooterctoCtobutton>;
-};
-
-export type SamplehomeFooterAddress = {
-  __typename?: 'SamplehomeFooterAddress';
-  title?: Maybe<Scalars['String']>;
-  companyname?: Maybe<Scalars['String']>;
-  companystreet?: Maybe<Scalars['String']>;
-  companycity?: Maybe<Scalars['String']>;
-  companycountry?: Maybe<Scalars['String']>;
-};
-
-export type SamplehomeFooterOtherdataBody = {
-  __typename?: 'SamplehomeFooterOtherdataBody';
-  item?: Maybe<Scalars['String']>;
-  itemlink?: Maybe<Scalars['String']>;
-};
-
-export type SamplehomeFooterOtherdata = {
-  __typename?: 'SamplehomeFooterOtherdata';
-  title?: Maybe<Scalars['String']>;
-  body?: Maybe<Array<Maybe<SamplehomeFooterOtherdataBody>>>;
-};
-
-export type SamplehomeFooter = {
-  __typename?: 'SamplehomeFooter';
-  address?: Maybe<SamplehomeFooterAddress>;
-  otherdata?: Maybe<Array<Maybe<SamplehomeFooterOtherdata>>>;
-};
-
-export type Samplehome = Node & Document & {
-  __typename?: 'Samplehome';
-  navbar?: Maybe<SamplehomeNavbar>;
-  hero?: Maybe<SamplehomeHero>;
-  features?: Maybe<SamplehomeFeatures>;
-  potentialuser?: Maybe<SamplehomePotentialuser>;
-  otherproducts?: Maybe<SamplehomeOtherproducts>;
-  footercto?: Maybe<SamplehomeFootercto>;
-  footer?: Maybe<SamplehomeFooter>;
   id: Scalars['ID'];
   _sys: SystemInfo;
   _values: Scalars['JSON'];
 };
 
-export type SamplehomeConnectionEdges = {
-  __typename?: 'SamplehomeConnectionEdges';
+export type ImpressumConnectionEdges = {
+  __typename?: 'ImpressumConnectionEdges';
   cursor: Scalars['String'];
-  node?: Maybe<Samplehome>;
+  node?: Maybe<Impressum>;
 };
 
-export type SamplehomeConnection = Connection & {
-  __typename?: 'SamplehomeConnection';
+export type ImpressumConnection = Connection & {
+  __typename?: 'ImpressumConnection';
   pageInfo: PageInfo;
   totalCount: Scalars['Float'];
-  edges?: Maybe<Array<Maybe<SamplehomeConnectionEdges>>>;
+  edges?: Maybe<Array<Maybe<ImpressumConnectionEdges>>>;
 };
 
 export type Mutation = {
@@ -498,10 +481,14 @@ export type Mutation = {
   createDocument: DocumentNode;
   updateAuthor: Author;
   createAuthor: Author;
+  updateNavbar: Navbar;
+  createNavbar: Navbar;
+  updateFooter: Footer;
+  createFooter: Footer;
   updateName: Name;
   createName: Name;
-  updateSamplehome: Samplehome;
-  createSamplehome: Samplehome;
+  updateImpressum: Impressum;
+  createImpressum: Impressum;
 };
 
 
@@ -544,6 +531,30 @@ export type MutationCreateAuthorArgs = {
 };
 
 
+export type MutationUpdateNavbarArgs = {
+  relativePath: Scalars['String'];
+  params: NavbarMutation;
+};
+
+
+export type MutationCreateNavbarArgs = {
+  relativePath: Scalars['String'];
+  params: NavbarMutation;
+};
+
+
+export type MutationUpdateFooterArgs = {
+  relativePath: Scalars['String'];
+  params: FooterMutation;
+};
+
+
+export type MutationCreateFooterArgs = {
+  relativePath: Scalars['String'];
+  params: FooterMutation;
+};
+
+
 export type MutationUpdateNameArgs = {
   relativePath: Scalars['String'];
   params: NameMutation;
@@ -556,21 +567,23 @@ export type MutationCreateNameArgs = {
 };
 
 
-export type MutationUpdateSamplehomeArgs = {
+export type MutationUpdateImpressumArgs = {
   relativePath: Scalars['String'];
-  params: SamplehomeMutation;
+  params: ImpressumMutation;
 };
 
 
-export type MutationCreateSamplehomeArgs = {
+export type MutationCreateImpressumArgs = {
   relativePath: Scalars['String'];
-  params: SamplehomeMutation;
+  params: ImpressumMutation;
 };
 
 export type DocumentMutation = {
   author?: InputMaybe<AuthorMutation>;
+  navbar?: InputMaybe<NavbarMutation>;
+  footer?: InputMaybe<FooterMutation>;
   name?: InputMaybe<NameMutation>;
-  samplehome?: InputMaybe<SamplehomeMutation>;
+  impressum?: InputMaybe<ImpressumMutation>;
 };
 
 export type AuthorMutation = {
@@ -578,20 +591,49 @@ export type AuthorMutation = {
   avatar?: InputMaybe<Scalars['String']>;
 };
 
-export type NameNavbarNavitemsMutation = {
+export type NavbarNavbarNavitemsMutation = {
   menutitle?: InputMaybe<Scalars['String']>;
   menulink?: InputMaybe<Scalars['String']>;
 };
 
-export type NameNavbarNavbuttonsMutation = {
+export type NavbarNavbarNavbuttonsMutation = {
   buttontitle?: InputMaybe<Scalars['String']>;
   buttonlink?: InputMaybe<Scalars['String']>;
 };
 
-export type NameNavbarMutation = {
+export type NavbarNavbarMutation = {
   logo?: InputMaybe<Scalars['String']>;
-  navitems?: InputMaybe<Array<InputMaybe<NameNavbarNavitemsMutation>>>;
-  navbuttons?: InputMaybe<Array<InputMaybe<NameNavbarNavbuttonsMutation>>>;
+  navitems?: InputMaybe<Array<InputMaybe<NavbarNavbarNavitemsMutation>>>;
+  navbuttons?: InputMaybe<Array<InputMaybe<NavbarNavbarNavbuttonsMutation>>>;
+};
+
+export type NavbarMutation = {
+  navbar?: InputMaybe<NavbarNavbarMutation>;
+};
+
+export type FooterAddressMutation = {
+  title?: InputMaybe<Scalars['String']>;
+  companyname?: InputMaybe<Scalars['String']>;
+  companystreet?: InputMaybe<Scalars['String']>;
+  companycity?: InputMaybe<Scalars['String']>;
+  companycountry?: InputMaybe<Scalars['String']>;
+};
+
+export type FooterOtherdataBodyMutation = {
+  item?: InputMaybe<Scalars['String']>;
+  itemlink?: InputMaybe<Scalars['String']>;
+  itemtag?: InputMaybe<Scalars['String']>;
+};
+
+export type FooterOtherdataMutation = {
+  title?: InputMaybe<Scalars['String']>;
+  body?: InputMaybe<Array<InputMaybe<FooterOtherdataBodyMutation>>>;
+};
+
+export type FooterMutation = {
+  logo?: InputMaybe<Scalars['String']>;
+  address?: InputMaybe<FooterAddressMutation>;
+  otherdata?: InputMaybe<Array<InputMaybe<FooterOtherdataMutation>>>;
 };
 
 export type NameHeroHerobuttonMutation = {
@@ -601,10 +643,23 @@ export type NameHeroHerobuttonMutation = {
 
 export type NameHeroMutation = {
   herotitle?: InputMaybe<Scalars['String']>;
+  sectionid?: InputMaybe<Scalars['String']>;
   herosubtitle?: InputMaybe<Scalars['String']>;
   herodescription?: InputMaybe<Scalars['JSON']>;
   herobutton?: InputMaybe<Array<InputMaybe<NameHeroHerobuttonMutation>>>;
   heroimage?: InputMaybe<Scalars['String']>;
+};
+
+export type NameUsecasesUsecasesMutation = {
+  title?: InputMaybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['JSON']>;
+};
+
+export type NameUsecasesMutation = {
+  sectiontitle?: InputMaybe<Scalars['String']>;
+  sectionid?: InputMaybe<Scalars['String']>;
+  sideimage?: InputMaybe<Scalars['String']>;
+  usecases?: InputMaybe<Array<InputMaybe<NameUsecasesUsecasesMutation>>>;
 };
 
 export type NameFeaturesFeaturesMutation = {
@@ -616,7 +671,21 @@ export type NameFeaturesFeaturesMutation = {
 
 export type NameFeaturesMutation = {
   sectiontitle?: InputMaybe<Scalars['String']>;
+  sectionid?: InputMaybe<Scalars['String']>;
+  topimage?: InputMaybe<Scalars['String']>;
   features?: InputMaybe<Array<InputMaybe<NameFeaturesFeaturesMutation>>>;
+};
+
+export type NameOurapproachOurapproachMutation = {
+  title?: InputMaybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['JSON']>;
+};
+
+export type NameOurapproachMutation = {
+  sectiontitle?: InputMaybe<Scalars['String']>;
+  sectionid?: InputMaybe<Scalars['String']>;
+  sideimage?: InputMaybe<Scalars['String']>;
+  ourapproach?: InputMaybe<Array<InputMaybe<NameOurapproachOurapproachMutation>>>;
 };
 
 export type NamePotentialuserPotentialusersButtonMutation = {
@@ -633,6 +702,7 @@ export type NamePotentialuserPotentialusersMutation = {
 
 export type NamePotentialuserMutation = {
   sectiontitle?: InputMaybe<Scalars['String']>;
+  sectionid?: InputMaybe<Scalars['String']>;
   potentialusers?: InputMaybe<Array<InputMaybe<NamePotentialuserPotentialusersMutation>>>;
 };
 
@@ -651,155 +721,34 @@ export type NameFooterctoCtobuttonMutation = {
 
 export type NameFooterctoMutation = {
   cto?: InputMaybe<Scalars['String']>;
+  sectionid?: InputMaybe<Scalars['String']>;
   ctobutton?: InputMaybe<NameFooterctoCtobuttonMutation>;
 };
 
-export type NameFooterAddressMutation = {
-  title?: InputMaybe<Scalars['String']>;
-  companyname?: InputMaybe<Scalars['String']>;
-  companystreet?: InputMaybe<Scalars['String']>;
-  companycity?: InputMaybe<Scalars['String']>;
-  companycountry?: InputMaybe<Scalars['String']>;
-};
-
-export type NameFooterOtherdataBodyMutation = {
-  item?: InputMaybe<Scalars['String']>;
-  itemlink?: InputMaybe<Scalars['String']>;
-};
-
-export type NameFooterOtherdataMutation = {
-  title?: InputMaybe<Scalars['String']>;
-  body?: InputMaybe<Array<InputMaybe<NameFooterOtherdataBodyMutation>>>;
-};
-
-export type NameFooterMutation = {
-  logo?: InputMaybe<Scalars['String']>;
-  address?: InputMaybe<NameFooterAddressMutation>;
-  otherdata?: InputMaybe<Array<InputMaybe<NameFooterOtherdataMutation>>>;
-};
-
 export type NameMutation = {
-  navbar?: InputMaybe<NameNavbarMutation>;
   hero?: InputMaybe<NameHeroMutation>;
+  usecases?: InputMaybe<NameUsecasesMutation>;
   features?: InputMaybe<NameFeaturesMutation>;
+  ourapproach?: InputMaybe<NameOurapproachMutation>;
   potentialuser?: InputMaybe<NamePotentialuserMutation>;
   otherproducts?: InputMaybe<NameOtherproductsMutation>;
   footercto?: InputMaybe<NameFooterctoMutation>;
-  footer?: InputMaybe<NameFooterMutation>;
 };
 
-export type SamplehomeNavbarNavitemsMutation = {
-  menutitle?: InputMaybe<Scalars['String']>;
-  menulink?: InputMaybe<Scalars['String']>;
-};
-
-export type SamplehomeNavbarNavbuttonsMutation = {
-  buttontitle?: InputMaybe<Scalars['String']>;
-  buttonlink?: InputMaybe<Scalars['String']>;
-};
-
-export type SamplehomeNavbarMutation = {
-  logo?: InputMaybe<Scalars['String']>;
-  navitems?: InputMaybe<Array<InputMaybe<SamplehomeNavbarNavitemsMutation>>>;
-  navbuttons?: InputMaybe<Array<InputMaybe<SamplehomeNavbarNavbuttonsMutation>>>;
-};
-
-export type SamplehomeHeroHerobuttonMutation = {
-  buttontitle?: InputMaybe<Scalars['String']>;
-  buttonlink?: InputMaybe<Scalars['String']>;
-};
-
-export type SamplehomeHeroMutation = {
-  herotitle?: InputMaybe<Scalars['String']>;
-  herosubtitle?: InputMaybe<Scalars['String']>;
-  herodescription?: InputMaybe<Scalars['JSON']>;
-  herobutton?: InputMaybe<Array<InputMaybe<SamplehomeHeroHerobuttonMutation>>>;
-  heroimage?: InputMaybe<Scalars['String']>;
-};
-
-export type SamplehomeFeaturesFeaturesMutation = {
-  icon?: InputMaybe<Scalars['String']>;
-  title?: InputMaybe<Scalars['String']>;
-  subtitle?: InputMaybe<Scalars['String']>;
-  description?: InputMaybe<Scalars['JSON']>;
-};
-
-export type SamplehomeFeaturesMutation = {
-  sectiontitle?: InputMaybe<Scalars['String']>;
-  features?: InputMaybe<Array<InputMaybe<SamplehomeFeaturesFeaturesMutation>>>;
-};
-
-export type SamplehomePotentialuserPotentialusersUsersMutation = {
-  image?: InputMaybe<Scalars['String']>;
+export type ImpressumMutation = {
   title?: InputMaybe<Scalars['String']>;
   description?: InputMaybe<Scalars['JSON']>;
-};
-
-export type SamplehomePotentialuserPotentialusersMutation = {
-  users?: InputMaybe<SamplehomePotentialuserPotentialusersUsersMutation>;
-};
-
-export type SamplehomePotentialuserMutation = {
-  sectiontitle?: InputMaybe<Scalars['String']>;
-  potentialusers?: InputMaybe<Array<InputMaybe<SamplehomePotentialuserPotentialusersMutation>>>;
-};
-
-export type SamplehomeOtherproductsProductlogoMutation = {
-  productlogo?: InputMaybe<Scalars['String']>;
-};
-
-export type SamplehomeOtherproductsMutation = {
-  productlogo?: InputMaybe<Array<InputMaybe<SamplehomeOtherproductsProductlogoMutation>>>;
-};
-
-export type SamplehomeFooterctoCtobuttonMutation = {
-  buttontext?: InputMaybe<Scalars['String']>;
-  buttonlink?: InputMaybe<Scalars['String']>;
-};
-
-export type SamplehomeFooterctoMutation = {
-  cto?: InputMaybe<Scalars['String']>;
-  ctobutton?: InputMaybe<SamplehomeFooterctoCtobuttonMutation>;
-};
-
-export type SamplehomeFooterAddressMutation = {
-  title?: InputMaybe<Scalars['String']>;
-  companyname?: InputMaybe<Scalars['String']>;
-  companystreet?: InputMaybe<Scalars['String']>;
-  companycity?: InputMaybe<Scalars['String']>;
-  companycountry?: InputMaybe<Scalars['String']>;
-};
-
-export type SamplehomeFooterOtherdataBodyMutation = {
-  item?: InputMaybe<Scalars['String']>;
-  itemlink?: InputMaybe<Scalars['String']>;
-};
-
-export type SamplehomeFooterOtherdataMutation = {
-  title?: InputMaybe<Scalars['String']>;
-  body?: InputMaybe<Array<InputMaybe<SamplehomeFooterOtherdataBodyMutation>>>;
-};
-
-export type SamplehomeFooterMutation = {
-  address?: InputMaybe<SamplehomeFooterAddressMutation>;
-  otherdata?: InputMaybe<Array<InputMaybe<SamplehomeFooterOtherdataMutation>>>;
-};
-
-export type SamplehomeMutation = {
-  navbar?: InputMaybe<SamplehomeNavbarMutation>;
-  hero?: InputMaybe<SamplehomeHeroMutation>;
-  features?: InputMaybe<SamplehomeFeaturesMutation>;
-  potentialuser?: InputMaybe<SamplehomePotentialuserMutation>;
-  otherproducts?: InputMaybe<SamplehomeOtherproductsMutation>;
-  footercto?: InputMaybe<SamplehomeFooterctoMutation>;
-  footer?: InputMaybe<SamplehomeFooterMutation>;
 };
 
 export type AuthorPartsFragment = { __typename?: 'Author', name?: string | null, avatar?: string | null };
 
-export type NamePartsFragment = { __typename?: 'Name', navbar?: { __typename: 'NameNavbar', logo?: string | null, navitems?: Array<{ __typename: 'NameNavbarNavitems', menutitle?: string | null, menulink?: string | null } | null> | null, navbuttons?: Array<{ __typename: 'NameNavbarNavbuttons', buttontitle?: string | null, buttonlink?: string | null } | null> | null } | null, hero?: { __typename: 'NameHero', herotitle?: string | null, herosubtitle?: string | null, herodescription?: any | null, heroimage?: string | null, herobutton?: Array<{ __typename: 'NameHeroHerobutton', buttontitle?: string | null, buttonlink?: string | null } | null> | null } | null, features?: { __typename: 'NameFeatures', sectiontitle?: string | null, features?: Array<{ __typename: 'NameFeaturesFeatures', icon?: string | null, title?: string | null, subtitle?: string | null, description?: any | null } | null> | null } | null, potentialuser?: { __typename: 'NamePotentialuser', sectiontitle?: string | null, potentialusers?: Array<{ __typename: 'NamePotentialuserPotentialusers', image?: string | null, title?: string | null, description?: any | null, button?: { __typename: 'NamePotentialuserPotentialusersButton', buttontext?: string | null, buttonlink?: string | null } | null } | null> | null } | null, otherproducts?: { __typename: 'NameOtherproducts', productlogo?: Array<{ __typename: 'NameOtherproductsProductlogo', productlogo?: string | null } | null> | null } | null, footercto?: { __typename: 'NameFootercto', cto?: string | null, ctobutton?: { __typename: 'NameFooterctoCtobutton', buttontext?: string | null, buttonlink?: string | null } | null } | null, footer?: { __typename: 'NameFooter', logo?: string | null, address?: { __typename: 'NameFooterAddress', title?: string | null, companyname?: string | null, companystreet?: string | null, companycity?: string | null, companycountry?: string | null } | null, otherdata?: Array<{ __typename: 'NameFooterOtherdata', title?: string | null, body?: Array<{ __typename: 'NameFooterOtherdataBody', item?: string | null, itemlink?: string | null } | null> | null } | null> | null } | null };
+export type NavbarPartsFragment = { __typename?: 'Navbar', navbar?: { __typename: 'NavbarNavbar', logo?: string | null, navitems?: Array<{ __typename: 'NavbarNavbarNavitems', menutitle?: string | null, menulink?: string | null } | null> | null, navbuttons?: Array<{ __typename: 'NavbarNavbarNavbuttons', buttontitle?: string | null, buttonlink?: string | null } | null> | null } | null };
 
-export type SamplehomePartsFragment = { __typename?: 'Samplehome', navbar?: { __typename: 'SamplehomeNavbar', logo?: string | null, navitems?: Array<{ __typename: 'SamplehomeNavbarNavitems', menutitle?: string | null, menulink?: string | null } | null> | null, navbuttons?: Array<{ __typename: 'SamplehomeNavbarNavbuttons', buttontitle?: string | null, buttonlink?: string | null } | null> | null } | null, hero?: { __typename: 'SamplehomeHero', herotitle?: string | null, herosubtitle?: string | null, herodescription?: any | null, heroimage?: string | null, herobutton?: Array<{ __typename: 'SamplehomeHeroHerobutton', buttontitle?: string | null, buttonlink?: string | null } | null> | null } | null, features?: { __typename: 'SamplehomeFeatures', sectiontitle?: string | null, features?: Array<{ __typename: 'SamplehomeFeaturesFeatures', icon?: string | null, title?: string | null, subtitle?: string | null, description?: any | null } | null> | null } | null, potentialuser?: { __typename: 'SamplehomePotentialuser', sectiontitle?: string | null, potentialusers?: Array<{ __typename: 'SamplehomePotentialuserPotentialusers', users?: { __typename: 'SamplehomePotentialuserPotentialusersUsers', image?: string | null, title?: string | null, description?: any | null } | null } | null> | null } | null, otherproducts?: { __typename: 'SamplehomeOtherproducts', productlogo?: Array<{ __typename: 'SamplehomeOtherproductsProductlogo', productlogo?: string | null } | null> | null } | null, footercto?: { __typename: 'SamplehomeFootercto', cto?: string | null, ctobutton?: { __typename: 'SamplehomeFooterctoCtobutton', buttontext?: string | null, buttonlink?: string | null } | null } | null, footer?: { __typename: 'SamplehomeFooter', address?: { __typename: 'SamplehomeFooterAddress', title?: string | null, companyname?: string | null, companystreet?: string | null, companycity?: string | null, companycountry?: string | null } | null, otherdata?: Array<{ __typename: 'SamplehomeFooterOtherdata', title?: string | null, body?: Array<{ __typename: 'SamplehomeFooterOtherdataBody', item?: string | null, itemlink?: string | null } | null> | null } | null> | null } | null };
+export type FooterPartsFragment = { __typename?: 'Footer', logo?: string | null, address?: { __typename: 'FooterAddress', title?: string | null, companyname?: string | null, companystreet?: string | null, companycity?: string | null, companycountry?: string | null } | null, otherdata?: Array<{ __typename: 'FooterOtherdata', title?: string | null, body?: Array<{ __typename: 'FooterOtherdataBody', item?: string | null, itemlink?: string | null, itemtag?: string | null } | null> | null } | null> | null };
+
+export type NamePartsFragment = { __typename?: 'Name', hero?: { __typename: 'NameHero', herotitle?: string | null, sectionid?: string | null, herosubtitle?: string | null, herodescription?: any | null, heroimage?: string | null, herobutton?: Array<{ __typename: 'NameHeroHerobutton', buttontitle?: string | null, buttonlink?: string | null } | null> | null } | null, usecases?: { __typename: 'NameUsecases', sectiontitle?: string | null, sectionid?: string | null, sideimage?: string | null, usecases?: Array<{ __typename: 'NameUsecasesUsecases', title?: string | null, description?: any | null } | null> | null } | null, features?: { __typename: 'NameFeatures', sectiontitle?: string | null, sectionid?: string | null, topimage?: string | null, features?: Array<{ __typename: 'NameFeaturesFeatures', icon?: string | null, title?: string | null, subtitle?: string | null, description?: any | null } | null> | null } | null, ourapproach?: { __typename: 'NameOurapproach', sectiontitle?: string | null, sectionid?: string | null, sideimage?: string | null, ourapproach?: Array<{ __typename: 'NameOurapproachOurapproach', title?: string | null, description?: any | null } | null> | null } | null, potentialuser?: { __typename: 'NamePotentialuser', sectiontitle?: string | null, sectionid?: string | null, potentialusers?: Array<{ __typename: 'NamePotentialuserPotentialusers', image?: string | null, title?: string | null, description?: any | null, button?: { __typename: 'NamePotentialuserPotentialusersButton', buttontext?: string | null, buttonlink?: string | null } | null } | null> | null } | null, otherproducts?: { __typename: 'NameOtherproducts', productlogo?: Array<{ __typename: 'NameOtherproductsProductlogo', productlogo?: string | null } | null> | null } | null, footercto?: { __typename: 'NameFootercto', cto?: string | null, sectionid?: string | null, ctobutton?: { __typename: 'NameFooterctoCtobutton', buttontext?: string | null, buttonlink?: string | null } | null } | null };
+
+export type ImpressumPartsFragment = { __typename?: 'Impressum', title?: string | null, description?: any | null };
 
 export type AuthorQueryVariables = Exact<{
   relativePath: Scalars['String'];
@@ -813,29 +762,53 @@ export type AuthorConnectionQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type AuthorConnectionQuery = { __typename?: 'Query', authorConnection: { __typename?: 'AuthorConnection', totalCount: number, edges?: Array<{ __typename?: 'AuthorConnectionEdges', node?: { __typename?: 'Author', id: string, name?: string | null, avatar?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
+export type NavbarQueryVariables = Exact<{
+  relativePath: Scalars['String'];
+}>;
+
+
+export type NavbarQuery = { __typename?: 'Query', navbar: { __typename?: 'Navbar', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, navbar?: { __typename: 'NavbarNavbar', logo?: string | null, navitems?: Array<{ __typename: 'NavbarNavbarNavitems', menutitle?: string | null, menulink?: string | null } | null> | null, navbuttons?: Array<{ __typename: 'NavbarNavbarNavbuttons', buttontitle?: string | null, buttonlink?: string | null } | null> | null } | null } };
+
+export type NavbarConnectionQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type NavbarConnectionQuery = { __typename?: 'Query', navbarConnection: { __typename?: 'NavbarConnection', totalCount: number, edges?: Array<{ __typename?: 'NavbarConnectionEdges', node?: { __typename?: 'Navbar', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, navbar?: { __typename: 'NavbarNavbar', logo?: string | null, navitems?: Array<{ __typename: 'NavbarNavbarNavitems', menutitle?: string | null, menulink?: string | null } | null> | null, navbuttons?: Array<{ __typename: 'NavbarNavbarNavbuttons', buttontitle?: string | null, buttonlink?: string | null } | null> | null } | null } | null } | null> | null } };
+
+export type FooterQueryVariables = Exact<{
+  relativePath: Scalars['String'];
+}>;
+
+
+export type FooterQuery = { __typename?: 'Query', footer: { __typename?: 'Footer', id: string, logo?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, address?: { __typename: 'FooterAddress', title?: string | null, companyname?: string | null, companystreet?: string | null, companycity?: string | null, companycountry?: string | null } | null, otherdata?: Array<{ __typename: 'FooterOtherdata', title?: string | null, body?: Array<{ __typename: 'FooterOtherdataBody', item?: string | null, itemlink?: string | null, itemtag?: string | null } | null> | null } | null> | null } };
+
+export type FooterConnectionQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FooterConnectionQuery = { __typename?: 'Query', footerConnection: { __typename?: 'FooterConnection', totalCount: number, edges?: Array<{ __typename?: 'FooterConnectionEdges', node?: { __typename?: 'Footer', id: string, logo?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, address?: { __typename: 'FooterAddress', title?: string | null, companyname?: string | null, companystreet?: string | null, companycity?: string | null, companycountry?: string | null } | null, otherdata?: Array<{ __typename: 'FooterOtherdata', title?: string | null, body?: Array<{ __typename: 'FooterOtherdataBody', item?: string | null, itemlink?: string | null, itemtag?: string | null } | null> | null } | null> | null } | null } | null> | null } };
+
 export type NameQueryVariables = Exact<{
   relativePath: Scalars['String'];
 }>;
 
 
-export type NameQuery = { __typename?: 'Query', name: { __typename?: 'Name', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, navbar?: { __typename: 'NameNavbar', logo?: string | null, navitems?: Array<{ __typename: 'NameNavbarNavitems', menutitle?: string | null, menulink?: string | null } | null> | null, navbuttons?: Array<{ __typename: 'NameNavbarNavbuttons', buttontitle?: string | null, buttonlink?: string | null } | null> | null } | null, hero?: { __typename: 'NameHero', herotitle?: string | null, herosubtitle?: string | null, herodescription?: any | null, heroimage?: string | null, herobutton?: Array<{ __typename: 'NameHeroHerobutton', buttontitle?: string | null, buttonlink?: string | null } | null> | null } | null, features?: { __typename: 'NameFeatures', sectiontitle?: string | null, features?: Array<{ __typename: 'NameFeaturesFeatures', icon?: string | null, title?: string | null, subtitle?: string | null, description?: any | null } | null> | null } | null, potentialuser?: { __typename: 'NamePotentialuser', sectiontitle?: string | null, potentialusers?: Array<{ __typename: 'NamePotentialuserPotentialusers', image?: string | null, title?: string | null, description?: any | null, button?: { __typename: 'NamePotentialuserPotentialusersButton', buttontext?: string | null, buttonlink?: string | null } | null } | null> | null } | null, otherproducts?: { __typename: 'NameOtherproducts', productlogo?: Array<{ __typename: 'NameOtherproductsProductlogo', productlogo?: string | null } | null> | null } | null, footercto?: { __typename: 'NameFootercto', cto?: string | null, ctobutton?: { __typename: 'NameFooterctoCtobutton', buttontext?: string | null, buttonlink?: string | null } | null } | null, footer?: { __typename: 'NameFooter', logo?: string | null, address?: { __typename: 'NameFooterAddress', title?: string | null, companyname?: string | null, companystreet?: string | null, companycity?: string | null, companycountry?: string | null } | null, otherdata?: Array<{ __typename: 'NameFooterOtherdata', title?: string | null, body?: Array<{ __typename: 'NameFooterOtherdataBody', item?: string | null, itemlink?: string | null } | null> | null } | null> | null } | null } };
+export type NameQuery = { __typename?: 'Query', name: { __typename?: 'Name', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, hero?: { __typename: 'NameHero', herotitle?: string | null, sectionid?: string | null, herosubtitle?: string | null, herodescription?: any | null, heroimage?: string | null, herobutton?: Array<{ __typename: 'NameHeroHerobutton', buttontitle?: string | null, buttonlink?: string | null } | null> | null } | null, usecases?: { __typename: 'NameUsecases', sectiontitle?: string | null, sectionid?: string | null, sideimage?: string | null, usecases?: Array<{ __typename: 'NameUsecasesUsecases', title?: string | null, description?: any | null } | null> | null } | null, features?: { __typename: 'NameFeatures', sectiontitle?: string | null, sectionid?: string | null, topimage?: string | null, features?: Array<{ __typename: 'NameFeaturesFeatures', icon?: string | null, title?: string | null, subtitle?: string | null, description?: any | null } | null> | null } | null, ourapproach?: { __typename: 'NameOurapproach', sectiontitle?: string | null, sectionid?: string | null, sideimage?: string | null, ourapproach?: Array<{ __typename: 'NameOurapproachOurapproach', title?: string | null, description?: any | null } | null> | null } | null, potentialuser?: { __typename: 'NamePotentialuser', sectiontitle?: string | null, sectionid?: string | null, potentialusers?: Array<{ __typename: 'NamePotentialuserPotentialusers', image?: string | null, title?: string | null, description?: any | null, button?: { __typename: 'NamePotentialuserPotentialusersButton', buttontext?: string | null, buttonlink?: string | null } | null } | null> | null } | null, otherproducts?: { __typename: 'NameOtherproducts', productlogo?: Array<{ __typename: 'NameOtherproductsProductlogo', productlogo?: string | null } | null> | null } | null, footercto?: { __typename: 'NameFootercto', cto?: string | null, sectionid?: string | null, ctobutton?: { __typename: 'NameFooterctoCtobutton', buttontext?: string | null, buttonlink?: string | null } | null } | null } };
 
 export type NameConnectionQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type NameConnectionQuery = { __typename?: 'Query', nameConnection: { __typename?: 'NameConnection', totalCount: number, edges?: Array<{ __typename?: 'NameConnectionEdges', node?: { __typename?: 'Name', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, navbar?: { __typename: 'NameNavbar', logo?: string | null, navitems?: Array<{ __typename: 'NameNavbarNavitems', menutitle?: string | null, menulink?: string | null } | null> | null, navbuttons?: Array<{ __typename: 'NameNavbarNavbuttons', buttontitle?: string | null, buttonlink?: string | null } | null> | null } | null, hero?: { __typename: 'NameHero', herotitle?: string | null, herosubtitle?: string | null, herodescription?: any | null, heroimage?: string | null, herobutton?: Array<{ __typename: 'NameHeroHerobutton', buttontitle?: string | null, buttonlink?: string | null } | null> | null } | null, features?: { __typename: 'NameFeatures', sectiontitle?: string | null, features?: Array<{ __typename: 'NameFeaturesFeatures', icon?: string | null, title?: string | null, subtitle?: string | null, description?: any | null } | null> | null } | null, potentialuser?: { __typename: 'NamePotentialuser', sectiontitle?: string | null, potentialusers?: Array<{ __typename: 'NamePotentialuserPotentialusers', image?: string | null, title?: string | null, description?: any | null, button?: { __typename: 'NamePotentialuserPotentialusersButton', buttontext?: string | null, buttonlink?: string | null } | null } | null> | null } | null, otherproducts?: { __typename: 'NameOtherproducts', productlogo?: Array<{ __typename: 'NameOtherproductsProductlogo', productlogo?: string | null } | null> | null } | null, footercto?: { __typename: 'NameFootercto', cto?: string | null, ctobutton?: { __typename: 'NameFooterctoCtobutton', buttontext?: string | null, buttonlink?: string | null } | null } | null, footer?: { __typename: 'NameFooter', logo?: string | null, address?: { __typename: 'NameFooterAddress', title?: string | null, companyname?: string | null, companystreet?: string | null, companycity?: string | null, companycountry?: string | null } | null, otherdata?: Array<{ __typename: 'NameFooterOtherdata', title?: string | null, body?: Array<{ __typename: 'NameFooterOtherdataBody', item?: string | null, itemlink?: string | null } | null> | null } | null> | null } | null } | null } | null> | null } };
+export type NameConnectionQuery = { __typename?: 'Query', nameConnection: { __typename?: 'NameConnection', totalCount: number, edges?: Array<{ __typename?: 'NameConnectionEdges', node?: { __typename?: 'Name', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, hero?: { __typename: 'NameHero', herotitle?: string | null, sectionid?: string | null, herosubtitle?: string | null, herodescription?: any | null, heroimage?: string | null, herobutton?: Array<{ __typename: 'NameHeroHerobutton', buttontitle?: string | null, buttonlink?: string | null } | null> | null } | null, usecases?: { __typename: 'NameUsecases', sectiontitle?: string | null, sectionid?: string | null, sideimage?: string | null, usecases?: Array<{ __typename: 'NameUsecasesUsecases', title?: string | null, description?: any | null } | null> | null } | null, features?: { __typename: 'NameFeatures', sectiontitle?: string | null, sectionid?: string | null, topimage?: string | null, features?: Array<{ __typename: 'NameFeaturesFeatures', icon?: string | null, title?: string | null, subtitle?: string | null, description?: any | null } | null> | null } | null, ourapproach?: { __typename: 'NameOurapproach', sectiontitle?: string | null, sectionid?: string | null, sideimage?: string | null, ourapproach?: Array<{ __typename: 'NameOurapproachOurapproach', title?: string | null, description?: any | null } | null> | null } | null, potentialuser?: { __typename: 'NamePotentialuser', sectiontitle?: string | null, sectionid?: string | null, potentialusers?: Array<{ __typename: 'NamePotentialuserPotentialusers', image?: string | null, title?: string | null, description?: any | null, button?: { __typename: 'NamePotentialuserPotentialusersButton', buttontext?: string | null, buttonlink?: string | null } | null } | null> | null } | null, otherproducts?: { __typename: 'NameOtherproducts', productlogo?: Array<{ __typename: 'NameOtherproductsProductlogo', productlogo?: string | null } | null> | null } | null, footercto?: { __typename: 'NameFootercto', cto?: string | null, sectionid?: string | null, ctobutton?: { __typename: 'NameFooterctoCtobutton', buttontext?: string | null, buttonlink?: string | null } | null } | null } | null } | null> | null } };
 
-export type SamplehomeQueryVariables = Exact<{
+export type ImpressumQueryVariables = Exact<{
   relativePath: Scalars['String'];
 }>;
 
 
-export type SamplehomeQuery = { __typename?: 'Query', samplehome: { __typename?: 'Samplehome', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, navbar?: { __typename: 'SamplehomeNavbar', logo?: string | null, navitems?: Array<{ __typename: 'SamplehomeNavbarNavitems', menutitle?: string | null, menulink?: string | null } | null> | null, navbuttons?: Array<{ __typename: 'SamplehomeNavbarNavbuttons', buttontitle?: string | null, buttonlink?: string | null } | null> | null } | null, hero?: { __typename: 'SamplehomeHero', herotitle?: string | null, herosubtitle?: string | null, herodescription?: any | null, heroimage?: string | null, herobutton?: Array<{ __typename: 'SamplehomeHeroHerobutton', buttontitle?: string | null, buttonlink?: string | null } | null> | null } | null, features?: { __typename: 'SamplehomeFeatures', sectiontitle?: string | null, features?: Array<{ __typename: 'SamplehomeFeaturesFeatures', icon?: string | null, title?: string | null, subtitle?: string | null, description?: any | null } | null> | null } | null, potentialuser?: { __typename: 'SamplehomePotentialuser', sectiontitle?: string | null, potentialusers?: Array<{ __typename: 'SamplehomePotentialuserPotentialusers', users?: { __typename: 'SamplehomePotentialuserPotentialusersUsers', image?: string | null, title?: string | null, description?: any | null } | null } | null> | null } | null, otherproducts?: { __typename: 'SamplehomeOtherproducts', productlogo?: Array<{ __typename: 'SamplehomeOtherproductsProductlogo', productlogo?: string | null } | null> | null } | null, footercto?: { __typename: 'SamplehomeFootercto', cto?: string | null, ctobutton?: { __typename: 'SamplehomeFooterctoCtobutton', buttontext?: string | null, buttonlink?: string | null } | null } | null, footer?: { __typename: 'SamplehomeFooter', address?: { __typename: 'SamplehomeFooterAddress', title?: string | null, companyname?: string | null, companystreet?: string | null, companycity?: string | null, companycountry?: string | null } | null, otherdata?: Array<{ __typename: 'SamplehomeFooterOtherdata', title?: string | null, body?: Array<{ __typename: 'SamplehomeFooterOtherdataBody', item?: string | null, itemlink?: string | null } | null> | null } | null> | null } | null } };
+export type ImpressumQuery = { __typename?: 'Query', impressum: { __typename?: 'Impressum', id: string, title?: string | null, description?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
-export type SamplehomeConnectionQueryVariables = Exact<{ [key: string]: never; }>;
+export type ImpressumConnectionQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type SamplehomeConnectionQuery = { __typename?: 'Query', samplehomeConnection: { __typename?: 'SamplehomeConnection', totalCount: number, edges?: Array<{ __typename?: 'SamplehomeConnectionEdges', node?: { __typename?: 'Samplehome', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, navbar?: { __typename: 'SamplehomeNavbar', logo?: string | null, navitems?: Array<{ __typename: 'SamplehomeNavbarNavitems', menutitle?: string | null, menulink?: string | null } | null> | null, navbuttons?: Array<{ __typename: 'SamplehomeNavbarNavbuttons', buttontitle?: string | null, buttonlink?: string | null } | null> | null } | null, hero?: { __typename: 'SamplehomeHero', herotitle?: string | null, herosubtitle?: string | null, herodescription?: any | null, heroimage?: string | null, herobutton?: Array<{ __typename: 'SamplehomeHeroHerobutton', buttontitle?: string | null, buttonlink?: string | null } | null> | null } | null, features?: { __typename: 'SamplehomeFeatures', sectiontitle?: string | null, features?: Array<{ __typename: 'SamplehomeFeaturesFeatures', icon?: string | null, title?: string | null, subtitle?: string | null, description?: any | null } | null> | null } | null, potentialuser?: { __typename: 'SamplehomePotentialuser', sectiontitle?: string | null, potentialusers?: Array<{ __typename: 'SamplehomePotentialuserPotentialusers', users?: { __typename: 'SamplehomePotentialuserPotentialusersUsers', image?: string | null, title?: string | null, description?: any | null } | null } | null> | null } | null, otherproducts?: { __typename: 'SamplehomeOtherproducts', productlogo?: Array<{ __typename: 'SamplehomeOtherproductsProductlogo', productlogo?: string | null } | null> | null } | null, footercto?: { __typename: 'SamplehomeFootercto', cto?: string | null, ctobutton?: { __typename: 'SamplehomeFooterctoCtobutton', buttontext?: string | null, buttonlink?: string | null } | null } | null, footer?: { __typename: 'SamplehomeFooter', address?: { __typename: 'SamplehomeFooterAddress', title?: string | null, companyname?: string | null, companystreet?: string | null, companycity?: string | null, companycountry?: string | null } | null, otherdata?: Array<{ __typename: 'SamplehomeFooterOtherdata', title?: string | null, body?: Array<{ __typename: 'SamplehomeFooterOtherdataBody', item?: string | null, itemlink?: string | null } | null> | null } | null> | null } | null } | null } | null> | null } };
+export type ImpressumConnectionQuery = { __typename?: 'Query', impressumConnection: { __typename?: 'ImpressumConnection', totalCount: number, edges?: Array<{ __typename?: 'ImpressumConnectionEdges', node?: { __typename?: 'Impressum', id: string, title?: string | null, description?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export const AuthorPartsFragmentDoc = gql`
     fragment AuthorParts on Author {
@@ -843,8 +816,8 @@ export const AuthorPartsFragmentDoc = gql`
   avatar
 }
     `;
-export const NamePartsFragmentDoc = gql`
-    fragment NameParts on Name {
+export const NavbarPartsFragmentDoc = gql`
+    fragment NavbarParts on Navbar {
   navbar {
     __typename
     logo
@@ -859,9 +832,37 @@ export const NamePartsFragmentDoc = gql`
       buttonlink
     }
   }
+}
+    `;
+export const FooterPartsFragmentDoc = gql`
+    fragment FooterParts on Footer {
+  logo
+  address {
+    __typename
+    title
+    companyname
+    companystreet
+    companycity
+    companycountry
+  }
+  otherdata {
+    __typename
+    title
+    body {
+      __typename
+      item
+      itemlink
+      itemtag
+    }
+  }
+}
+    `;
+export const NamePartsFragmentDoc = gql`
+    fragment NameParts on Name {
   hero {
     __typename
     herotitle
+    sectionid
     herosubtitle
     herodescription
     herobutton {
@@ -871,9 +872,22 @@ export const NamePartsFragmentDoc = gql`
     }
     heroimage
   }
+  usecases {
+    __typename
+    sectiontitle
+    sectionid
+    sideimage
+    usecases {
+      __typename
+      title
+      description
+    }
+  }
   features {
     __typename
     sectiontitle
+    sectionid
+    topimage
     features {
       __typename
       icon
@@ -882,9 +896,21 @@ export const NamePartsFragmentDoc = gql`
       description
     }
   }
+  ourapproach {
+    __typename
+    sectiontitle
+    sectionid
+    sideimage
+    ourapproach {
+      __typename
+      title
+      description
+    }
+  }
   potentialuser {
     __typename
     sectiontitle
+    sectionid
     potentialusers {
       __typename
       image
@@ -907,137 +933,35 @@ export const NamePartsFragmentDoc = gql`
   footercto {
     __typename
     cto
+    sectionid
     ctobutton {
       __typename
       buttontext
       buttonlink
-    }
-  }
-  footer {
-    __typename
-    logo
-    address {
-      __typename
-      title
-      companyname
-      companystreet
-      companycity
-      companycountry
-    }
-    otherdata {
-      __typename
-      title
-      body {
-        __typename
-        item
-        itemlink
-      }
     }
   }
 }
     `;
-export const SamplehomePartsFragmentDoc = gql`
-    fragment SamplehomeParts on Samplehome {
-  navbar {
-    __typename
-    logo
-    navitems {
-      __typename
-      menutitle
-      menulink
-    }
-    navbuttons {
-      __typename
-      buttontitle
-      buttonlink
-    }
-  }
-  hero {
-    __typename
-    herotitle
-    herosubtitle
-    herodescription
-    herobutton {
-      __typename
-      buttontitle
-      buttonlink
-    }
-    heroimage
-  }
-  features {
-    __typename
-    sectiontitle
-    features {
-      __typename
-      icon
-      title
-      subtitle
-      description
-    }
-  }
-  potentialuser {
-    __typename
-    sectiontitle
-    potentialusers {
-      __typename
-      users {
-        __typename
-        image
-        title
-        description
-      }
-    }
-  }
-  otherproducts {
-    __typename
-    productlogo {
-      __typename
-      productlogo
-    }
-  }
-  footercto {
-    __typename
-    cto
-    ctobutton {
-      __typename
-      buttontext
-      buttonlink
-    }
-  }
-  footer {
-    __typename
-    address {
-      __typename
-      title
-      companyname
-      companystreet
-      companycity
-      companycountry
-    }
-    otherdata {
-      __typename
-      title
-      body {
-        __typename
-        item
-        itemlink
-      }
-    }
-  }
+export const ImpressumPartsFragmentDoc = gql`
+    fragment ImpressumParts on Impressum {
+  title
+  description
 }
     `;
 export const AuthorDocument = gql`
     query author($relativePath: String!) {
   author(relativePath: $relativePath) {
-    _sys {
-      filename
-      basename
-      breadcrumbs
-      path
-      relativePath
-      extension
+    ... on Document {
+      _sys {
+        filename
+        basename
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
     }
-    id
     ...AuthorParts
   }
 }
@@ -1048,14 +972,16 @@ export const AuthorConnectionDocument = gql`
     totalCount
     edges {
       node {
-        id
-        _sys {
-          filename
-          basename
-          breadcrumbs
-          path
-          relativePath
-          extension
+        ... on Document {
+          _sys {
+            filename
+            basename
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
         }
         ...AuthorParts
       }
@@ -1063,18 +989,102 @@ export const AuthorConnectionDocument = gql`
   }
 }
     ${AuthorPartsFragmentDoc}`;
+export const NavbarDocument = gql`
+    query navbar($relativePath: String!) {
+  navbar(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...NavbarParts
+  }
+}
+    ${NavbarPartsFragmentDoc}`;
+export const NavbarConnectionDocument = gql`
+    query navbarConnection {
+  navbarConnection {
+    totalCount
+    edges {
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...NavbarParts
+      }
+    }
+  }
+}
+    ${NavbarPartsFragmentDoc}`;
+export const FooterDocument = gql`
+    query footer($relativePath: String!) {
+  footer(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...FooterParts
+  }
+}
+    ${FooterPartsFragmentDoc}`;
+export const FooterConnectionDocument = gql`
+    query footerConnection {
+  footerConnection {
+    totalCount
+    edges {
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...FooterParts
+      }
+    }
+  }
+}
+    ${FooterPartsFragmentDoc}`;
 export const NameDocument = gql`
     query name($relativePath: String!) {
   name(relativePath: $relativePath) {
-    _sys {
-      filename
-      basename
-      breadcrumbs
-      path
-      relativePath
-      extension
+    ... on Document {
+      _sys {
+        filename
+        basename
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
     }
-    id
     ...NameParts
   }
 }
@@ -1085,14 +1095,16 @@ export const NameConnectionDocument = gql`
     totalCount
     edges {
       node {
-        id
-        _sys {
-          filename
-          basename
-          breadcrumbs
-          path
-          relativePath
-          extension
+        ... on Document {
+          _sys {
+            filename
+            basename
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
         }
         ...NameParts
       }
@@ -1100,43 +1112,47 @@ export const NameConnectionDocument = gql`
   }
 }
     ${NamePartsFragmentDoc}`;
-export const SamplehomeDocument = gql`
-    query samplehome($relativePath: String!) {
-  samplehome(relativePath: $relativePath) {
-    _sys {
-      filename
-      basename
-      breadcrumbs
-      path
-      relativePath
-      extension
+export const ImpressumDocument = gql`
+    query impressum($relativePath: String!) {
+  impressum(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
     }
-    id
-    ...SamplehomeParts
+    ...ImpressumParts
   }
 }
-    ${SamplehomePartsFragmentDoc}`;
-export const SamplehomeConnectionDocument = gql`
-    query samplehomeConnection {
-  samplehomeConnection {
+    ${ImpressumPartsFragmentDoc}`;
+export const ImpressumConnectionDocument = gql`
+    query impressumConnection {
+  impressumConnection {
     totalCount
     edges {
       node {
-        id
-        _sys {
-          filename
-          basename
-          breadcrumbs
-          path
-          relativePath
-          extension
+        ... on Document {
+          _sys {
+            filename
+            basename
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
         }
-        ...SamplehomeParts
+        ...ImpressumParts
       }
     }
   }
 }
-    ${SamplehomePartsFragmentDoc}`;
+    ${ImpressumPartsFragmentDoc}`;
 export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) => Promise<R>
   export function getSdk<C>(requester: Requester<C>) {
     return {
@@ -1146,17 +1162,29 @@ export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) 
     authorConnection(variables?: AuthorConnectionQueryVariables, options?: C): Promise<{data: AuthorConnectionQuery, variables: AuthorConnectionQueryVariables, query: string}> {
         return requester<{data: AuthorConnectionQuery, variables: AuthorConnectionQueryVariables, query: string}, AuthorConnectionQueryVariables>(AuthorConnectionDocument, variables, options);
       },
+    navbar(variables: NavbarQueryVariables, options?: C): Promise<{data: NavbarQuery, variables: NavbarQueryVariables, query: string}> {
+        return requester<{data: NavbarQuery, variables: NavbarQueryVariables, query: string}, NavbarQueryVariables>(NavbarDocument, variables, options);
+      },
+    navbarConnection(variables?: NavbarConnectionQueryVariables, options?: C): Promise<{data: NavbarConnectionQuery, variables: NavbarConnectionQueryVariables, query: string}> {
+        return requester<{data: NavbarConnectionQuery, variables: NavbarConnectionQueryVariables, query: string}, NavbarConnectionQueryVariables>(NavbarConnectionDocument, variables, options);
+      },
+    footer(variables: FooterQueryVariables, options?: C): Promise<{data: FooterQuery, variables: FooterQueryVariables, query: string}> {
+        return requester<{data: FooterQuery, variables: FooterQueryVariables, query: string}, FooterQueryVariables>(FooterDocument, variables, options);
+      },
+    footerConnection(variables?: FooterConnectionQueryVariables, options?: C): Promise<{data: FooterConnectionQuery, variables: FooterConnectionQueryVariables, query: string}> {
+        return requester<{data: FooterConnectionQuery, variables: FooterConnectionQueryVariables, query: string}, FooterConnectionQueryVariables>(FooterConnectionDocument, variables, options);
+      },
     name(variables: NameQueryVariables, options?: C): Promise<{data: NameQuery, variables: NameQueryVariables, query: string}> {
         return requester<{data: NameQuery, variables: NameQueryVariables, query: string}, NameQueryVariables>(NameDocument, variables, options);
       },
     nameConnection(variables?: NameConnectionQueryVariables, options?: C): Promise<{data: NameConnectionQuery, variables: NameConnectionQueryVariables, query: string}> {
         return requester<{data: NameConnectionQuery, variables: NameConnectionQueryVariables, query: string}, NameConnectionQueryVariables>(NameConnectionDocument, variables, options);
       },
-    samplehome(variables: SamplehomeQueryVariables, options?: C): Promise<{data: SamplehomeQuery, variables: SamplehomeQueryVariables, query: string}> {
-        return requester<{data: SamplehomeQuery, variables: SamplehomeQueryVariables, query: string}, SamplehomeQueryVariables>(SamplehomeDocument, variables, options);
+    impressum(variables: ImpressumQueryVariables, options?: C): Promise<{data: ImpressumQuery, variables: ImpressumQueryVariables, query: string}> {
+        return requester<{data: ImpressumQuery, variables: ImpressumQueryVariables, query: string}, ImpressumQueryVariables>(ImpressumDocument, variables, options);
       },
-    samplehomeConnection(variables?: SamplehomeConnectionQueryVariables, options?: C): Promise<{data: SamplehomeConnectionQuery, variables: SamplehomeConnectionQueryVariables, query: string}> {
-        return requester<{data: SamplehomeConnectionQuery, variables: SamplehomeConnectionQueryVariables, query: string}, SamplehomeConnectionQueryVariables>(SamplehomeConnectionDocument, variables, options);
+    impressumConnection(variables?: ImpressumConnectionQueryVariables, options?: C): Promise<{data: ImpressumConnectionQuery, variables: ImpressumConnectionQueryVariables, query: string}> {
+        return requester<{data: ImpressumConnectionQuery, variables: ImpressumConnectionQueryVariables, query: string}, ImpressumConnectionQueryVariables>(ImpressumConnectionDocument, variables, options);
       }
     };
   }

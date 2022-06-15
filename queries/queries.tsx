@@ -1,20 +1,11 @@
 export const HOME_QUERY = `
 query {
   name(relativePath: "Home.mdx") {
-    navbar {
-      logo
-      navitems {
-        menutitle
-        menulink
-      }
-      navbuttons {
-        buttontitle
-        buttonlink
-      }
-    }
+
     hero {
       herotitle
       herosubtitle
+      sectionid
       herodescription
       herobutton {
         buttontitle
@@ -22,8 +13,19 @@ query {
       }
       heroimage
     }
+    usecases {
+      sectiontitle
+      sectionid
+      sideimage
+      usecases {
+        title
+        description
+      }
+    }
     features {
       sectiontitle
+      sectionid
+      topimage
       features {
         icon
         title
@@ -33,10 +35,11 @@ query {
     }
     potentialuser {
       sectiontitle
+      sectionid
       potentialusers {
-        image
         title
         description
+        image
         button {
           buttontext
           buttonlink
@@ -48,31 +51,40 @@ query {
         productlogo
       }
     }
+    ourapproach {
+      sectiontitle
+      sectionid
+      sideimage
+      ourapproach {
+        title
+        description
+      }
+    }
     footercto {
       cto
+      sectionid
       ctobutton {
         buttontext
         buttonlink
       }
     }
-    footer {
-      logo
-      address {
-        title
-        companyname
-        companystreet
-        companycity
-        companycountry
-      }
-      otherdata {
-        title
-        body {
-          item
-          itemlink
-        }
-      }
-    }
     id
+    _sys {
+      breadcrumbs
+    }
+  }
+}
+`;
+export const IMPRESSUM_QUERY = `
+query MyQuery {
+  impressum(relativePath: "Impressum.mdx") {
+    title
+    description
+    id
+    _sys {
+      filename
+      title
+    }
   }
 }
 `;

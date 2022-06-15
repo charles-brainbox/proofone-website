@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import Image from "next/image";
 import React from "react";
 import styled from "styled-components";
 import { featureList, featuresVariant } from "../../consts/constants";
@@ -9,16 +10,26 @@ import SectionTitleComponent from "../utils/SectionTitle.component";
 
 interface IFeaturesComponent {
   sectiontitle: string;
+  sectionid: string;
+  topimage: string;
   id: string;
   features: IFeatures[];
 }
 
 const FeaturesComponent = ({ data }: { data: IFeaturesComponent }) => {
-  const { sectiontitle, id, features } = data;
+  const { sectiontitle, id, topimage, features, sectionid } = data;
   return (
-    <SectionLayoutComponent>
+    <SectionLayoutComponent id={sectionid}>
       <CustomSection>
         <SectionTitleComponent>{sectiontitle}</SectionTitleComponent>
+        <div className="top-image">
+          <Image
+            src={topimage}
+            alt={topimage}
+            layout="fill"
+            objectFit="contain"
+          />
+        </div>
         <motion.div
           className="feature-cards"
           variants={featuresVariant}
@@ -50,10 +61,20 @@ const FeaturesComponent = ({ data }: { data: IFeaturesComponent }) => {
 export default FeaturesComponent;
 
 const CustomSection = styled.section`
+  @media (max-width: 500px) {
+    .top-image {
+      height: 250px !important;
+    }
+  }
+  .top-image {
+    position: relative;
+    height: 650px;
+  }
   .feature-cards {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 20px;
+    margin: -8rem 0 0;
     @media (max-width: 1024px) {
       grid-template-columns: 1fr 1fr;
     }

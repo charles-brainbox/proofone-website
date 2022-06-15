@@ -1,16 +1,16 @@
 import Link from "next/link";
 import React from "react";
 import styled from "styled-components";
-import { IFooter } from "../../types/types";
 import RenderItemComponent from "../utils/RenderItem.component";
 import Image from "next/image";
+import Footer from "../../content/footer/Footer.json";
 
-const FooterComponent = ({ data }: { data: IFooter }) => {
+const FooterComponent = () => {
   const {
     logo,
     address: { title, companyname, companycity, companycountry, companystreet },
     otherdata,
-  } = data;
+  } = Footer;
   return (
     <CustomSection>
       <div className="footer-container">
@@ -35,14 +35,22 @@ const FooterComponent = ({ data }: { data: IFooter }) => {
           </div>
           {otherdata.map(({ title, body }, idx) => (
             <div key={idx} className="footer-content">
-              <h6 className="footer-title">{title}</h6>{" "}
+              <h6 className="footer-title">{title}</h6>
               <ul>
-                {body.map(({ item, itemlink }, idx) => (
+                {body.map(({ item, itemlink, itemtag }, idx) => (
                   <RenderItemComponent
                     key={idx}
                     item={
                       <li className="item">
-                        <Link href={itemlink}>{item}</Link>
+                        {itemtag === "mail" ? (
+                          <a href={`mailto:${itemlink}`}>{item}</a>
+                        ) : itemtag === "phone" ? (
+                          <a href={`tel:${itemlink}`}>{item}</a>
+                        ) : (
+                          <Link href={itemlink}>
+                            <a>{item}</a>
+                          </Link>
+                        )}
                       </li>
                     }
                   />
@@ -67,7 +75,7 @@ const CustomSection = styled.footer`
     width: 75%;
     max-width: 1500px;
     display: grid;
-    grid-template-columns: 15% 80%;
+    grid-template-columns: 1fr 3fr;
     gap: 5%;
     align-items: flex-start;
     .footer-meta {
@@ -104,6 +112,8 @@ const CustomSection = styled.footer`
       li {
         list-style: none;
         margin-bottom: 0.2rem;
+      }
+      .item {
         transition: all 0.3s ease;
         &:hover {
           filter: blur(1px);

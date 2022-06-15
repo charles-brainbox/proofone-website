@@ -31,6 +31,7 @@ export interface IPotentialUsers {
 }
 
 export interface IFooterCto {
+  sectionid: string;
   cto: string;
   ctobutton: { buttontext: string; buttonlink: string };
 }
@@ -54,4 +55,14 @@ export interface INav {
   logo: string;
   navitems: { menutitle: string; menulink: string }[];
   navbuttons: { buttontitle: string; buttonlink: string }[];
+}
+export interface IUseCase {
+  id: string;
+  title: string;
+  description: TinaMarkdownContent | TinaMarkdownContent[];
+}
+export interface IOurApproach {
+  id: string;
+  title: string;
+  description: TinaMarkdownContent | TinaMarkdownContent[];
 }
