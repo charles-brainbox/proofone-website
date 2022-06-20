@@ -345,7 +345,7 @@ const branch = "https://github.com/charles-brainbox/proofone-website";
 const apiURL =
   process.env.NODE_ENV == "development"
     ? "http://localhost:4001/graphql"
-    : `https://content.tinajs.io/content/${process.env.NEXT_PUBLIC_USE_LOCAL_CLIENT}/github/${branch}`;
+    : `https://content.tinajs.io/content/${process.env.CLIENT_ID}/github/${branch}`;
 
 export const tinaConfig = defineConfig({
   apiURL,
