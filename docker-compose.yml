@@ -1,21 +1,27 @@
-version: "3.8"
+version: "3"
+
 services:
-  node-app:
-    build: ./
-    # expose:
-    #   - 3000
-    ports:
-      - "3000:3000"
+  next-app:
+    container_name: next-app
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    environment:
+      ENV_VARIABLE: ${ENV_VARIABLE}
+      NEXT_PUBLIC_ENV_VARIABLE: ${NEXT_PUBLIC_ENV_VARIABLE}
     volumes:
-      - ./:/app
-    stdin_open: true
-    restart: unless-stopped
-# version: "3"
-# services:
-#   server:
-#     container_name: website_server
-#     build: ./
-#     restart: unless-stopped
-#     ports:
-#       - 3000:3000
-#       - 5000:5000
+      - ./src:/app/src
+      - ./public:/app/public
+    restart: always
+    ports:
+      - 3000:3000
+    networks:
+      - my_network
+
+  # Add more containers below (nginx, postgres, etc.)
+
+# Define a network, which allows containers to communicate
+# with each other, by using their container name as a hostname
+networks:
+  my_network:
+    external: true
