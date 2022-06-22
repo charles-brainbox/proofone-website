@@ -15,8 +15,14 @@ query author($relativePath: String!) {
   }
 }
 
-query authorConnection {
-  authorConnection {
+query authorConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String) {
+  authorConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+  ) {
     totalCount
     edges {
       node {
@@ -54,8 +60,14 @@ query navbar($relativePath: String!) {
   }
 }
 
-query navbarConnection {
-  navbarConnection {
+query navbarConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String) {
+  navbarConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+  ) {
     totalCount
     edges {
       node {
@@ -93,8 +105,14 @@ query footer($relativePath: String!) {
   }
 }
 
-query footerConnection {
-  footerConnection {
+query footerConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String) {
+  footerConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+  ) {
     totalCount
     edges {
       node {
@@ -132,8 +150,14 @@ query name($relativePath: String!) {
   }
 }
 
-query nameConnection {
-  nameConnection {
+query nameConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String) {
+  nameConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+  ) {
     totalCount
     edges {
       node {
@@ -171,8 +195,14 @@ query impressum($relativePath: String!) {
   }
 }
 
-query impressumConnection {
-  impressumConnection {
+query impressumConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String) {
+  impressumConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+  ) {
     totalCount
     edges {
       node {

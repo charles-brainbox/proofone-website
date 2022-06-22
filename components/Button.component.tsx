@@ -37,7 +37,7 @@ const ButtonComponent: FC<IButton> = ({
       {link ? (
         <Link href={link}>{children}</Link>
       ) : id ? (
-        <Link href={`#${id}`}>{children}</Link>
+        <Link href={`/#${id}`}>{children}</Link>
       ) : (
         <p>{children}</p>
       )}
@@ -51,10 +51,10 @@ const CustomButton = styled(motion.button)<{
   $outline?: boolean;
   $normal?: boolean;
 }>`
-  padding: 0.5rem 1.5rem;
+  padding: 1rem 2.5rem;
   font-weight: 600;
   outline: none;
-  border-radius: 5px;
+  border-radius: 50px;
   cursor: pointer;
   transition: filter 0.2s ease;
   overflow: hidden;

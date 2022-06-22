@@ -6,7 +6,11 @@ fragment AuthorParts on Author {
 fragment NavbarParts on Navbar {
   navbar {
     __typename
-    logo
+    logo {
+      __typename
+      link
+      logo
+    }
     navitems {
       __typename
       menutitle

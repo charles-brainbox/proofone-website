@@ -14,13 +14,13 @@ const FooterBannerComponent = ({ data }: { data: IFooterCto }) => {
         <RenderItemComponent
           item={<blockquote className="quote">{cto}</blockquote>}
         />
-        <RenderItemComponent
+        {/* <RenderItemComponent
           item={
             <ButtonComponent normal id={ctobutton.buttonlink}>
               {ctobutton.buttontext}
             </ButtonComponent>
           }
-        />
+        /> */}
         <ContactFormComponent />
       </CustomSection>
     </SectionLayoutComponent>
@@ -35,7 +35,6 @@ const CustomSection = styled.section`
   width: 80%;
   .quote {
     font-size: 2.5rem;
-    font-weight: 800;
     color: var(--main-color);
     margin-bottom: 1rem;
     line-height: 1.2;

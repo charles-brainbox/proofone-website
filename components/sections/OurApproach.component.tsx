@@ -26,11 +26,11 @@ export const OurApproachComponent = ({ data }: { data: IOurApproaches }) => {
               src={sideimage}
               alt={sideimage}
               layout="fill"
-              objectFit="contain"
+              objectFit="cover"
             />
           </div>
           <div className="right-side">
-            <Collapse.Group bordered accordion>
+            <Collapse.Group accordion divider={false}>
               {ourapproach.map((approach, idx) => (
                 <ApproachCardComponent
                   key={idx}
@@ -62,6 +62,8 @@ const CustomSection = styled.section`
     .left-side {
       position: relative;
       height: 100%;
+      overflow: hidden;
+      border-radius: 2rem;
     }
   }
 `;

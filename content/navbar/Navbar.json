@@ -1,6 +1,15 @@
 {
   "navbar": {
-    "logo": "https://res.cloudinary.com/brainboxgroup/image/upload/v1651493062/proof-one_black_claim_wvebd6.svg",
+    "logo": [
+      {
+        "link": "/",
+        "logo": "https://res.cloudinary.com/brainboxgroup/image/upload/v1655808549/proof-one_white_uucikg.png"
+      },
+      {
+        "link": "/",
+        "logo": "https://res.cloudinary.com/brainboxgroup/image/upload/v1655808535/proof-one_black_gszob8.png"
+      }
+    ],
     "navitems": [
       {
         "menutitle": "Anwendungsfall",
@@ -22,7 +31,7 @@
     "navbuttons": [
       {
         "buttontitle": "Angebot anfordern",
-        "buttonlink": "contact"
+        "buttonlink": "cto"
       }
     ]
   }

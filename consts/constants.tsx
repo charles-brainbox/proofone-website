@@ -73,3 +73,13 @@ export const potentialUserImages = {
   hidden: { opacity: 0 },
   show: { opacity: 1 },
 };
+export const FormErrorDefaultState = {
+  fullname: "",
+  email: "",
+};
+export const formDefaultState = {
+  fullname: "",
+  email: "",
+  question: "",
+};
+export const contentType = "application/json";

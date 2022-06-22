@@ -26,7 +26,7 @@ export const UseCasesComponent = ({ data }: { data: IUseCases }) => {
               src={sideimage}
               alt={sideimage}
               layout="fill"
-              objectFit="contain"
+              objectFit="cover"
             />
           </div>
           <div className="right-side">
@@ -59,6 +59,8 @@ const CustomSection = styled.section`
     .left-side {
       position: relative;
       height: 100%;
+      border-radius: 2rem;
+      overflow: hidden;
     }
     .right-side {
       display: grid;

@@ -10,7 +10,7 @@ export default SectionTitleComponent;
 
 const CustomTitle = styled.h3`
   color: var(--main-color);
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   font-weight: 800;
   margin-bottom: 2rem;
 `;

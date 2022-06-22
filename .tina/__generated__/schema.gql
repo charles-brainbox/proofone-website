@@ -104,6 +104,11 @@ type AuthorConnection implements Connection {
   edges: [AuthorConnectionEdges]
 }
 
+type NavbarNavbarLogo {
+  link: String
+  logo: String
+}
+
 type NavbarNavbarNavitems {
   menutitle: String
   menulink: String
@@ -115,7 +120,7 @@ type NavbarNavbarNavbuttons {
 }
 
 type NavbarNavbar {
-  logo: String
+  logo: [NavbarNavbarLogo]
   navitems: [NavbarNavbarNavitems]
   navbuttons: [NavbarNavbarNavbuttons]
 }
@@ -339,6 +344,11 @@ input AuthorMutation {
   avatar: String
 }
 
+input NavbarNavbarLogoMutation {
+  link: String
+  logo: String
+}
+
 input NavbarNavbarNavitemsMutation {
   menutitle: String
   menulink: String
@@ -350,7 +360,7 @@ input NavbarNavbarNavbuttonsMutation {
 }
 
 input NavbarNavbarMutation {
-  logo: String
+  logo: [NavbarNavbarLogoMutation]
   navitems: [NavbarNavbarNavitemsMutation]
   navbuttons: [NavbarNavbarNavbuttonsMutation]
 }

@@ -235,6 +235,12 @@ export type AuthorConnection = Connection & {
   edges?: Maybe<Array<Maybe<AuthorConnectionEdges>>>;
 };
 
+export type NavbarNavbarLogo = {
+  __typename?: 'NavbarNavbarLogo';
+  link?: Maybe<Scalars['String']>;
+  logo?: Maybe<Scalars['String']>;
+};
+
 export type NavbarNavbarNavitems = {
   __typename?: 'NavbarNavbarNavitems';
   menutitle?: Maybe<Scalars['String']>;
@@ -249,7 +255,7 @@ export type NavbarNavbarNavbuttons = {
 
 export type NavbarNavbar = {
   __typename?: 'NavbarNavbar';
-  logo?: Maybe<Scalars['String']>;
+  logo?: Maybe<Array<Maybe<NavbarNavbarLogo>>>;
   navitems?: Maybe<Array<Maybe<NavbarNavbarNavitems>>>;
   navbuttons?: Maybe<Array<Maybe<NavbarNavbarNavbuttons>>>;
 };
@@ -591,6 +597,11 @@ export type AuthorMutation = {
   avatar?: InputMaybe<Scalars['String']>;
 };
 
+export type NavbarNavbarLogoMutation = {
+  link?: InputMaybe<Scalars['String']>;
+  logo?: InputMaybe<Scalars['String']>;
+};
+
 export type NavbarNavbarNavitemsMutation = {
   menutitle?: InputMaybe<Scalars['String']>;
   menulink?: InputMaybe<Scalars['String']>;
@@ -602,7 +613,7 @@ export type NavbarNavbarNavbuttonsMutation = {
 };
 
 export type NavbarNavbarMutation = {
-  logo?: InputMaybe<Scalars['String']>;
+  logo?: InputMaybe<Array<InputMaybe<NavbarNavbarLogoMutation>>>;
   navitems?: InputMaybe<Array<InputMaybe<NavbarNavbarNavitemsMutation>>>;
   navbuttons?: InputMaybe<Array<InputMaybe<NavbarNavbarNavbuttonsMutation>>>;
 };
@@ -742,7 +753,7 @@ export type ImpressumMutation = {
 
 export type AuthorPartsFragment = { __typename?: 'Author', name?: string | null, avatar?: string | null };
 
-export type NavbarPartsFragment = { __typename?: 'Navbar', navbar?: { __typename: 'NavbarNavbar', logo?: string | null, navitems?: Array<{ __typename: 'NavbarNavbarNavitems', menutitle?: string | null, menulink?: string | null } | null> | null, navbuttons?: Array<{ __typename: 'NavbarNavbarNavbuttons', buttontitle?: string | null, buttonlink?: string | null } | null> | null } | null };
+export type NavbarPartsFragment = { __typename?: 'Navbar', navbar?: { __typename: 'NavbarNavbar', logo?: Array<{ __typename: 'NavbarNavbarLogo', link?: string | null, logo?: string | null } | null> | null, navitems?: Array<{ __typename: 'NavbarNavbarNavitems', menutitle?: string | null, menulink?: string | null } | null> | null, navbuttons?: Array<{ __typename: 'NavbarNavbarNavbuttons', buttontitle?: string | null, buttonlink?: string | null } | null> | null } | null };
 
 export type FooterPartsFragment = { __typename?: 'Footer', logo?: string | null, address?: { __typename: 'FooterAddress', title?: string | null, companyname?: string | null, companystreet?: string | null, companycity?: string | null, companycountry?: string | null } | null, otherdata?: Array<{ __typename: 'FooterOtherdata', title?: string | null, body?: Array<{ __typename: 'FooterOtherdataBody', item?: string | null, itemlink?: string | null, itemtag?: string | null } | null> | null } | null> | null };
 
@@ -757,7 +768,13 @@ export type AuthorQueryVariables = Exact<{
 
 export type AuthorQuery = { __typename?: 'Query', author: { __typename?: 'Author', id: string, name?: string | null, avatar?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
-export type AuthorConnectionQueryVariables = Exact<{ [key: string]: never; }>;
+export type AuthorConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']>;
+  after?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Float']>;
+  last?: InputMaybe<Scalars['Float']>;
+  sort?: InputMaybe<Scalars['String']>;
+}>;
 
 
 export type AuthorConnectionQuery = { __typename?: 'Query', authorConnection: { __typename?: 'AuthorConnection', totalCount: number, edges?: Array<{ __typename?: 'AuthorConnectionEdges', node?: { __typename?: 'Author', id: string, name?: string | null, avatar?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
@@ -767,12 +784,18 @@ export type NavbarQueryVariables = Exact<{
 }>;
 
 
-export type NavbarQuery = { __typename?: 'Query', navbar: { __typename?: 'Navbar', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, navbar?: { __typename: 'NavbarNavbar', logo?: string | null, navitems?: Array<{ __typename: 'NavbarNavbarNavitems', menutitle?: string | null, menulink?: string | null } | null> | null, navbuttons?: Array<{ __typename: 'NavbarNavbarNavbuttons', buttontitle?: string | null, buttonlink?: string | null } | null> | null } | null } };
+export type NavbarQuery = { __typename?: 'Query', navbar: { __typename?: 'Navbar', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, navbar?: { __typename: 'NavbarNavbar', logo?: Array<{ __typename: 'NavbarNavbarLogo', link?: string | null, logo?: string | null } | null> | null, navitems?: Array<{ __typename: 'NavbarNavbarNavitems', menutitle?: string | null, menulink?: string | null } | null> | null, navbuttons?: Array<{ __typename: 'NavbarNavbarNavbuttons', buttontitle?: string | null, buttonlink?: string | null } | null> | null } | null } };
 
-export type NavbarConnectionQueryVariables = Exact<{ [key: string]: never; }>;
+export type NavbarConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']>;
+  after?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Float']>;
+  last?: InputMaybe<Scalars['Float']>;
+  sort?: InputMaybe<Scalars['String']>;
+}>;
 
 
-export type NavbarConnectionQuery = { __typename?: 'Query', navbarConnection: { __typename?: 'NavbarConnection', totalCount: number, edges?: Array<{ __typename?: 'NavbarConnectionEdges', node?: { __typename?: 'Navbar', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, navbar?: { __typename: 'NavbarNavbar', logo?: string | null, navitems?: Array<{ __typename: 'NavbarNavbarNavitems', menutitle?: string | null, menulink?: string | null } | null> | null, navbuttons?: Array<{ __typename: 'NavbarNavbarNavbuttons', buttontitle?: string | null, buttonlink?: string | null } | null> | null } | null } | null } | null> | null } };
+export type NavbarConnectionQuery = { __typename?: 'Query', navbarConnection: { __typename?: 'NavbarConnection', totalCount: number, edges?: Array<{ __typename?: 'NavbarConnectionEdges', node?: { __typename?: 'Navbar', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, navbar?: { __typename: 'NavbarNavbar', logo?: Array<{ __typename: 'NavbarNavbarLogo', link?: string | null, logo?: string | null } | null> | null, navitems?: Array<{ __typename: 'NavbarNavbarNavitems', menutitle?: string | null, menulink?: string | null } | null> | null, navbuttons?: Array<{ __typename: 'NavbarNavbarNavbuttons', buttontitle?: string | null, buttonlink?: string | null } | null> | null } | null } | null } | null> | null } };
 
 export type FooterQueryVariables = Exact<{
   relativePath: Scalars['String'];
@@ -781,7 +804,13 @@ export type FooterQueryVariables = Exact<{
 
 export type FooterQuery = { __typename?: 'Query', footer: { __typename?: 'Footer', id: string, logo?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, address?: { __typename: 'FooterAddress', title?: string | null, companyname?: string | null, companystreet?: string | null, companycity?: string | null, companycountry?: string | null } | null, otherdata?: Array<{ __typename: 'FooterOtherdata', title?: string | null, body?: Array<{ __typename: 'FooterOtherdataBody', item?: string | null, itemlink?: string | null, itemtag?: string | null } | null> | null } | null> | null } };
 
-export type FooterConnectionQueryVariables = Exact<{ [key: string]: never; }>;
+export type FooterConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']>;
+  after?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Float']>;
+  last?: InputMaybe<Scalars['Float']>;
+  sort?: InputMaybe<Scalars['String']>;
+}>;
 
 
 export type FooterConnectionQuery = { __typename?: 'Query', footerConnection: { __typename?: 'FooterConnection', totalCount: number, edges?: Array<{ __typename?: 'FooterConnectionEdges', node?: { __typename?: 'Footer', id: string, logo?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, address?: { __typename: 'FooterAddress', title?: string | null, companyname?: string | null, companystreet?: string | null, companycity?: string | null, companycountry?: string | null } | null, otherdata?: Array<{ __typename: 'FooterOtherdata', title?: string | null, body?: Array<{ __typename: 'FooterOtherdataBody', item?: string | null, itemlink?: string | null, itemtag?: string | null } | null> | null } | null> | null } | null } | null> | null } };
@@ -793,7 +822,13 @@ export type NameQueryVariables = Exact<{
 
 export type NameQuery = { __typename?: 'Query', name: { __typename?: 'Name', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, hero?: { __typename: 'NameHero', herotitle?: string | null, sectionid?: string | null, herosubtitle?: string | null, herodescription?: any | null, heroimage?: string | null, herobutton?: Array<{ __typename: 'NameHeroHerobutton', buttontitle?: string | null, buttonlink?: string | null } | null> | null } | null, usecases?: { __typename: 'NameUsecases', sectiontitle?: string | null, sectionid?: string | null, sideimage?: string | null, usecases?: Array<{ __typename: 'NameUsecasesUsecases', title?: string | null, description?: any | null } | null> | null } | null, features?: { __typename: 'NameFeatures', sectiontitle?: string | null, sectionid?: string | null, topimage?: string | null, features?: Array<{ __typename: 'NameFeaturesFeatures', icon?: string | null, title?: string | null, subtitle?: string | null, description?: any | null } | null> | null } | null, ourapproach?: { __typename: 'NameOurapproach', sectiontitle?: string | null, sectionid?: string | null, sideimage?: string | null, ourapproach?: Array<{ __typename: 'NameOurapproachOurapproach', title?: string | null, description?: any | null } | null> | null } | null, potentialuser?: { __typename: 'NamePotentialuser', sectiontitle?: string | null, sectionid?: string | null, potentialusers?: Array<{ __typename: 'NamePotentialuserPotentialusers', image?: string | null, title?: string | null, description?: any | null, button?: { __typename: 'NamePotentialuserPotentialusersButton', buttontext?: string | null, buttonlink?: string | null } | null } | null> | null } | null, otherproducts?: { __typename: 'NameOtherproducts', productlogo?: Array<{ __typename: 'NameOtherproductsProductlogo', productlogo?: string | null } | null> | null } | null, footercto?: { __typename: 'NameFootercto', cto?: string | null, sectionid?: string | null, ctobutton?: { __typename: 'NameFooterctoCtobutton', buttontext?: string | null, buttonlink?: string | null } | null } | null } };
 
-export type NameConnectionQueryVariables = Exact<{ [key: string]: never; }>;
+export type NameConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']>;
+  after?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Float']>;
+  last?: InputMaybe<Scalars['Float']>;
+  sort?: InputMaybe<Scalars['String']>;
+}>;
 
 
 export type NameConnectionQuery = { __typename?: 'Query', nameConnection: { __typename?: 'NameConnection', totalCount: number, edges?: Array<{ __typename?: 'NameConnectionEdges', node?: { __typename?: 'Name', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, hero?: { __typename: 'NameHero', herotitle?: string | null, sectionid?: string | null, herosubtitle?: string | null, herodescription?: any | null, heroimage?: string | null, herobutton?: Array<{ __typename: 'NameHeroHerobutton', buttontitle?: string | null, buttonlink?: string | null } | null> | null } | null, usecases?: { __typename: 'NameUsecases', sectiontitle?: string | null, sectionid?: string | null, sideimage?: string | null, usecases?: Array<{ __typename: 'NameUsecasesUsecases', title?: string | null, description?: any | null } | null> | null } | null, features?: { __typename: 'NameFeatures', sectiontitle?: string | null, sectionid?: string | null, topimage?: string | null, features?: Array<{ __typename: 'NameFeaturesFeatures', icon?: string | null, title?: string | null, subtitle?: string | null, description?: any | null } | null> | null } | null, ourapproach?: { __typename: 'NameOurapproach', sectiontitle?: string | null, sectionid?: string | null, sideimage?: string | null, ourapproach?: Array<{ __typename: 'NameOurapproachOurapproach', title?: string | null, description?: any | null } | null> | null } | null, potentialuser?: { __typename: 'NamePotentialuser', sectiontitle?: string | null, sectionid?: string | null, potentialusers?: Array<{ __typename: 'NamePotentialuserPotentialusers', image?: string | null, title?: string | null, description?: any | null, button?: { __typename: 'NamePotentialuserPotentialusersButton', buttontext?: string | null, buttonlink?: string | null } | null } | null> | null } | null, otherproducts?: { __typename: 'NameOtherproducts', productlogo?: Array<{ __typename: 'NameOtherproductsProductlogo', productlogo?: string | null } | null> | null } | null, footercto?: { __typename: 'NameFootercto', cto?: string | null, sectionid?: string | null, ctobutton?: { __typename: 'NameFooterctoCtobutton', buttontext?: string | null, buttonlink?: string | null } | null } | null } | null } | null> | null } };
@@ -805,7 +840,13 @@ export type ImpressumQueryVariables = Exact<{
 
 export type ImpressumQuery = { __typename?: 'Query', impressum: { __typename?: 'Impressum', id: string, title?: string | null, description?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
-export type ImpressumConnectionQueryVariables = Exact<{ [key: string]: never; }>;
+export type ImpressumConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']>;
+  after?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Float']>;
+  last?: InputMaybe<Scalars['Float']>;
+  sort?: InputMaybe<Scalars['String']>;
+}>;
 
 
 export type ImpressumConnectionQuery = { __typename?: 'Query', impressumConnection: { __typename?: 'ImpressumConnection', totalCount: number, edges?: Array<{ __typename?: 'ImpressumConnectionEdges', node?: { __typename?: 'Impressum', id: string, title?: string | null, description?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
@@ -820,7 +861,11 @@ export const NavbarPartsFragmentDoc = gql`
     fragment NavbarParts on Navbar {
   navbar {
     __typename
-    logo
+    logo {
+      __typename
+      link
+      logo
+    }
     navitems {
       __typename
       menutitle
@@ -967,8 +1012,14 @@ export const AuthorDocument = gql`
 }
     ${AuthorPartsFragmentDoc}`;
 export const AuthorConnectionDocument = gql`
-    query authorConnection {
-  authorConnection {
+    query authorConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String) {
+  authorConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+  ) {
     totalCount
     edges {
       node {
@@ -1008,8 +1059,14 @@ export const NavbarDocument = gql`
 }
     ${NavbarPartsFragmentDoc}`;
 export const NavbarConnectionDocument = gql`
-    query navbarConnection {
-  navbarConnection {
+    query navbarConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String) {
+  navbarConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+  ) {
     totalCount
     edges {
       node {
@@ -1049,8 +1106,14 @@ export const FooterDocument = gql`
 }
     ${FooterPartsFragmentDoc}`;
 export const FooterConnectionDocument = gql`
-    query footerConnection {
-  footerConnection {
+    query footerConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String) {
+  footerConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+  ) {
     totalCount
     edges {
       node {
@@ -1090,8 +1153,14 @@ export const NameDocument = gql`
 }
     ${NamePartsFragmentDoc}`;
 export const NameConnectionDocument = gql`
-    query nameConnection {
-  nameConnection {
+    query nameConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String) {
+  nameConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+  ) {
     totalCount
     edges {
       node {
@@ -1131,8 +1200,14 @@ export const ImpressumDocument = gql`
 }
     ${ImpressumPartsFragmentDoc}`;
 export const ImpressumConnectionDocument = gql`
-    query impressumConnection {
-  impressumConnection {
+    query impressumConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String) {
+  impressumConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+  ) {
     totalCount
     edges {
       node {

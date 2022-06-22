@@ -15,4 +15,5 @@ export default SectionLayoutComponent;
 
 const CustomSection = styled.section`
   padding: 85px 0 0;
+  margin: 0 0 8rem;
 `;
