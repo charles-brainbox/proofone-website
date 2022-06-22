@@ -9,6 +9,9 @@ services:
     environment:
       ENV_VARIABLE: ${ENV_VARIABLE}
       NEXT_PUBLIC_ENV_VARIABLE: ${NEXT_PUBLIC_ENV_VARIABLE}
+      MAILER_BOT: ${MAILER_BOT}
+      TO: ${TO}
+      PASSWORD: ${PASSWORD}
     volumes:
       - ./src:/app/src
       - ./public:/app/public
