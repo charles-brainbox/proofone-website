@@ -29,6 +29,7 @@ const CustomLayout = styled.main`
     width: 85%;
     max-width: 1500px;
     margin: 0 auto;
+    overflowY-hidden;
 
     @media (max-width: 1024px) {
       width: 94%;

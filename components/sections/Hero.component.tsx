@@ -67,6 +67,10 @@ export default HeroComponent;
 const CustomSection = styled.section`
   height: 600px;
   background-color: var(--main-color);
+  overflow: hidden;
+  @media (max-width: 1024px) {
+    height: auto !important;
+  }
   .hero-header {
     position: relative;
     height: 100%;
@@ -81,7 +85,7 @@ const CustomSection = styled.section`
     @media (max-width: 1024px) {
       margin-left: 0;
       width: 100%;
-      height: auto;
+      height: auto !important;
       display: block;
       padding: 8rem 2rem 0;
       .left-side {
@@ -126,7 +130,9 @@ const CustomSection = styled.section`
       position: relative;
       width: 100%;
       height: 100%;
+
       .right-container {
+        overflow: hidden;
         position: absolute;
         width: 200%;
         height: 500px;
