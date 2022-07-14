@@ -72,60 +72,57 @@ export const ContactFormComponent = () => {
     return <FormSuccessComponent />;
   }
   return (
-    <SectionLayoutComponent id="contact">
-      <CustomContainer>
-        <SectionTitleComponent>Get in touch with us</SectionTitleComponent>
+    <CustomContainer>
+      <SectionTitleComponent>Get in touch with us</SectionTitleComponent>
 
-        <form onSubmit={handleSubmit}>
-          <CustomInputComponent
-            labelplaceholder="Full name*"
-            type="text"
-            name="fullname"
-            value={form.fullname}
-            onChange={handleChange}
-            arialabel="fullname"
-            helperText={errors.fullname ? errors.fullname : ""}
-            status={errors.fullname ? "error" : "default"}
-            helperColor={errors.fullname ? "error" : "default"}
-          />
-          <CustomInputComponent
-            labelplaceholder="Email*"
-            type="email"
-            name="email"
-            value={form.email}
-            onChange={handleChange}
-            arialabel="email"
-            helperText={errors.email ? errors.email : ""}
-            status={errors.email ? "error" : "default"}
-            helperColor={errors.email ? "error" : "default"}
-          />
-          <Textarea
-            rows={10}
-            placeholder="What would you like to ask us?"
-            fullWidth
-            bordered
-            borderWeight="light"
-            name="question"
-            onChange={handleChange}
-            value={form.question}
-            aria-label="question"
-          />
-          <ButtonComponent
-            type="submit"
-            style={{ marginTop: "1rem", float: "right" }}
-            disabled={formState.submitting}
-          >
-            Submit
-          </ButtonComponent>
-        </form>
-      </CustomContainer>
-    </SectionLayoutComponent>
+      <form onSubmit={handleSubmit}>
+        <CustomInputComponent
+          labelplaceholder="Full name*"
+          type="text"
+          name="fullname"
+          value={form.fullname}
+          onChange={handleChange}
+          arialabel="fullname"
+          helperText={errors.fullname ? errors.fullname : ""}
+          status={errors.fullname ? "error" : "default"}
+          helperColor={errors.fullname ? "error" : "default"}
+        />
+        <CustomInputComponent
+          labelplaceholder="Email*"
+          type="email"
+          name="email"
+          value={form.email}
+          onChange={handleChange}
+          arialabel="email"
+          helperText={errors.email ? errors.email : ""}
+          status={errors.email ? "error" : "default"}
+          helperColor={errors.email ? "error" : "default"}
+        />
+        <Textarea
+          rows={10}
+          placeholder="What would you like to ask us?"
+          fullWidth
+          bordered
+          borderWeight="light"
+          name="question"
+          onChange={handleChange}
+          value={form.question}
+          aria-label="question"
+        />
+        <ButtonComponent
+          type="submit"
+          style={{ marginTop: "1rem", float: "right" }}
+          disabled={formState.submitting}
+        >
+          Submit
+        </ButtonComponent>
+      </form>
+    </CustomContainer>
   );
 };
 
 const CustomContainer = styled.div`
-  width: 70%;
-  margin: 0 auto;
+  width: 100%;
   form {
     label,
     input,

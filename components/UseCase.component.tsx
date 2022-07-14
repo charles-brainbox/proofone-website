@@ -33,9 +33,9 @@ const CustomArticle = styled.article`
     width: 30px;
     min-width: 30px;
     font-weight: 800;
-    color: var(--main-color);
+    color: var(--main-black);
     border-radius: 50%;
-    border: 2px solid var(--main-color);
+    border: 2px solid var(--main-black);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -43,8 +43,6 @@ const CustomArticle = styled.article`
   .case-article {
     .title {
       font-weight: 800;
-      color: var(--main-color);
-      font-size: 1.1rem;
       margin: 0 0 0.5rem 0;
     }
   }

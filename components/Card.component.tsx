@@ -30,7 +30,6 @@ export default Cardcomponent;
 
 const CustomCard = styled.div`
   padding: 1rem 2rem 1rem 0;
-  background: var(--main-white);
   @media (max-width: 500px) {
     padding-right: 0;
   }
@@ -38,13 +37,11 @@ const CustomCard = styled.div`
     text-transform: uppercase;
     font-size: 0.8rem;
     font-weight: 700;
-    color: var(--main-color);
     margin-top: 2rem;
   }
   .card-subtitle {
     font-size: 1.4rem;
     font-weight: 800;
-    color: var(--main-color);
     margin: 0 0 0.5rem;
   }
 `;

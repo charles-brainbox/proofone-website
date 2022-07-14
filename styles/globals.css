@@ -1,19 +1,20 @@
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;500;600;700;800;900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap");
 
 :root {
-  --main-font: -apple-system, Libre Franklin, IBM Plex Sans, Inter,
-    BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans,
-    Droid Sans, Helvetica Neue, sans-serif;
-  --sec-font: "Libre Baskerville", serif;
+  --main-font: -apple-system, Inter, Libre Franklin, BlinkMacSystemFont,
+    Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
+    Helvetica Neue, sans-serif;
+  --sec-font: "Space Grotesk", serif;
   --main-white: #fff;
   --sec-color: #b4176d;
   --main-black: #000;
   --main-color: #1839aa;
   --main-grey: #f9f9f9;
-  --main-grey-2: #fcfcfc;
+  --main-grey-2: #f0f0f0;
+  --ter-color: #f0f1fb;
 }
 
 html,
@@ -21,9 +22,9 @@ body {
   padding: 0;
   margin: 0;
   font-family: var(--main-font);
-  line-height: 1.5;
+  line-height: 1.6;
   font-weight: 400;
-  font-size: 13px;
+  font-size: 14px;
   scroll-behavior: smooth;
 }
 body {
@@ -54,4 +55,15 @@ div,
 button {
   padding: 0;
   margin: 0;
+}
+h1,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--sec-font);
+}
+
+.calendly-badge-widget {
+  bottom: 60px;
 }

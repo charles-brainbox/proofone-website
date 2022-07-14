@@ -4,8 +4,6 @@ import React from "react";
 import styled from "styled-components";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { IHero } from "../../types/types";
-import ButtonComponent from "../Button.component";
-import SectionLayoutComponent from "../layout/SectionLayout.component";
 import RenderItemComponent from "../utils/RenderItem.component";
 import TypeWriterComponent from "../utils/Typewriter.component";
 
@@ -24,21 +22,6 @@ const HeroComponent = ({ data }: { data: IHero }) => {
           <RenderItemComponent
             item={<TinaMarkdown content={herodescription} />}
           />
-
-          {herobutton.map(({ buttontitle, buttonlink }, idx) => (
-            <RenderItemComponent
-              key={idx}
-              item={
-                <ButtonComponent
-                  outline
-                  style={{ marginTop: "1rem" }}
-                  id={buttonlink}
-                >
-                  {buttontitle}
-                </ButtonComponent>
-              }
-            />
-          ))}
         </motion.div>
         <div className="right-side">
           <div className="right-container">
@@ -50,7 +33,7 @@ const HeroComponent = ({ data }: { data: IHero }) => {
                   layout="fixed"
                   objectFit="contain"
                   priority
-                  height={510}
+                  height={430}
                   width={950}
                 />
               }
@@ -65,8 +48,8 @@ const HeroComponent = ({ data }: { data: IHero }) => {
 export default HeroComponent;
 
 const CustomSection = styled.section`
-  height: 600px;
-  background-color: var(--main-color);
+  height: 500px;
+  background-color: var(--ter-color);
   overflow: hidden;
   @media (max-width: 1024px) {
     height: auto !important;
@@ -81,7 +64,7 @@ const CustomSection = styled.section`
     grid-template-columns: 1fr 1fr;
     gap: 30px;
     align-items: center;
-    color: var(--main-white);
+
     @media (max-width: 1024px) {
       margin-left: 0;
       width: 100%;
@@ -135,7 +118,7 @@ const CustomSection = styled.section`
         overflow: hidden;
         position: absolute;
         width: 200%;
-        height: 500px;
+        height: 430px;
         bottom: 0;
       }
     }

@@ -43,8 +43,8 @@ export const UseCasesComponent = ({ data }: { data: IUseCases }) => {
 const CustomSection = styled.section`
   .main {
     display: grid;
-    grid-template-columns: 1fr 1.8fr;
-    gap: 2rem;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 10rem;
     @media (max-width: 1024px) {
       display: block;
       .left-side {
@@ -58,13 +58,13 @@ const CustomSection = styled.section`
     }
     .left-side {
       position: relative;
-      height: 100%;
+      height: 70%;
       border-radius: 2rem;
       overflow: hidden;
     }
     .right-side {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: 2rem;
     }
   }

@@ -134,7 +134,9 @@ const CustomSection = styled.nav<{ isOpen: boolean; scrollPosition: number }>`
   z-index: 100;
 
   background-color: ${(props) =>
-    props.scrollPosition > 650 ? "var(--main-white)" : "var(--main-color)"};
+    props.scrollPosition > 650 ? "var(--main-white)" : "var(--ter-color)"};
+  box-shadow: ${(props) =>
+    props.scrollPosition > 650 ? "0px 4px 30px rgba(0, 0, 0, 0.05)" : ""};
   transition: all 0.5s ease;
   width: 100%;
   .logo-header {
@@ -143,9 +145,8 @@ const CustomSection = styled.nav<{ isOpen: boolean; scrollPosition: number }>`
     justify-content: space-between;
     transition: all 0.5s ease;
     background-color: ${(props) =>
-      props.scrollPosition > 650 ? "var(--main-white)" : "var(--main-color)"};
-    color: ${(props) =>
-      props.scrollPosition > 650 ? "var(--main-color)" : "var(--main-white)"};
+      props.scrollPosition > 650 ? "var(--main-white)" : "var(--ter-color)"};
+    color: var(--main-color);
 
     margin: 0 auto;
     width: 98%;
@@ -179,10 +180,7 @@ const CustomSection = styled.nav<{ isOpen: boolean; scrollPosition: number }>`
               props.scrollPosition > 650
                 ? "var(--main-white)"
                 : "var(--main-color)"};
-            color: ${(props) =>
-              props.scrollPosition > 650
-                ? "var(--main-color)"
-                : "var(--main-white)"};
+            color: var(--main-color);
           }
           ul {
             z-index: 200;
@@ -289,10 +287,8 @@ const CustomSection = styled.nav<{ isOpen: boolean; scrollPosition: number }>`
     }
     button {
       transition: all 0.5s ease;
-      border-color: ${(props) =>
-        props.scrollPosition > 650 ? "var(--main-color)" : "var(--main-white)"};
-      color: ${(props) =>
-        props.scrollPosition > 650 ? "var(--main-color)" : "var(--main-white)"};
+      border-color: var(--main-color);
+      color: var(--main-color);
     }
   }
 `;

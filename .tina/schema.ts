@@ -184,6 +184,21 @@ const schema = defineSchema({
             },
           ],
         },
+        {
+          label: "Banners",
+          name: "banners",
+          type: "object",
+          list: true,
+          fields: [
+            { type: "string", label: "Title", name: "title" },
+            {
+              type: "rich-text",
+              label: "Content",
+              name: "content",
+            },
+            { type: "image", label: "Banner image", name: "bannerImage" },
+          ],
+        },
 
         {
           label: "Features",
@@ -213,6 +228,32 @@ const schema = defineSchema({
                   type: "string",
                   label: "Sub Title",
                   name: "subtitle",
+                },
+                {
+                  type: "rich-text",
+                  label: "Description",
+                  name: "description",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          label: "Test our services",
+          name: "servicestest",
+          type: "object",
+          fields: [
+            { type: "string", label: "Section Title", name: "sectiontitle" },
+            {
+              type: "object",
+              label: "Services",
+              name: "services",
+              list: true,
+              fields: [
+                {
+                  type: "string",
+                  label: "Title",
+                  name: "title",
                 },
                 {
                   type: "rich-text",

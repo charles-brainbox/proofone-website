@@ -22,6 +22,11 @@ query {
         description
       }
     }
+    banners {
+      title
+      content
+      bannerImage
+    }
     features {
       sectiontitle
       sectionid
@@ -30,6 +35,13 @@ query {
         icon
         title
         subtitle
+        description
+      }
+    }
+    servicestest {
+      sectiontitle
+      services {
+        title
         description
       }
     }

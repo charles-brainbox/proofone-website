@@ -356,6 +356,13 @@ export type NameUsecases = {
   usecases?: Maybe<Array<Maybe<NameUsecasesUsecases>>>;
 };
 
+export type NameBanners = {
+  __typename?: 'NameBanners';
+  title?: Maybe<Scalars['String']>;
+  content?: Maybe<Scalars['JSON']>;
+  bannerImage?: Maybe<Scalars['String']>;
+};
+
 export type NameFeaturesFeatures = {
   __typename?: 'NameFeaturesFeatures';
   icon?: Maybe<Scalars['String']>;
@@ -370,6 +377,18 @@ export type NameFeatures = {
   sectionid?: Maybe<Scalars['String']>;
   topimage?: Maybe<Scalars['String']>;
   features?: Maybe<Array<Maybe<NameFeaturesFeatures>>>;
+};
+
+export type NameServicestestServices = {
+  __typename?: 'NameServicestestServices';
+  title?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['JSON']>;
+};
+
+export type NameServicestest = {
+  __typename?: 'NameServicestest';
+  sectiontitle?: Maybe<Scalars['String']>;
+  services?: Maybe<Array<Maybe<NameServicestestServices>>>;
 };
 
 export type NameOurapproachOurapproach = {
@@ -434,7 +453,9 @@ export type Name = Node & Document & {
   __typename?: 'Name';
   hero?: Maybe<NameHero>;
   usecases?: Maybe<NameUsecases>;
+  banners?: Maybe<Array<Maybe<NameBanners>>>;
   features?: Maybe<NameFeatures>;
+  servicestest?: Maybe<NameServicestest>;
   ourapproach?: Maybe<NameOurapproach>;
   potentialuser?: Maybe<NamePotentialuser>;
   otherproducts?: Maybe<NameOtherproducts>;
@@ -673,6 +694,12 @@ export type NameUsecasesMutation = {
   usecases?: InputMaybe<Array<InputMaybe<NameUsecasesUsecasesMutation>>>;
 };
 
+export type NameBannersMutation = {
+  title?: InputMaybe<Scalars['String']>;
+  content?: InputMaybe<Scalars['JSON']>;
+  bannerImage?: InputMaybe<Scalars['String']>;
+};
+
 export type NameFeaturesFeaturesMutation = {
   icon?: InputMaybe<Scalars['String']>;
   title?: InputMaybe<Scalars['String']>;
@@ -685,6 +712,16 @@ export type NameFeaturesMutation = {
   sectionid?: InputMaybe<Scalars['String']>;
   topimage?: InputMaybe<Scalars['String']>;
   features?: InputMaybe<Array<InputMaybe<NameFeaturesFeaturesMutation>>>;
+};
+
+export type NameServicestestServicesMutation = {
+  title?: InputMaybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['JSON']>;
+};
+
+export type NameServicestestMutation = {
+  sectiontitle?: InputMaybe<Scalars['String']>;
+  services?: InputMaybe<Array<InputMaybe<NameServicestestServicesMutation>>>;
 };
 
 export type NameOurapproachOurapproachMutation = {
@@ -739,7 +776,9 @@ export type NameFooterctoMutation = {
 export type NameMutation = {
   hero?: InputMaybe<NameHeroMutation>;
   usecases?: InputMaybe<NameUsecasesMutation>;
+  banners?: InputMaybe<Array<InputMaybe<NameBannersMutation>>>;
   features?: InputMaybe<NameFeaturesMutation>;
+  servicestest?: InputMaybe<NameServicestestMutation>;
   ourapproach?: InputMaybe<NameOurapproachMutation>;
   potentialuser?: InputMaybe<NamePotentialuserMutation>;
   otherproducts?: InputMaybe<NameOtherproductsMutation>;
@@ -757,7 +796,7 @@ export type NavbarPartsFragment = { __typename?: 'Navbar', navbar?: { __typename
 
 export type FooterPartsFragment = { __typename?: 'Footer', logo?: string | null, address?: { __typename: 'FooterAddress', title?: string | null, companyname?: string | null, companystreet?: string | null, companycity?: string | null, companycountry?: string | null } | null, otherdata?: Array<{ __typename: 'FooterOtherdata', title?: string | null, body?: Array<{ __typename: 'FooterOtherdataBody', item?: string | null, itemlink?: string | null, itemtag?: string | null } | null> | null } | null> | null };
 
-export type NamePartsFragment = { __typename?: 'Name', hero?: { __typename: 'NameHero', herotitle?: string | null, sectionid?: string | null, herosubtitle?: string | null, herodescription?: any | null, heroimage?: string | null, herobutton?: Array<{ __typename: 'NameHeroHerobutton', buttontitle?: string | null, buttonlink?: string | null } | null> | null } | null, usecases?: { __typename: 'NameUsecases', sectiontitle?: string | null, sectionid?: string | null, sideimage?: string | null, usecases?: Array<{ __typename: 'NameUsecasesUsecases', title?: string | null, description?: any | null } | null> | null } | null, features?: { __typename: 'NameFeatures', sectiontitle?: string | null, sectionid?: string | null, topimage?: string | null, features?: Array<{ __typename: 'NameFeaturesFeatures', icon?: string | null, title?: string | null, subtitle?: string | null, description?: any | null } | null> | null } | null, ourapproach?: { __typename: 'NameOurapproach', sectiontitle?: string | null, sectionid?: string | null, sideimage?: string | null, ourapproach?: Array<{ __typename: 'NameOurapproachOurapproach', title?: string | null, description?: any | null } | null> | null } | null, potentialuser?: { __typename: 'NamePotentialuser', sectiontitle?: string | null, sectionid?: string | null, potentialusers?: Array<{ __typename: 'NamePotentialuserPotentialusers', image?: string | null, title?: string | null, description?: any | null, button?: { __typename: 'NamePotentialuserPotentialusersButton', buttontext?: string | null, buttonlink?: string | null } | null } | null> | null } | null, otherproducts?: { __typename: 'NameOtherproducts', productlogo?: Array<{ __typename: 'NameOtherproductsProductlogo', productlogo?: string | null } | null> | null } | null, footercto?: { __typename: 'NameFootercto', cto?: string | null, sectionid?: string | null, ctobutton?: { __typename: 'NameFooterctoCtobutton', buttontext?: string | null, buttonlink?: string | null } | null } | null };
+export type NamePartsFragment = { __typename?: 'Name', hero?: { __typename: 'NameHero', herotitle?: string | null, sectionid?: string | null, herosubtitle?: string | null, herodescription?: any | null, heroimage?: string | null, herobutton?: Array<{ __typename: 'NameHeroHerobutton', buttontitle?: string | null, buttonlink?: string | null } | null> | null } | null, usecases?: { __typename: 'NameUsecases', sectiontitle?: string | null, sectionid?: string | null, sideimage?: string | null, usecases?: Array<{ __typename: 'NameUsecasesUsecases', title?: string | null, description?: any | null } | null> | null } | null, banners?: Array<{ __typename: 'NameBanners', title?: string | null, content?: any | null, bannerImage?: string | null } | null> | null, features?: { __typename: 'NameFeatures', sectiontitle?: string | null, sectionid?: string | null, topimage?: string | null, features?: Array<{ __typename: 'NameFeaturesFeatures', icon?: string | null, title?: string | null, subtitle?: string | null, description?: any | null } | null> | null } | null, servicestest?: { __typename: 'NameServicestest', sectiontitle?: string | null, services?: Array<{ __typename: 'NameServicestestServices', title?: string | null, description?: any | null } | null> | null } | null, ourapproach?: { __typename: 'NameOurapproach', sectiontitle?: string | null, sectionid?: string | null, sideimage?: string | null, ourapproach?: Array<{ __typename: 'NameOurapproachOurapproach', title?: string | null, description?: any | null } | null> | null } | null, potentialuser?: { __typename: 'NamePotentialuser', sectiontitle?: string | null, sectionid?: string | null, potentialusers?: Array<{ __typename: 'NamePotentialuserPotentialusers', image?: string | null, title?: string | null, description?: any | null, button?: { __typename: 'NamePotentialuserPotentialusersButton', buttontext?: string | null, buttonlink?: string | null } | null } | null> | null } | null, otherproducts?: { __typename: 'NameOtherproducts', productlogo?: Array<{ __typename: 'NameOtherproductsProductlogo', productlogo?: string | null } | null> | null } | null, footercto?: { __typename: 'NameFootercto', cto?: string | null, sectionid?: string | null, ctobutton?: { __typename: 'NameFooterctoCtobutton', buttontext?: string | null, buttonlink?: string | null } | null } | null };
 
 export type ImpressumPartsFragment = { __typename?: 'Impressum', title?: string | null, description?: any | null };
 
@@ -820,7 +859,7 @@ export type NameQueryVariables = Exact<{
 }>;
 
 
-export type NameQuery = { __typename?: 'Query', name: { __typename?: 'Name', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, hero?: { __typename: 'NameHero', herotitle?: string | null, sectionid?: string | null, herosubtitle?: string | null, herodescription?: any | null, heroimage?: string | null, herobutton?: Array<{ __typename: 'NameHeroHerobutton', buttontitle?: string | null, buttonlink?: string | null } | null> | null } | null, usecases?: { __typename: 'NameUsecases', sectiontitle?: string | null, sectionid?: string | null, sideimage?: string | null, usecases?: Array<{ __typename: 'NameUsecasesUsecases', title?: string | null, description?: any | null } | null> | null } | null, features?: { __typename: 'NameFeatures', sectiontitle?: string | null, sectionid?: string | null, topimage?: string | null, features?: Array<{ __typename: 'NameFeaturesFeatures', icon?: string | null, title?: string | null, subtitle?: string | null, description?: any | null } | null> | null } | null, ourapproach?: { __typename: 'NameOurapproach', sectiontitle?: string | null, sectionid?: string | null, sideimage?: string | null, ourapproach?: Array<{ __typename: 'NameOurapproachOurapproach', title?: string | null, description?: any | null } | null> | null } | null, potentialuser?: { __typename: 'NamePotentialuser', sectiontitle?: string | null, sectionid?: string | null, potentialusers?: Array<{ __typename: 'NamePotentialuserPotentialusers', image?: string | null, title?: string | null, description?: any | null, button?: { __typename: 'NamePotentialuserPotentialusersButton', buttontext?: string | null, buttonlink?: string | null } | null } | null> | null } | null, otherproducts?: { __typename: 'NameOtherproducts', productlogo?: Array<{ __typename: 'NameOtherproductsProductlogo', productlogo?: string | null } | null> | null } | null, footercto?: { __typename: 'NameFootercto', cto?: string | null, sectionid?: string | null, ctobutton?: { __typename: 'NameFooterctoCtobutton', buttontext?: string | null, buttonlink?: string | null } | null } | null } };
+export type NameQuery = { __typename?: 'Query', name: { __typename?: 'Name', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, hero?: { __typename: 'NameHero', herotitle?: string | null, sectionid?: string | null, herosubtitle?: string | null, herodescription?: any | null, heroimage?: string | null, herobutton?: Array<{ __typename: 'NameHeroHerobutton', buttontitle?: string | null, buttonlink?: string | null } | null> | null } | null, usecases?: { __typename: 'NameUsecases', sectiontitle?: string | null, sectionid?: string | null, sideimage?: string | null, usecases?: Array<{ __typename: 'NameUsecasesUsecases', title?: string | null, description?: any | null } | null> | null } | null, banners?: Array<{ __typename: 'NameBanners', title?: string | null, content?: any | null, bannerImage?: string | null } | null> | null, features?: { __typename: 'NameFeatures', sectiontitle?: string | null, sectionid?: string | null, topimage?: string | null, features?: Array<{ __typename: 'NameFeaturesFeatures', icon?: string | null, title?: string | null, subtitle?: string | null, description?: any | null } | null> | null } | null, servicestest?: { __typename: 'NameServicestest', sectiontitle?: string | null, services?: Array<{ __typename: 'NameServicestestServices', title?: string | null, description?: any | null } | null> | null } | null, ourapproach?: { __typename: 'NameOurapproach', sectiontitle?: string | null, sectionid?: string | null, sideimage?: string | null, ourapproach?: Array<{ __typename: 'NameOurapproachOurapproach', title?: string | null, description?: any | null } | null> | null } | null, potentialuser?: { __typename: 'NamePotentialuser', sectiontitle?: string | null, sectionid?: string | null, potentialusers?: Array<{ __typename: 'NamePotentialuserPotentialusers', image?: string | null, title?: string | null, description?: any | null, button?: { __typename: 'NamePotentialuserPotentialusersButton', buttontext?: string | null, buttonlink?: string | null } | null } | null> | null } | null, otherproducts?: { __typename: 'NameOtherproducts', productlogo?: Array<{ __typename: 'NameOtherproductsProductlogo', productlogo?: string | null } | null> | null } | null, footercto?: { __typename: 'NameFootercto', cto?: string | null, sectionid?: string | null, ctobutton?: { __typename: 'NameFooterctoCtobutton', buttontext?: string | null, buttonlink?: string | null } | null } | null } };
 
 export type NameConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']>;
@@ -831,7 +870,7 @@ export type NameConnectionQueryVariables = Exact<{
 }>;
 
 
-export type NameConnectionQuery = { __typename?: 'Query', nameConnection: { __typename?: 'NameConnection', totalCount: number, edges?: Array<{ __typename?: 'NameConnectionEdges', node?: { __typename?: 'Name', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, hero?: { __typename: 'NameHero', herotitle?: string | null, sectionid?: string | null, herosubtitle?: string | null, herodescription?: any | null, heroimage?: string | null, herobutton?: Array<{ __typename: 'NameHeroHerobutton', buttontitle?: string | null, buttonlink?: string | null } | null> | null } | null, usecases?: { __typename: 'NameUsecases', sectiontitle?: string | null, sectionid?: string | null, sideimage?: string | null, usecases?: Array<{ __typename: 'NameUsecasesUsecases', title?: string | null, description?: any | null } | null> | null } | null, features?: { __typename: 'NameFeatures', sectiontitle?: string | null, sectionid?: string | null, topimage?: string | null, features?: Array<{ __typename: 'NameFeaturesFeatures', icon?: string | null, title?: string | null, subtitle?: string | null, description?: any | null } | null> | null } | null, ourapproach?: { __typename: 'NameOurapproach', sectiontitle?: string | null, sectionid?: string | null, sideimage?: string | null, ourapproach?: Array<{ __typename: 'NameOurapproachOurapproach', title?: string | null, description?: any | null } | null> | null } | null, potentialuser?: { __typename: 'NamePotentialuser', sectiontitle?: string | null, sectionid?: string | null, potentialusers?: Array<{ __typename: 'NamePotentialuserPotentialusers', image?: string | null, title?: string | null, description?: any | null, button?: { __typename: 'NamePotentialuserPotentialusersButton', buttontext?: string | null, buttonlink?: string | null } | null } | null> | null } | null, otherproducts?: { __typename: 'NameOtherproducts', productlogo?: Array<{ __typename: 'NameOtherproductsProductlogo', productlogo?: string | null } | null> | null } | null, footercto?: { __typename: 'NameFootercto', cto?: string | null, sectionid?: string | null, ctobutton?: { __typename: 'NameFooterctoCtobutton', buttontext?: string | null, buttonlink?: string | null } | null } | null } | null } | null> | null } };
+export type NameConnectionQuery = { __typename?: 'Query', nameConnection: { __typename?: 'NameConnection', totalCount: number, edges?: Array<{ __typename?: 'NameConnectionEdges', node?: { __typename?: 'Name', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, hero?: { __typename: 'NameHero', herotitle?: string | null, sectionid?: string | null, herosubtitle?: string | null, herodescription?: any | null, heroimage?: string | null, herobutton?: Array<{ __typename: 'NameHeroHerobutton', buttontitle?: string | null, buttonlink?: string | null } | null> | null } | null, usecases?: { __typename: 'NameUsecases', sectiontitle?: string | null, sectionid?: string | null, sideimage?: string | null, usecases?: Array<{ __typename: 'NameUsecasesUsecases', title?: string | null, description?: any | null } | null> | null } | null, banners?: Array<{ __typename: 'NameBanners', title?: string | null, content?: any | null, bannerImage?: string | null } | null> | null, features?: { __typename: 'NameFeatures', sectiontitle?: string | null, sectionid?: string | null, topimage?: string | null, features?: Array<{ __typename: 'NameFeaturesFeatures', icon?: string | null, title?: string | null, subtitle?: string | null, description?: any | null } | null> | null } | null, servicestest?: { __typename: 'NameServicestest', sectiontitle?: string | null, services?: Array<{ __typename: 'NameServicestestServices', title?: string | null, description?: any | null } | null> | null } | null, ourapproach?: { __typename: 'NameOurapproach', sectiontitle?: string | null, sectionid?: string | null, sideimage?: string | null, ourapproach?: Array<{ __typename: 'NameOurapproachOurapproach', title?: string | null, description?: any | null } | null> | null } | null, potentialuser?: { __typename: 'NamePotentialuser', sectiontitle?: string | null, sectionid?: string | null, potentialusers?: Array<{ __typename: 'NamePotentialuserPotentialusers', image?: string | null, title?: string | null, description?: any | null, button?: { __typename: 'NamePotentialuserPotentialusersButton', buttontext?: string | null, buttonlink?: string | null } | null } | null> | null } | null, otherproducts?: { __typename: 'NameOtherproducts', productlogo?: Array<{ __typename: 'NameOtherproductsProductlogo', productlogo?: string | null } | null> | null } | null, footercto?: { __typename: 'NameFootercto', cto?: string | null, sectionid?: string | null, ctobutton?: { __typename: 'NameFooterctoCtobutton', buttontext?: string | null, buttonlink?: string | null } | null } | null } | null } | null> | null } };
 
 export type ImpressumQueryVariables = Exact<{
   relativePath: Scalars['String'];
@@ -928,6 +967,12 @@ export const NamePartsFragmentDoc = gql`
       description
     }
   }
+  banners {
+    __typename
+    title
+    content
+    bannerImage
+  }
   features {
     __typename
     sectiontitle
@@ -938,6 +983,15 @@ export const NamePartsFragmentDoc = gql`
       icon
       title
       subtitle
+      description
+    }
+  }
+  servicestest {
+    __typename
+    sectiontitle
+    services {
+      __typename
+      title
       description
     }
   }

@@ -26,14 +26,9 @@ export default LayoutComponent;
 
 const CustomLayout = styled.main`
   .inner-container {
-    width: 85%;
-    max-width: 1500px;
-    margin: 0 auto;
+   
     overflowY-hidden;
 
-    @media (max-width: 1024px) {
-      width: 94%;
-      overflow-x: hidden !important;
-    }
+ 
   }
 `;

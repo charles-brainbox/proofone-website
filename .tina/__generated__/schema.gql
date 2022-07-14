@@ -208,6 +208,12 @@ type NameUsecases {
   usecases: [NameUsecasesUsecases]
 }
 
+type NameBanners {
+  title: String
+  content: JSON
+  bannerImage: String
+}
+
 type NameFeaturesFeatures {
   icon: String
   title: String
@@ -220,6 +226,16 @@ type NameFeatures {
   sectionid: String
   topimage: String
   features: [NameFeaturesFeatures]
+}
+
+type NameServicestestServices {
+  title: String
+  description: JSON
+}
+
+type NameServicestest {
+  sectiontitle: String
+  services: [NameServicestestServices]
 }
 
 type NameOurapproachOurapproach {
@@ -274,7 +290,9 @@ type NameFootercto {
 type Name implements Node & Document {
   hero: NameHero
   usecases: NameUsecases
+  banners: [NameBanners]
   features: NameFeatures
+  servicestest: NameServicestest
   ourapproach: NameOurapproach
   potentialuser: NamePotentialuser
   otherproducts: NameOtherproducts
@@ -420,6 +438,12 @@ input NameUsecasesMutation {
   usecases: [NameUsecasesUsecasesMutation]
 }
 
+input NameBannersMutation {
+  title: String
+  content: JSON
+  bannerImage: String
+}
+
 input NameFeaturesFeaturesMutation {
   icon: String
   title: String
@@ -432,6 +456,16 @@ input NameFeaturesMutation {
   sectionid: String
   topimage: String
   features: [NameFeaturesFeaturesMutation]
+}
+
+input NameServicestestServicesMutation {
+  title: String
+  description: JSON
+}
+
+input NameServicestestMutation {
+  sectiontitle: String
+  services: [NameServicestestServicesMutation]
 }
 
 input NameOurapproachOurapproachMutation {
@@ -486,7 +520,9 @@ input NameFooterctoMutation {
 input NameMutation {
   hero: NameHeroMutation
   usecases: NameUsecasesMutation
+  banners: [NameBannersMutation]
   features: NameFeaturesMutation
+  servicestest: NameServicestestMutation
   ourapproach: NameOurapproachMutation
   potentialuser: NamePotentialuserMutation
   otherproducts: NameOtherproductsMutation

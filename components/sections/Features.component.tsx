@@ -19,15 +19,15 @@ interface IFeaturesComponent {
 const FeaturesComponent = ({ data }: { data: IFeaturesComponent }) => {
   const { sectiontitle, id, topimage, features, sectionid } = data;
   return (
-    <SectionLayoutComponent id={sectionid}>
-      <CustomSection>
+    <CustomSection>
+      <SectionLayoutComponent id={sectionid}>
         <SectionTitleComponent>{sectiontitle}</SectionTitleComponent>
         <div className="top-image">
           <Image
             src={topimage}
             alt={topimage}
             layout="fill"
-            objectFit="contain"
+            objectFit="cover"
           />
         </div>
         <motion.div
@@ -53,14 +53,26 @@ const FeaturesComponent = ({ data }: { data: IFeaturesComponent }) => {
             </motion.div>
           ))}
         </motion.div>
-      </CustomSection>
-    </SectionLayoutComponent>
+      </SectionLayoutComponent>
+    </CustomSection>
   );
 };
 
 export default FeaturesComponent;
 
 const CustomSection = styled.section`
+  background: #acb6e5; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #86fde8,
+    #acb6e5
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #86fde8,
+    #acb6e5
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
   @media (max-width: 500px) {
     .top-image {
       height: 250px !important;
@@ -68,13 +80,16 @@ const CustomSection = styled.section`
   }
   .top-image {
     position: relative;
-    height: 650px;
+    height: 500px;
+    border-radius: 2rem;
+    overflow: hidden;
+    margin: 0 0 2rem;
   }
   .feature-cards {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 20px;
-    margin: -8rem 0 0;
+
     @media (max-width: 1024px) {
       grid-template-columns: 1fr 1fr;
     }

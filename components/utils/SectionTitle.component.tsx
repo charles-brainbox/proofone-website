@@ -9,8 +9,8 @@ const SectionTitleComponent = ({ children }: { children: string }) => {
 export default SectionTitleComponent;
 
 const CustomTitle = styled.h3`
-  color: var(--main-color);
-  font-size: 2.5rem;
+  color: var(--main-black);
+  font-size: 2.2rem;
   font-weight: 800;
   margin-bottom: 2rem;
 `;

@@ -69,7 +69,6 @@ export default FooterComponent;
 const CustomSection = styled.footer`
   background-color: var(--main-grey);
   padding: 3rem 0 6rem;
-  border-top: 1px solid var(--main-color);
   .footer-container {
     margin: 0 auto;
     width: 75%;

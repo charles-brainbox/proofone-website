@@ -55,7 +55,9 @@ export default PotentialUsersCardComponent;
 
 const CustomSection = styled(motion.div)`
   margin: 3rem 0 0;
-
+  border: 1px solid var(--main-grey-2);
+  border-radius: 5px;
+  padding: 1rem;
   @media (max-width: 500px) {
     margin-bottom: 2rem;
   }
@@ -66,8 +68,8 @@ const CustomSection = styled(motion.div)`
       width: 30px;
       min-width: 30px;
       border-radius: 50%;
-      border: 2px solid var(--main-color);
-      color: var(--main-color);
+      border: 2px solid var(--main-black);
+      color: var(--main-black);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -78,9 +80,7 @@ const CustomSection = styled(motion.div)`
     }
     .title {
       font-weight: 800;
-      font-size: 1.2rem;
       margin-bottom: 0.5rem;
-      color: var(--main-color);
     }
   }
 `;

@@ -71,6 +71,12 @@ fragment NameParts on Name {
       description
     }
   }
+  banners {
+    __typename
+    title
+    content
+    bannerImage
+  }
   features {
     __typename
     sectiontitle
@@ -81,6 +87,15 @@ fragment NameParts on Name {
       icon
       title
       subtitle
+      description
+    }
+  }
+  servicestest {
+    __typename
+    sectiontitle
+    services {
+      __typename
+      title
       description
     }
   }

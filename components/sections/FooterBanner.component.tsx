@@ -14,13 +14,6 @@ const FooterBannerComponent = ({ data }: { data: IFooterCto }) => {
         <RenderItemComponent
           item={<blockquote className="quote">{cto}</blockquote>}
         />
-        {/* <RenderItemComponent
-          item={
-            <ButtonComponent normal id={ctobutton.buttonlink}>
-              {ctobutton.buttontext}
-            </ButtonComponent>
-          }
-        /> */}
         <ContactFormComponent />
       </CustomSection>
     </SectionLayoutComponent>
@@ -31,15 +24,17 @@ export default FooterBannerComponent;
 
 const CustomSection = styled.section`
   margin: 0 auto 85px;
-  text-align: center;
-  width: 80%;
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 5rem;
+  @media (max-width: 500px) {
+    display: block !important;
+  }
   .quote {
-    font-size: 2.5rem;
-    color: var(--main-color);
+    font-size: 2rem;
     margin-bottom: 1rem;
-    line-height: 1.2;
     @media (max-width: 500px) {
-      font-size: 2.5rem;
+      font-size: 2rem;
       margin: 0;
     }
   }
