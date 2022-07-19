@@ -18,6 +18,7 @@ const App = ({ Component, pageProps }: { Component: any; pageProps: any }) => {
         <TinaProvider>
           <Script
             type="text/javascript"
+            id="analytics"
             dangerouslySetInnerHTML={{
               __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -28,6 +29,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           ></Script>
           <Script
             type="text/javascript"
+            id="consent"
             dangerouslySetInnerHTML={{
               __html: `var _iub = _iub || [];
             _iub.csConfiguration = {"consentOnContinuedBrowsing":false,"countryDetection":true,"floatingPreferencesButtonDisplay":"bottom-right","gdprAppliesGlobally":false,"lang":"en","perPurposeConsent":true,"cookiePolicyId":19889550,"siteId":2738467, "banner":{ "acceptButtonCaptionColor":"#FFFFFF","acceptButtonColor":"#0073CE","acceptButtonDisplay":true,"backgroundColor":"#FFFFFF","brandBackgroundColor":"#FFFFFF","brandTextColor":"#000000","closeButtonDisplay":false,"customizeButtonCaptionColor":"#4D4D4D","customizeButtonColor":"#DADADA","customizeButtonDisplay":true,"explicitWithdrawal":true,"fontSize":"12px","listPurposes":true,"logo":"https://www.brainbox-pf.de/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fbrainboxgroup%2Fimage%2Fupload%2Fv1655808535%2Fproof-one_black_gszob8.png&w=3840&q=75","position":"float-bottom-left","textColor":"#000000" }}`,
@@ -35,6 +37,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           ></Script>
           <Script
             type="text/javascript"
+            id="consent-async"
             src="//cdn.iubenda.com/cs/iubenda_cs.js"
             charSet="UTF-8"
             async
@@ -56,6 +59,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           </a>
           <Script
             type="text/javascript"
+            id="datenschutz"
             dangerouslySetInnerHTML={{
               __html: `(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false)}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader}})(window, document)`,
             }}
