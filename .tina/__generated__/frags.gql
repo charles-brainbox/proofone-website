@@ -145,6 +145,16 @@ fragment NameParts on Name {
   }
 }
 
+fragment FormcallbackParts on Formcallback {
+  title
+  formfield {
+    __typename
+    name
+    placeholder
+    error
+  }
+}
+
 fragment ImpressumParts on Impressum {
   title
   description

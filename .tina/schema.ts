@@ -375,6 +375,26 @@ const schema = defineSchema({
       ],
     },
     {
+      label: "Form Call back",
+      name: "formcallback",
+      format: "json",
+      path: "content/form",
+      fields: [
+        { type: "rich-text", label: "Title", name: "title" },
+        {
+          type: "object",
+          label: "Form field",
+          name: "formfield",
+          list: true,
+          fields: [
+            { type: "string", label: "Name", name: "name" },
+            { type: "string", label: "Placeholder", name: "placeholder" },
+            { type: "string", label: "Error", name: "error" },
+          ],
+        },
+      ],
+    },
+    {
       label: "Impressum",
       name: "impressum",
       path: "content/Impressum",

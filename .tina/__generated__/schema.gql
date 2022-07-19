@@ -56,6 +56,8 @@ type Query {
   footerConnection(before: String, after: String, first: Float, last: Float, sort: String): FooterConnection!
   name(relativePath: String): Name!
   nameConnection(before: String, after: String, first: Float, last: Float, sort: String): NameConnection!
+  formcallback(relativePath: String): Formcallback!
+  formcallbackConnection(before: String, after: String, first: Float, last: Float, sort: String): FormcallbackConnection!
   impressum(relativePath: String): Impressum!
   impressumConnection(before: String, after: String, first: Float, last: Float, sort: String): ImpressumConnection!
 }
@@ -83,7 +85,7 @@ type Collection {
   documents(before: String, after: String, first: Float, last: Float, sort: String): DocumentConnection!
 }
 
-union DocumentNode = Author | Navbar | Footer | Name | Impressum
+union DocumentNode = Author | Navbar | Footer | Name | Formcallback | Impressum
 
 type Author implements Node & Document {
   name: String
@@ -313,6 +315,31 @@ type NameConnection implements Connection {
   edges: [NameConnectionEdges]
 }
 
+type FormcallbackFormfield {
+  name: String
+  placeholder: String
+  error: String
+}
+
+type Formcallback implements Node & Document {
+  title: JSON
+  formfield: [FormcallbackFormfield]
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+type FormcallbackConnectionEdges {
+  cursor: String!
+  node: Formcallback
+}
+
+type FormcallbackConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [FormcallbackConnectionEdges]
+}
+
 type Impressum implements Node & Document {
   title: String
   description: JSON
@@ -345,6 +372,8 @@ type Mutation {
   createFooter(relativePath: String!, params: FooterMutation!): Footer!
   updateName(relativePath: String!, params: NameMutation!): Name!
   createName(relativePath: String!, params: NameMutation!): Name!
+  updateFormcallback(relativePath: String!, params: FormcallbackMutation!): Formcallback!
+  createFormcallback(relativePath: String!, params: FormcallbackMutation!): Formcallback!
   updateImpressum(relativePath: String!, params: ImpressumMutation!): Impressum!
   createImpressum(relativePath: String!, params: ImpressumMutation!): Impressum!
 }
@@ -354,6 +383,7 @@ input DocumentMutation {
   navbar: NavbarMutation
   footer: FooterMutation
   name: NameMutation
+  formcallback: FormcallbackMutation
   impressum: ImpressumMutation
 }
 
@@ -527,6 +557,17 @@ input NameMutation {
   potentialuser: NamePotentialuserMutation
   otherproducts: NameOtherproductsMutation
   footercto: NameFooterctoMutation
+}
+
+input FormcallbackFormfieldMutation {
+  name: String
+  placeholder: String
+  error: String
+}
+
+input FormcallbackMutation {
+  title: JSON
+  formfield: [FormcallbackFormfieldMutation]
 }
 
 input ImpressumMutation {

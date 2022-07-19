@@ -1,0 +1,37 @@
+{
+  "title": "Bitte rufen Sie mich zurück.\n",
+  "formfield": [
+    {
+      "name": "Vorname",
+      "placeholder": "Vorname*",
+      "error": "Vorname ist erfoderlich"
+    },
+    {
+      "name": "Nachname",
+      "placeholder": "Nachname*",
+      "error": "Nachname ist erfoderlich"
+    },
+    {
+      "name": "Unternehmen",
+      "placeholder": "Unternehmen"
+    },
+    {
+      "name": "Position",
+      "placeholder": "Position"
+    },
+    {
+      "name": "Email",
+      "placeholder": "Email*",
+      "error": "Email ist erfoderlich oder falsche format"
+    },
+    {
+      "name": "Telefonnummer",
+      "placeholder": "Telefonnummer*",
+      "error": "Telefonnummer ist erfoderlich"
+    },
+    {
+      "name": "Kommentar",
+      "placeholder": "Kommentar"
+    }
+  ]
+}

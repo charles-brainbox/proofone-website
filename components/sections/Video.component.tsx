@@ -9,7 +9,7 @@ export const VideoComponent = () => {
       <CustomContainer>
         <SectionTitleComponent>Watch our video</SectionTitleComponent>
         <div className="video-player">
-          <video width="100%" height="auto" autoPlay muted loop>
+          <video width="100%" height="auto" autoPlay muted loop controls>
             <source type="video/mp4" src="Dieter Full German New ST.mp4" />
           </video>
         </div>

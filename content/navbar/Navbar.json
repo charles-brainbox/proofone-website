@@ -16,21 +16,21 @@
         "menulink": "anwendungsfall"
       },
       {
-        "menutitle": "Features",
-        "menulink": "features"
+        "menutitle": "Vorteile",
+        "menulink": "vorteile"
       },
       {
         "menutitle": "Unsere Ansatz",
         "menulink": "unsereansatz"
       },
       {
-        "menutitle": "CTO",
-        "menulink": "cto"
+        "menutitle": "Kostenlos testen",
+        "menulink": "kostenlos-testen"
       }
     ],
     "navbuttons": [
       {
-        "buttontitle": "Angebot anfordern",
+        "buttontitle": "Kostenlos testen",
         "buttonlink": "cto"
       }
     ]

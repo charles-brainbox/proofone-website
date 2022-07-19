@@ -41,9 +41,6 @@ const PotentialUsersCardComponent: FC<IPotentialUsers> = ({
         variants={potentialUserLeft}
         transition={{ ease: "easeInOut", duration: "1", repeat: 0 }}
       >
-        <div className="index-number">
-          <span className="index">{index}</span>
-        </div>
         <RenderItemComponent item={<h4 className="title">{title}</h4>} />
         <RenderItemComponent item={<TinaMarkdown content={description} />} />
       </motion.div>

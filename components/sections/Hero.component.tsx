@@ -4,6 +4,7 @@ import React from "react";
 import styled from "styled-components";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { IHero } from "../../types/types";
+import { AnimatedBackgroundComponent } from "../utils/AnimatedBackground.component";
 import RenderItemComponent from "../utils/RenderItem.component";
 import TypeWriterComponent from "../utils/Typewriter.component";
 
@@ -12,35 +13,35 @@ const HeroComponent = ({ data }: { data: IHero }) => {
     data;
   return (
     <CustomSection>
-      <div className="hero-header">
-        <motion.div className="left-side">
-          <RenderItemComponent
-            item={<TypeWriterComponent content={herotitle} speed={100} />}
-          />
-
-          <h2 className="subtitle">{herosubtitle}</h2>
-          <RenderItemComponent
-            item={<TinaMarkdown content={herodescription} />}
-          />
-        </motion.div>
-        <div className="right-side">
-          <div className="right-container">
+      <AnimatedBackgroundComponent>
+        <div className="hero-header">
+          <motion.div className="left-side">
             <RenderItemComponent
-              item={
-                <Image
-                  src={heroimage}
-                  alt={herotitle}
-                  layout="fixed"
-                  objectFit="contain"
-                  priority
-                  height={430}
-                  width={950}
-                />
-              }
+              item={<TypeWriterComponent content={herotitle} speed={100} />}
             />
+
+            <h2 className="subtitle">{herosubtitle}</h2>
+            <RenderItemComponent
+              item={<TinaMarkdown content={herodescription} />}
+            />
+          </motion.div>
+          <div className="right-side">
+            <div className="right-container">
+              <RenderItemComponent
+                item={
+                  <Image
+                    src={heroimage}
+                    alt={herotitle}
+                    layout="fill"
+                    objectFit="contain"
+                    priority
+                  />
+                }
+              />
+            </div>
           </div>
         </div>
-      </div>
+      </AnimatedBackgroundComponent>
     </CustomSection>
   );
 };
@@ -48,8 +49,7 @@ const HeroComponent = ({ data }: { data: IHero }) => {
 export default HeroComponent;
 
 const CustomSection = styled.section`
-  height: 500px;
-  background-color: var(--ter-color);
+  height: 650px;
   overflow: hidden;
   @media (max-width: 1024px) {
     height: auto !important;
@@ -61,7 +61,7 @@ const CustomSection = styled.section`
     width: 85%;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.2fr 1fr;
     gap: 30px;
     align-items: center;
 
@@ -93,7 +93,7 @@ const CustomSection = styled.section`
     }
     .left-side {
       .title {
-        font-size: 4.5rem;
+        font-size: 5.5rem;
         font-weight: 900;
         line-height: 1;
         &::after {
@@ -103,10 +103,13 @@ const CustomSection = styled.section`
         }
       }
       .subtitle {
-        font-size: 2rem;
+        font-size: 3rem;
         margin: 0.2rem 0;
         font-weight: 600;
         margin: 0 0 1rem;
+      }
+      p {
+        font-size: 1.3rem;
       }
     }
     .right-side {
@@ -118,7 +121,7 @@ const CustomSection = styled.section`
         overflow: hidden;
         position: absolute;
         width: 200%;
-        height: 430px;
+        height: 500px;
         bottom: 0;
       }
     }

@@ -81,6 +81,8 @@ export type Query = {
   footerConnection: FooterConnection;
   name: Name;
   nameConnection: NameConnection;
+  formcallback: Formcallback;
+  formcallbackConnection: FormcallbackConnection;
   impressum: Impressum;
   impressumConnection: ImpressumConnection;
 };
@@ -163,6 +165,20 @@ export type QueryNameConnectionArgs = {
 };
 
 
+export type QueryFormcallbackArgs = {
+  relativePath?: InputMaybe<Scalars['String']>;
+};
+
+
+export type QueryFormcallbackConnectionArgs = {
+  before?: InputMaybe<Scalars['String']>;
+  after?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Float']>;
+  last?: InputMaybe<Scalars['Float']>;
+  sort?: InputMaybe<Scalars['String']>;
+};
+
+
 export type QueryImpressumArgs = {
   relativePath?: InputMaybe<Scalars['String']>;
 };
@@ -211,7 +227,7 @@ export type CollectionDocumentsArgs = {
   sort?: InputMaybe<Scalars['String']>;
 };
 
-export type DocumentNode = Author | Navbar | Footer | Name | Impressum;
+export type DocumentNode = Author | Navbar | Footer | Name | Formcallback | Impressum;
 
 export type Author = Node & Document & {
   __typename?: 'Author';
@@ -478,6 +494,35 @@ export type NameConnection = Connection & {
   edges?: Maybe<Array<Maybe<NameConnectionEdges>>>;
 };
 
+export type FormcallbackFormfield = {
+  __typename?: 'FormcallbackFormfield';
+  name?: Maybe<Scalars['String']>;
+  placeholder?: Maybe<Scalars['String']>;
+  error?: Maybe<Scalars['String']>;
+};
+
+export type Formcallback = Node & Document & {
+  __typename?: 'Formcallback';
+  title?: Maybe<Scalars['JSON']>;
+  formfield?: Maybe<Array<Maybe<FormcallbackFormfield>>>;
+  id: Scalars['ID'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON'];
+};
+
+export type FormcallbackConnectionEdges = {
+  __typename?: 'FormcallbackConnectionEdges';
+  cursor: Scalars['String'];
+  node?: Maybe<Formcallback>;
+};
+
+export type FormcallbackConnection = Connection & {
+  __typename?: 'FormcallbackConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float'];
+  edges?: Maybe<Array<Maybe<FormcallbackConnectionEdges>>>;
+};
+
 export type Impressum = Node & Document & {
   __typename?: 'Impressum';
   title?: Maybe<Scalars['String']>;
@@ -514,6 +559,8 @@ export type Mutation = {
   createFooter: Footer;
   updateName: Name;
   createName: Name;
+  updateFormcallback: Formcallback;
+  createFormcallback: Formcallback;
   updateImpressum: Impressum;
   createImpressum: Impressum;
 };
@@ -594,6 +641,18 @@ export type MutationCreateNameArgs = {
 };
 
 
+export type MutationUpdateFormcallbackArgs = {
+  relativePath: Scalars['String'];
+  params: FormcallbackMutation;
+};
+
+
+export type MutationCreateFormcallbackArgs = {
+  relativePath: Scalars['String'];
+  params: FormcallbackMutation;
+};
+
+
 export type MutationUpdateImpressumArgs = {
   relativePath: Scalars['String'];
   params: ImpressumMutation;
@@ -610,6 +669,7 @@ export type DocumentMutation = {
   navbar?: InputMaybe<NavbarMutation>;
   footer?: InputMaybe<FooterMutation>;
   name?: InputMaybe<NameMutation>;
+  formcallback?: InputMaybe<FormcallbackMutation>;
   impressum?: InputMaybe<ImpressumMutation>;
 };
 
@@ -785,6 +845,17 @@ export type NameMutation = {
   footercto?: InputMaybe<NameFooterctoMutation>;
 };
 
+export type FormcallbackFormfieldMutation = {
+  name?: InputMaybe<Scalars['String']>;
+  placeholder?: InputMaybe<Scalars['String']>;
+  error?: InputMaybe<Scalars['String']>;
+};
+
+export type FormcallbackMutation = {
+  title?: InputMaybe<Scalars['JSON']>;
+  formfield?: InputMaybe<Array<InputMaybe<FormcallbackFormfieldMutation>>>;
+};
+
 export type ImpressumMutation = {
   title?: InputMaybe<Scalars['String']>;
   description?: InputMaybe<Scalars['JSON']>;
@@ -797,6 +868,8 @@ export type NavbarPartsFragment = { __typename?: 'Navbar', navbar?: { __typename
 export type FooterPartsFragment = { __typename?: 'Footer', logo?: string | null, address?: { __typename: 'FooterAddress', title?: string | null, companyname?: string | null, companystreet?: string | null, companycity?: string | null, companycountry?: string | null } | null, otherdata?: Array<{ __typename: 'FooterOtherdata', title?: string | null, body?: Array<{ __typename: 'FooterOtherdataBody', item?: string | null, itemlink?: string | null, itemtag?: string | null } | null> | null } | null> | null };
 
 export type NamePartsFragment = { __typename?: 'Name', hero?: { __typename: 'NameHero', herotitle?: string | null, sectionid?: string | null, herosubtitle?: string | null, herodescription?: any | null, heroimage?: string | null, herobutton?: Array<{ __typename: 'NameHeroHerobutton', buttontitle?: string | null, buttonlink?: string | null } | null> | null } | null, usecases?: { __typename: 'NameUsecases', sectiontitle?: string | null, sectionid?: string | null, sideimage?: string | null, usecases?: Array<{ __typename: 'NameUsecasesUsecases', title?: string | null, description?: any | null } | null> | null } | null, banners?: Array<{ __typename: 'NameBanners', title?: string | null, content?: any | null, bannerImage?: string | null } | null> | null, features?: { __typename: 'NameFeatures', sectiontitle?: string | null, sectionid?: string | null, topimage?: string | null, features?: Array<{ __typename: 'NameFeaturesFeatures', icon?: string | null, title?: string | null, subtitle?: string | null, description?: any | null } | null> | null } | null, servicestest?: { __typename: 'NameServicestest', sectiontitle?: string | null, services?: Array<{ __typename: 'NameServicestestServices', title?: string | null, description?: any | null } | null> | null } | null, ourapproach?: { __typename: 'NameOurapproach', sectiontitle?: string | null, sectionid?: string | null, sideimage?: string | null, ourapproach?: Array<{ __typename: 'NameOurapproachOurapproach', title?: string | null, description?: any | null } | null> | null } | null, potentialuser?: { __typename: 'NamePotentialuser', sectiontitle?: string | null, sectionid?: string | null, potentialusers?: Array<{ __typename: 'NamePotentialuserPotentialusers', image?: string | null, title?: string | null, description?: any | null, button?: { __typename: 'NamePotentialuserPotentialusersButton', buttontext?: string | null, buttonlink?: string | null } | null } | null> | null } | null, otherproducts?: { __typename: 'NameOtherproducts', productlogo?: Array<{ __typename: 'NameOtherproductsProductlogo', productlogo?: string | null } | null> | null } | null, footercto?: { __typename: 'NameFootercto', cto?: string | null, sectionid?: string | null, ctobutton?: { __typename: 'NameFooterctoCtobutton', buttontext?: string | null, buttonlink?: string | null } | null } | null };
+
+export type FormcallbackPartsFragment = { __typename?: 'Formcallback', title?: any | null, formfield?: Array<{ __typename: 'FormcallbackFormfield', name?: string | null, placeholder?: string | null, error?: string | null } | null> | null };
 
 export type ImpressumPartsFragment = { __typename?: 'Impressum', title?: string | null, description?: any | null };
 
@@ -871,6 +944,24 @@ export type NameConnectionQueryVariables = Exact<{
 
 
 export type NameConnectionQuery = { __typename?: 'Query', nameConnection: { __typename?: 'NameConnection', totalCount: number, edges?: Array<{ __typename?: 'NameConnectionEdges', node?: { __typename?: 'Name', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, hero?: { __typename: 'NameHero', herotitle?: string | null, sectionid?: string | null, herosubtitle?: string | null, herodescription?: any | null, heroimage?: string | null, herobutton?: Array<{ __typename: 'NameHeroHerobutton', buttontitle?: string | null, buttonlink?: string | null } | null> | null } | null, usecases?: { __typename: 'NameUsecases', sectiontitle?: string | null, sectionid?: string | null, sideimage?: string | null, usecases?: Array<{ __typename: 'NameUsecasesUsecases', title?: string | null, description?: any | null } | null> | null } | null, banners?: Array<{ __typename: 'NameBanners', title?: string | null, content?: any | null, bannerImage?: string | null } | null> | null, features?: { __typename: 'NameFeatures', sectiontitle?: string | null, sectionid?: string | null, topimage?: string | null, features?: Array<{ __typename: 'NameFeaturesFeatures', icon?: string | null, title?: string | null, subtitle?: string | null, description?: any | null } | null> | null } | null, servicestest?: { __typename: 'NameServicestest', sectiontitle?: string | null, services?: Array<{ __typename: 'NameServicestestServices', title?: string | null, description?: any | null } | null> | null } | null, ourapproach?: { __typename: 'NameOurapproach', sectiontitle?: string | null, sectionid?: string | null, sideimage?: string | null, ourapproach?: Array<{ __typename: 'NameOurapproachOurapproach', title?: string | null, description?: any | null } | null> | null } | null, potentialuser?: { __typename: 'NamePotentialuser', sectiontitle?: string | null, sectionid?: string | null, potentialusers?: Array<{ __typename: 'NamePotentialuserPotentialusers', image?: string | null, title?: string | null, description?: any | null, button?: { __typename: 'NamePotentialuserPotentialusersButton', buttontext?: string | null, buttonlink?: string | null } | null } | null> | null } | null, otherproducts?: { __typename: 'NameOtherproducts', productlogo?: Array<{ __typename: 'NameOtherproductsProductlogo', productlogo?: string | null } | null> | null } | null, footercto?: { __typename: 'NameFootercto', cto?: string | null, sectionid?: string | null, ctobutton?: { __typename: 'NameFooterctoCtobutton', buttontext?: string | null, buttonlink?: string | null } | null } | null } | null } | null> | null } };
+
+export type FormcallbackQueryVariables = Exact<{
+  relativePath: Scalars['String'];
+}>;
+
+
+export type FormcallbackQuery = { __typename?: 'Query', formcallback: { __typename?: 'Formcallback', id: string, title?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, formfield?: Array<{ __typename: 'FormcallbackFormfield', name?: string | null, placeholder?: string | null, error?: string | null } | null> | null } };
+
+export type FormcallbackConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']>;
+  after?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Float']>;
+  last?: InputMaybe<Scalars['Float']>;
+  sort?: InputMaybe<Scalars['String']>;
+}>;
+
+
+export type FormcallbackConnectionQuery = { __typename?: 'Query', formcallbackConnection: { __typename?: 'FormcallbackConnection', totalCount: number, edges?: Array<{ __typename?: 'FormcallbackConnectionEdges', node?: { __typename?: 'Formcallback', id: string, title?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, formfield?: Array<{ __typename: 'FormcallbackFormfield', name?: string | null, placeholder?: string | null, error?: string | null } | null> | null } | null } | null> | null } };
 
 export type ImpressumQueryVariables = Exact<{
   relativePath: Scalars['String'];
@@ -1038,6 +1129,17 @@ export const NamePartsFragmentDoc = gql`
       buttontext
       buttonlink
     }
+  }
+}
+    `;
+export const FormcallbackPartsFragmentDoc = gql`
+    fragment FormcallbackParts on Formcallback {
+  title
+  formfield {
+    __typename
+    name
+    placeholder
+    error
   }
 }
     `;
@@ -1235,6 +1337,53 @@ export const NameConnectionDocument = gql`
   }
 }
     ${NamePartsFragmentDoc}`;
+export const FormcallbackDocument = gql`
+    query formcallback($relativePath: String!) {
+  formcallback(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...FormcallbackParts
+  }
+}
+    ${FormcallbackPartsFragmentDoc}`;
+export const FormcallbackConnectionDocument = gql`
+    query formcallbackConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String) {
+  formcallbackConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+  ) {
+    totalCount
+    edges {
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...FormcallbackParts
+      }
+    }
+  }
+}
+    ${FormcallbackPartsFragmentDoc}`;
 export const ImpressumDocument = gql`
     query impressum($relativePath: String!) {
   impressum(relativePath: $relativePath) {
@@ -1308,6 +1457,12 @@ export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) 
       },
     nameConnection(variables?: NameConnectionQueryVariables, options?: C): Promise<{data: NameConnectionQuery, variables: NameConnectionQueryVariables, query: string}> {
         return requester<{data: NameConnectionQuery, variables: NameConnectionQueryVariables, query: string}, NameConnectionQueryVariables>(NameConnectionDocument, variables, options);
+      },
+    formcallback(variables: FormcallbackQueryVariables, options?: C): Promise<{data: FormcallbackQuery, variables: FormcallbackQueryVariables, query: string}> {
+        return requester<{data: FormcallbackQuery, variables: FormcallbackQueryVariables, query: string}, FormcallbackQueryVariables>(FormcallbackDocument, variables, options);
+      },
+    formcallbackConnection(variables?: FormcallbackConnectionQueryVariables, options?: C): Promise<{data: FormcallbackConnectionQuery, variables: FormcallbackConnectionQueryVariables, query: string}> {
+        return requester<{data: FormcallbackConnectionQuery, variables: FormcallbackConnectionQueryVariables, query: string}, FormcallbackConnectionQueryVariables>(FormcallbackConnectionDocument, variables, options);
       },
     impressum(variables: ImpressumQueryVariables, options?: C): Promise<{data: ImpressumQuery, variables: ImpressumQueryVariables, query: string}> {
         return requester<{data: ImpressumQuery, variables: ImpressumQueryVariables, query: string}, ImpressumQueryVariables>(ImpressumDocument, variables, options);

@@ -17,7 +17,7 @@ const CustomSection = styled.section`
   padding: 85px 0;
   margin: 0 auto;
   width: 75%;
-  max-width: 1500px;
+  max-width: 1200px;
   @media (max-width: 1024px) {
     width: 94%;
     overflow-x: hidden !important;

@@ -1,6 +1,4 @@
-import { Input, Textarea } from "@nextui-org/react";
-import { ErrorMessage, Field, Form, Formik } from "formik";
-import { json } from "node:stream/consumers";
+import { Textarea } from "@nextui-org/react";
 import React from "react";
 import styled from "styled-components";
 import {
@@ -9,10 +7,10 @@ import {
   FormErrorDefaultState,
 } from "../consts/constants";
 import ButtonComponent from "./Button.component";
-import SectionLayoutComponent from "./layout/SectionLayout.component";
 import { CustomInputComponent } from "./utils/CustomInput.component";
 import { FormSuccessComponent } from "./utils/FormSuccess.component";
 import SectionTitleComponent from "./utils/SectionTitle.component";
+import callbackForm from "../content/form/CallBackForm.json";
 
 interface IFormError {
   fullname: string;
@@ -73,42 +71,42 @@ export const ContactFormComponent = () => {
   }
   return (
     <CustomContainer>
-      <SectionTitleComponent>Get in touch with us</SectionTitleComponent>
+      <SectionTitleComponent>{callbackForm.title}</SectionTitleComponent>
 
       <form onSubmit={handleSubmit}>
-        <CustomInputComponent
-          labelplaceholder="Full name*"
-          type="text"
-          name="fullname"
-          value={form.fullname}
-          onChange={handleChange}
-          arialabel="fullname"
-          helperText={errors.fullname ? errors.fullname : ""}
-          status={errors.fullname ? "error" : "default"}
-          helperColor={errors.fullname ? "error" : "default"}
-        />
-        <CustomInputComponent
-          labelplaceholder="Email*"
-          type="email"
-          name="email"
-          value={form.email}
-          onChange={handleChange}
-          arialabel="email"
-          helperText={errors.email ? errors.email : ""}
-          status={errors.email ? "error" : "default"}
-          helperColor={errors.email ? "error" : "default"}
-        />
-        <Textarea
-          rows={10}
-          placeholder="What would you like to ask us?"
-          fullWidth
-          bordered
-          borderWeight="light"
-          name="question"
-          onChange={handleChange}
-          value={form.question}
-          aria-label="question"
-        />
+        {callbackForm.formfield.map((field, idx) => {
+          if (field.name === "Kommentar") {
+            return (
+              <Textarea
+                rows={5}
+                placeholder={field.placeholder}
+                fullWidth
+                bordered
+                borderWeight="light"
+                name={field.name}
+                onChange={handleChange}
+                value={form.question}
+                aria-label="question"
+                style={{ borderColor: "none" }}
+              />
+            );
+          } else {
+            return (
+              <CustomInputComponent
+                labelplaceholder={field.placeholder}
+                type={field.name === "email" ? "email" : "text"}
+                name={field.name}
+                value={form.fullname}
+                onChange={handleChange}
+                arialabel="fullname"
+                helperText={errors.fullname ? field.error : ""}
+                status={errors.fullname ? "error" : "default"}
+                helperColor={errors.fullname ? "error" : "default"}
+              />
+            );
+          }
+        })}
+
         <ButtonComponent
           type="submit"
           style={{ marginTop: "1rem", float: "right" }}
@@ -128,7 +126,7 @@ const CustomContainer = styled.div`
     input,
     textarea {
       font-family: var(--main-font);
-      font-size: 1.2rem;
+      font-size: 1rem;
     }
   }
 `;

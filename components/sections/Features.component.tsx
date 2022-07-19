@@ -27,7 +27,7 @@ const FeaturesComponent = ({ data }: { data: IFeaturesComponent }) => {
             src={topimage}
             alt={topimage}
             layout="fill"
-            objectFit="cover"
+            objectFit="contain"
           />
         </div>
         <motion.div
@@ -80,7 +80,7 @@ const CustomSection = styled.section`
   }
   .top-image {
     position: relative;
-    height: 500px;
+    height: 800px;
     border-radius: 2rem;
     overflow: hidden;
     margin: 0 0 2rem;

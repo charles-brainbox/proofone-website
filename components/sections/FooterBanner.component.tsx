@@ -32,7 +32,7 @@ const CustomSection = styled.section`
   }
   .quote {
     font-size: 2rem;
-    margin-bottom: 1rem;
+    margin: 0;
     @media (max-width: 500px) {
       font-size: 2rem;
       margin: 0;

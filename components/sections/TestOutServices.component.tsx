@@ -38,10 +38,13 @@ export const TestOutServicesComponent = ({
 };
 
 const CustomContainer = styled.div`
+  @media (max-width: 1600px) {
+    width: 90% !important;
+  }
   background-color: var(--ter-color);
   border-radius: 5rem;
   margin: 85px auto 0;
-  width: 90%;
+  width: 70%;
   section {
     width: 85%;
   }

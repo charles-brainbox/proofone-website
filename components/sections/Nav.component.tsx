@@ -13,6 +13,7 @@ import {
 } from "../../consts/constants";
 import { MenuToggle } from "./MenuToggle.component";
 import Navbar from "../../content/navbar/Navbar.json";
+import SectionLayoutComponent from "../layout/SectionLayout.component";
 
 const NavComponent = () => {
   const [isOpen, toggleOpen] = useCycle(false, true);
@@ -38,17 +39,17 @@ const NavComponent = () => {
 
   return (
     <CustomSection isOpen={isOpen} scrollPosition={scrollPosition}>
-      <div className="logo-header">
-        <div className="logos-overflow">
-          <div className="logos">
-            {logo.map(({ logo, link }, idx) => (
-              <div className="logo" key={idx}>
+      <SectionLayoutComponent>
+        <div className="logo-header">
+          <div className="logos-overflow">
+            <div className="logos">
+              <div className="logo">
                 <RenderItemComponent
                   item={
-                    <Link href={link}>
+                    <Link href={logo.at(1).link}>
                       <a>
                         <Image
-                          src={logo}
+                          src={logo.at(1).logo}
                           alt="proof-one-logo"
                           layout="fill"
                           objectFit="contain"
@@ -58,69 +59,69 @@ const NavComponent = () => {
                   }
                 />
               </div>
-            ))}
+            </div>
           </div>
-        </div>
-        <div className="menu">
-          <ul className="menu-desktop">
-            {navitems.map(({ menutitle, menulink }, idx) => (
-              <RenderItemComponent
-                key={idx}
-                item={
-                  <li>
-                    <div className="item-title">
-                      <span>+ </span>
-                      <a href={`/#${menulink}`}>{menutitle}</a>
-                      <div className="underline"></div>
-                    </div>
-                  </li>
-                }
-              />
-            ))}
-          </ul>
-          {navbuttons.map(({ buttontitle, buttonlink }, idx) => (
-            <RenderItemComponent
-              key={idx}
-              item={
-                <ButtonComponent
-                  style={{ zIndex: "300" }}
-                  outline
-                  id={buttonlink}
-                >
-                  {buttontitle}
-                </ButtonComponent>
-              }
-            />
-          ))}
-        </div>
-        <div className="mobile-view-div">
-          <motion.nav
-            initial={false}
-            animate={isOpen ? "open" : "closed"}
-            ref={containerRef}
-          >
-            <motion.div className="background" variants={sidebar} />
-            <motion.ul variants={navListVariants}>
+          <div className="menu">
+            <ul className="menu-desktop">
               {navitems.map(({ menutitle, menulink }, idx) => (
                 <RenderItemComponent
                   key={idx}
                   item={
-                    <motion.li
-                      variants={menuItemsVariants}
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.95 }}
-                      onClick={() => toggleOpen()}
-                    >
-                      <Link href={`#${menulink}`}>{menutitle}</Link>
-                    </motion.li>
+                    <li>
+                      <div className="item-title">
+                        <span>+ </span>
+                        <a href={`/#${menulink}`}>{menutitle}</a>
+                        <div className="underline"></div>
+                      </div>
+                    </li>
                   }
                 />
               ))}
-            </motion.ul>
-            <MenuToggle toggle={() => toggleOpen()} />
-          </motion.nav>
+            </ul>
+            {navbuttons.map(({ buttontitle, buttonlink }, idx) => (
+              <RenderItemComponent
+                key={idx}
+                item={
+                  <ButtonComponent
+                    style={{ zIndex: "300" }}
+                    outline
+                    id={buttonlink}
+                  >
+                    {buttontitle}
+                  </ButtonComponent>
+                }
+              />
+            ))}
+          </div>
+          <div className="mobile-view-div">
+            <motion.nav
+              initial={false}
+              animate={isOpen ? "open" : "closed"}
+              ref={containerRef}
+            >
+              <motion.div className="background" variants={sidebar} />
+              <motion.ul variants={navListVariants}>
+                {navitems.map(({ menutitle, menulink }, idx) => (
+                  <RenderItemComponent
+                    key={idx}
+                    item={
+                      <motion.li
+                        variants={menuItemsVariants}
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => toggleOpen()}
+                      >
+                        <Link href={`#${menulink}`}>{menutitle}</Link>
+                      </motion.li>
+                    }
+                  />
+                ))}
+              </motion.ul>
+              <MenuToggle toggle={() => toggleOpen()} />
+            </motion.nav>
+          </div>
         </div>
-      </div>
+      </SectionLayoutComponent>
     </CustomSection>
   );
 };
@@ -128,31 +129,34 @@ const NavComponent = () => {
 export default NavComponent;
 
 const CustomSection = styled.nav<{ isOpen: boolean; scrollPosition: number }>`
-  position: -webkit-sticky;
-  position: sticky;
+  position: fixed;
   top: 0;
   z-index: 100;
-
   background-color: ${(props) =>
-    props.scrollPosition > 650 ? "var(--main-white)" : "var(--ter-color)"};
+    props.scrollPosition > 1 ? "var(--main-white)" : "transparent"};
   box-shadow: ${(props) =>
-    props.scrollPosition > 650 ? "0px 4px 30px rgba(0, 0, 0, 0.05)" : ""};
-  transition: all 0.5s ease;
+    props.scrollPosition > 1 ? "0px 4px 30px rgba(0, 0, 0, 0.05)" : ""};
+  transition: all 0.3s ease;
   width: 100%;
+  section {
+    padding: 0;
+    width: 90%;
+    max-width: 85%;
+  }
   .logo-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    transition: all 0.5s ease;
+    transition: all 0.3s ease;
     background-color: ${(props) =>
-      props.scrollPosition > 650 ? "var(--main-white)" : "var(--ter-color)"};
+      props.scrollPosition > 1 ? "var(--main-white)" : "transparent"};
     color: var(--main-color);
 
     margin: 0 auto;
     width: 98%;
     height: 80px;
     max-width: 2200px;
-    transition: all 0.5s ease;
+    transition: all 0.3s ease;
 
     @media (max-width: 1024px) {
       .mobile-view-div {
@@ -177,7 +181,7 @@ const CustomSection = styled.nav<{ isOpen: boolean; scrollPosition: number }>`
           .background {
             transition: all 0.5s ease;
             background-color: ${(props) =>
-              props.scrollPosition > 650
+              props.scrollPosition > 1
                 ? "var(--main-white)"
                 : "var(--main-color)"};
             color: var(--main-color);
@@ -213,8 +217,7 @@ const CustomSection = styled.nav<{ isOpen: boolean; scrollPosition: number }>`
         gap: 5px;
         width: 240px;
         transition: all 0.5s ease;
-        transform: ${(props) =>
-          props.scrollPosition > 650 ? "translateX(-125px)" : "translateX(0)"};
+
         .logo {
           position: relative;
           height: 70px;
@@ -240,7 +243,7 @@ const CustomSection = styled.nav<{ isOpen: boolean; scrollPosition: number }>`
           display: flex;
           align-items: center;
           list-style: none;
-          font-weight: 500;
+          font-weight: 700;
           cursor: pointer;
           transition: opacity 0.5s ease-in-out;
           .item-title {
