@@ -38,9 +38,6 @@ export const ContactFormComponent = () => {
     submitted: false,
   });
 
-  console.log(form);
-  console.log(errors);
-
   const handleChange = (
     e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
   ) => {
