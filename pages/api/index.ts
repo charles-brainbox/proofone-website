@@ -23,10 +23,11 @@ export default async function handler(
   switch (method) {
     case "POST":
       try {
-        const { fullname, email, question } = req.body;
+        const { firstName, lastName, email, comment } = req.body;
         if (
           email &&
-          fullname &&
+          firstName &&
+          lastName &&
           /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email)
         ) {
           const transporter = nodemailer.createTransport({
@@ -51,8 +52,8 @@ export default async function handler(
             from: process.env.MAILER_BOT,
             to: process.env.TO,
             subject: `Message from ${email}`,
-            text: question + " | Sent from " + email,
-            html: `<div>${question}</div><p>Sent from: ${email}</p>`,
+            text: comment + " | Sent from " + email,
+            html: `<div>${comment}</div><p>Sent from: ${email}</p>`,
           };
           await new Promise((resolve, reject) => {
             transporter.sendMail(mailData, (err, info) => {

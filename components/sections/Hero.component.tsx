@@ -93,7 +93,7 @@ const CustomSection = styled.section`
     }
     .left-side {
       .title {
-        font-size: 5.5rem;
+        font-size: 4.5rem;
         font-weight: 900;
         line-height: 1;
         &::after {
@@ -103,13 +103,13 @@ const CustomSection = styled.section`
         }
       }
       .subtitle {
-        font-size: 3rem;
+        font-size: 2.5rem;
         margin: 0.2rem 0;
         font-weight: 600;
         margin: 0 0 1rem;
       }
       p {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
       }
     }
     .right-side {

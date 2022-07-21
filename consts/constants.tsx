@@ -74,12 +74,17 @@ export const potentialUserImages = {
   show: { opacity: 1 },
 };
 export const FormErrorDefaultState = {
-  fullname: "",
+  firstName: "",
+  lastName: "",
   email: "",
 };
 export const formDefaultState = {
-  fullname: "",
+  firstName: "",
+  lastName: "",
+  company: "",
+  position: "",
   email: "",
-  question: "",
+  telephone: "",
+  comment: "",
 };
 export const contentType = "application/json";

@@ -80,7 +80,7 @@ const CustomSection = styled.section`
   }
   .top-image {
     position: relative;
-    height: 800px;
+    height: 580px;
     border-radius: 2rem;
     overflow: hidden;
     margin: 0 0 2rem;

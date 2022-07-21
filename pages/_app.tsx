@@ -27,21 +27,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-TGL4VHJ')`,
             }}
           ></Script>
-          <Script
-            type="text/javascript"
-            id="consent"
-            dangerouslySetInnerHTML={{
-              __html: `var _iub = _iub || [];
-            _iub.csConfiguration = {"consentOnContinuedBrowsing":false,"countryDetection":true,"floatingPreferencesButtonDisplay":"bottom-right","gdprAppliesGlobally":false,"lang":"en","perPurposeConsent":true,"cookiePolicyId":19889550,"siteId":2738467, "banner":{ "acceptButtonCaptionColor":"#FFFFFF","acceptButtonColor":"#0073CE","acceptButtonDisplay":true,"backgroundColor":"#FFFFFF","brandBackgroundColor":"#FFFFFF","brandTextColor":"#000000","closeButtonDisplay":false,"customizeButtonCaptionColor":"#4D4D4D","customizeButtonColor":"#DADADA","customizeButtonDisplay":true,"explicitWithdrawal":true,"fontSize":"12px","listPurposes":true,"logo":"https://www.brainbox-pf.de/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fbrainboxgroup%2Fimage%2Fupload%2Fv1655808535%2Fproof-one_black_gszob8.png&w=3840&q=75","position":"float-bottom-left","textColor":"#000000" }}`,
-            }}
-          ></Script>
-          <Script
-            type="text/javascript"
-            id="consent-async"
-            src="//cdn.iubenda.com/cs/iubenda_cs.js"
-            charSet="UTF-8"
-            async
-          ></Script>
+
           <Component {...pageProps} />
           <PopupWidget
             url="https://calendly.com/charlesbrainbox805"

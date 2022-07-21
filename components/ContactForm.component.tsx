@@ -13,18 +13,24 @@ import SectionTitleComponent from "./utils/SectionTitle.component";
 import callbackForm from "../content/form/CallBackForm.json";
 
 interface IFormError {
-  fullname: string;
+  firstName: string;
+  lastName: string;
   email: string;
 }
 
 export const ContactFormComponent = () => {
   const [form, setForm] = React.useState({
-    fullname: "",
+    firstName: "",
+    lastName: "",
+    company: "",
+    position: "",
     email: "",
-    question: "",
+    telephone: "",
+    comment: "",
   });
   const [errors, setErrors] = React.useState<IFormError>({
-    fullname: "",
+    firstName: "",
+    lastName: "",
     email: "",
   });
   const [formState, setFormState] = React.useState({
@@ -44,8 +50,10 @@ export const ContactFormComponent = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (form.fullname === "") {
-      setErrors({ ...errors, fullname: "Full name is required" });
+    if (form.firstName === "") {
+      setErrors({ ...errors, firstName: "First name is required" });
+    } else if (form.lastName === "") {
+      setErrors({ ...errors, lastName: "Last name is required" });
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(form.email)) {
       setErrors({ ...errors, email: "Email format is incorrect" });
     } else {
@@ -75,7 +83,7 @@ export const ContactFormComponent = () => {
 
       <form onSubmit={handleSubmit}>
         {callbackForm.formfield.map((field, idx) => {
-          if (field.name === "Kommentar") {
+          if (field.name === "comment") {
             return (
               <Textarea
                 rows={5}
@@ -85,7 +93,7 @@ export const ContactFormComponent = () => {
                 borderWeight="light"
                 name={field.name}
                 onChange={handleChange}
-                value={form.question}
+                value={form.comment}
                 aria-label="question"
                 style={{ borderColor: "none" }}
               />
@@ -96,12 +104,12 @@ export const ContactFormComponent = () => {
                 labelplaceholder={field.placeholder}
                 type={field.name === "email" ? "email" : "text"}
                 name={field.name}
-                value={form.fullname}
+                value={form[field.name]}
                 onChange={handleChange}
                 arialabel="fullname"
-                helperText={errors.fullname ? field.error : ""}
-                status={errors.fullname ? "error" : "default"}
-                helperColor={errors.fullname ? "error" : "default"}
+                helperText={errors[field.name] ? field.error : ""}
+                status={errors[field.name] ? "error" : "default"}
+                helperColor={errors[field.name] ? "error" : "default"}
               />
             );
           }
