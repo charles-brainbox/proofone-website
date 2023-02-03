@@ -23,7 +23,7 @@
     "react-cookie-consent": "^7.5.0",
     "react-dom": "18.1.0",
     "styled-components": "^5.3.5",
-    "tinacms": "^0.68.9",
+    "tinacms": "^1.1.5",
     "vanilla-cookieconsent": "^2.8.2",
     "yup": "^0.32.11"
   },
